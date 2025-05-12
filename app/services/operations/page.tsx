@@ -6,7 +6,7 @@ import { HeroHeader } from "@/components/hero5-header"
 import { Briefcase, Clock, Users, Zap, TrendingUp, TrendingDown, Award, Search, Image, AlertCircle, AlertTriangle, CheckCircle2, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import CallToAction from "../../../../../production-ready-projects/local-ai-packaged/chanlytics-site-files/preview/call-to-action/one/page"
+import CallToAction from "@/components/call-to-action"
 import FeaturesSection8 from "@/components/features-8"
 import {
   Carousel,

@@ -30,7 +30,7 @@ import {
   Zap,
   Check
 } from "lucide-react"
-import CallToAction from "../../../../../production-ready-projects/local-ai-packaged/chanlytics-site-files/preview/call-to-action/one/page"
+import CallToAction from "@/components/call-to-action"
 
 // Management process steps
 const steps = [
