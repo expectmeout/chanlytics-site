@@ -16,7 +16,7 @@ const menuItems = [
    // { name: 'Case Studies', href: '/examples/case-studies' },
     { name: 'Our Process', href: '/our-process' },
     { name: 'Services', href: '#' },
-    { name: 'Pricing', href: '/pricing' },
+    { name: 'Pricing', href: '/our-pricing' },
 ]
 
 // Define Resources sub-menu items
