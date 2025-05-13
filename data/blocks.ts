@@ -10,8 +10,13 @@ export interface Block {
 }
 
 function loadCode(filePath: string): string {
-    const fullPath = path.join(process.cwd(), filePath)
-    return fs.readFileSync(fullPath, 'utf-8')
+    try {
+        const fullPath = path.join(process.cwd(), filePath)
+        return fs.existsSync(fullPath) ? fs.readFileSync(fullPath, 'utf-8') : '// File not found'
+    } catch (error) {
+        console.warn(`Could not load file at ${filePath}`, error)
+        return '// Error loading file'
+    }
 }
 
 export const blocks: Block[] = [

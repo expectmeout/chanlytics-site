@@ -15,6 +15,8 @@ import {
   Clock,
   TrendingUp,
   Cog,
+  Award,
+  TrendingDown
 } from "lucide-react"
 import type { Service, ServiceIconName } from "@/types"
 
@@ -30,6 +32,9 @@ const iconMap: Record<ServiceIconName, React.ComponentType<{ className?: string 
   Clock,
   TrendingUp,
   Cog,
+  Award,
+  TrendingDown,
+  Check
 }
 
 export default function ServiceSpotlight({ items }: { items: Service[] }) {

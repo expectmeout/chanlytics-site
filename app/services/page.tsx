@@ -69,6 +69,8 @@ const itemFadeInUp = (delay = 0) => ({
 // CORE SERVICES DATA (Simplified)
 const coreServicesData: Service[] = [
   {
+    id: "1", // Unique identifier
+    name: "Advertising Service", // Name of the service
     hash: "advertising",
     icon: "Target",
     title: "Performance Advertising & Campaign Management",
@@ -88,6 +90,8 @@ const coreServicesData: Service[] = [
     bgColorClass: "bg-primary/5",
   },
   {
+    id: "2", // Unique identifier
+    name: "VA Systems Service", // Name of the service
     hash: "va-systems",
     icon: "Users",
     title: "Virtual Assistant Daily Operation Systems",

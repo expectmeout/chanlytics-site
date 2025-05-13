@@ -72,7 +72,7 @@ import Testimonials2 from "@/components/testimonials-2";
 import { RetroGrid } from "@/components/magicui/retro-grid";
 import { useTheme } from "next-themes";
 import { Feature108Demo } from "@/components/features-tab-advertising";
-import CallToAction from "../../../../../production-ready-projects/local-ai-packaged/chanlytics-site-files/preview/call-to-action/one/page"
+import CallToAction from "@/components/call-to-action"
 import CallToActionAd from "@/components/advertising-hero"
 
 // Timeline data for our in-house advertising process
