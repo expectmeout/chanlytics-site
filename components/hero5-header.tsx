@@ -5,6 +5,7 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import React, { useRef, forwardRef } from 'react'
 import { cn } from '@/lib/utils'
+import { ThemeToggle } from '@/components/ThemeToggle'
 import {
     HoverCard,
     HoverCardContent,
@@ -209,7 +210,7 @@ export const HeroHeader = forwardRef<HTMLElement, {}>((props, ref) => {
                                     ))}
                                 </ul>
                             </div>
-                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                            <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit md:items-center">
                                 <Button
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}
@@ -222,6 +223,7 @@ export const HeroHeader = forwardRef<HTMLElement, {}>((props, ref) => {
                                     onClick={scrollToBooking}>
                                     <span>Get in Touch</span>
                                 </Button>
+                                <ThemeToggle />
                             </div>
                         </div>
                     </div>

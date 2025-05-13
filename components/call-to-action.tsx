@@ -4,26 +4,19 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
 
 export default function CallToAction() {
   return (
-    <section className="bg-primary/5 dark:bg-primary/10 py-16 rounded-xl border border-primary/10">
-      <div className="mx-auto max-w-5xl px-8 text-center">
-        <h2 className="text-3xl font-semibold mb-4">Ready to Streamline Your Marketplace Operations?</h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          Our specialized virtual assistants and AI-powered interface will transform how you manage your Amazon and Walmart business.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <Link href="#book">
-            <Button size="lg" className="gap-2">
-              Book a Free Consultation <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
-          <Link href="/pricing">
-            <Button variant="outline" size="lg">
-              View Pricing
-            </Button>
-          </Link>
+    <section className="py-8 md:py-10 mt-16 mb-2">
+    <div className="mx-auto max-w-5xl px-6">
+        <div className="text-center">
+          <Badge variant="secondary" className="mb-4">Virtual Assistant Operations</Badge>
+          <h2 className="text-balance text-4xl font-semibold lg:text-5xl">Expert VA Teams Following Our Proven Framework</h2>
+          <p className="mt-4 max-w-3xl mx-auto text-muted-foreground">
+            High-volume Amazon & Walmart sellers no longer need to manage operations alone. Our specialized VA teams excel in inventory management, fulfillment coordination, and listing optimization—all following the Chanlytics framework customized to your needs.
+          </p>
+
         </div>
       </div>
     </section>

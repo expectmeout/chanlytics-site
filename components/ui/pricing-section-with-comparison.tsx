@@ -42,8 +42,8 @@ function Pricing() {
                   <span className="text-sm text-muted-foreground"> / setup</span>
                 </p>
                 <Button variant="outline" className="gap-4 mt-8" asChild>
-                   <Link href="/examples/services/operations">
-                     Learn More <MoveRight className="w-4 h-4" />
+                   <Link href="https://schedule.chanlytics.com/schedule/25min">
+                     Get Started <MoveRight className="w-4 h-4" />
                    </Link>
                 </Button>
               </div>
@@ -61,8 +61,8 @@ function Pricing() {
                   <span className="text-sm text-muted-foreground"> / month</span>
                 </p>
                 <Button className="gap-4 mt-8" asChild>
-                   <Link href="/examples/services/advertising">
-                     Learn More <MoveRight className="w-4 h-4" />
+                   <Link href="https://schedule.chanlytics.com/schedule/25min">
+                     Get Started <MoveRight className="w-4 h-4" />
                    </Link>
                 </Button>
               </div>
@@ -70,9 +70,9 @@ function Pricing() {
               {/* AI Automations Tier */} 
               {/* Added lg:border-l */} 
               <div className="col-span-1 px-3 py-4 md:px-6 md:py-4 gap-2 flex flex-col lg:border-l">
-                <p className="text-2xl flex items-center gap-2"><BarChart className="w-6 h-6 text-primary"/> AI Automations</p>
+                <p className="text-2xl flex items-center gap-2"><Bot className="w-6 h-6 text-primary"/> AI Automations</p>
                 <p className="text-sm text-muted-foreground min-h-[80px]">
-                  Expert management of Sponsored Products, Brands, and Display ads on Amazon & Walmart.
+                  AI-powered automation system for Amazon sellers and agencies to streamline operations and reporting.
                 </p>
                 <p className="flex flex-col lg:flex-row lg:items-end gap-1 text-xl mt-8">
                   <span className="text-sm text-muted-foreground mr-1">Starts at</span>
@@ -80,8 +80,8 @@ function Pricing() {
                   <span className="text-sm text-muted-foreground"> / project</span>
                 </p>
                 <Button variant="outline" className="gap-4 mt-8" asChild>
-                  <Link href="/examples/services/ai-automations">
-                    Contact Us <PhoneCall className="w-4 h-4" />
+                  <Link href="https://schedule.chanlytics.com/schedule/25min">
+                    Get Started <MoveRight className="w-4 h-4" />
                    </Link>
                 </Button>
               </div>
