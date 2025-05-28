@@ -53,7 +53,7 @@ function HeroSection() {
                     <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
                 <section>
-                    <div className="relative pt-12 sm:pt-18 md:pt-24 lg:pt-32">
+                    <div className="relative pt-16 sm:pt-20 md:pt-24 lg:pt-32">
                         <AnimatedGroup
                             variants={{
                                 container: {
@@ -152,7 +152,7 @@ function HeroSection() {
                         </div>
                         
                         {/* Two-column layout for animation and chat interface */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-4 lg:gap-8 -mt-3 sm:-mt-2 lg:mt-0 max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-4 lg:gap-8 -mt-6 sm:-mt-3 lg:mt-0 max-w-6xl mx-auto">
                             <AnimatedGroup
                                 variants={{
                                     container: {
