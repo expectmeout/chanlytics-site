@@ -21,7 +21,7 @@ const InterfaceTransition = () => {
   
   return (
     <div className="pt-8 pb-4 overflow-visible max-w-3xl mx-auto text-center">
-      <div className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+      <div className="hidden sm:block text-sm text-gray-500 dark:text-gray-400 mb-3">
         <div>
           <AnimatedShinyText>Replacing multiple complex tools with one simple interface</AnimatedShinyText>
         </div>
