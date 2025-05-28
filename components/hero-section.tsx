@@ -114,7 +114,7 @@ function HeroSection() {
                                         speedSegment={0.3}
                                         as="span"
                                         className="block">
-                                        AI-Powered Amazon Solution
+                                        AI-Powered Solution
                                     </TextEffect>
                                     {/* Create a completely separate block for the typewriter with explicit bounds */}
                                     <div className="block mt-0 overflow-hidden" style={{height: '1.2em'}}>
