@@ -53,7 +53,7 @@ function HeroSection() {
                     <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
                 <section>
-                    <div className="relative pt-16 sm:pt-20 md:pt-24 lg:pt-32">
+                    <div className="relative pt-24 sm:pt-20 md:pt-24 lg:pt-32">
                         <AnimatedGroup
                             variants={{
                                 container: {
@@ -92,7 +92,7 @@ function HeroSection() {
                                     <Link
                                         href="#integrated-marketplace"
                                         className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-                                        <span className="text-foreground text-sm">New ChatGPT Plugin for Sellers</span>
+                                        <span className="text-foreground text-sm">The ChatGPT Plugin for Businesses</span>
                                         <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
 
                                         <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
