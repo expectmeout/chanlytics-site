@@ -332,51 +332,63 @@ export default function Faqs3() {
         },
         {
             id: 'item-6',
-            icon: 'dollar-sign',
-            question: 'What are the pricing options and expected ROI?',
+            icon: 'layers',
+            question: 'How does Chanlytics unify all my existing business tools?',
             answer: (
                 <div className="space-y-4">
-                    <p className="text-sm text-muted-foreground">Chanlytics pricing is structured to scale with your business and provide a clear return on investment through efficiency gains and growth opportunities:</p>
+                    <p className="text-sm text-muted-foreground">Most businesses struggle with tool fragmentation—using 5-10 different systems that don't talk to each other. Chanlytics AI Engine connects with 5,000+ tools to create one seamless experience:</p>
                     
-                    <div className="overflow-hidden rounded-lg border">
-                        <div className="bg-muted p-3">
-                            <p className="font-medium">E-commerce Pricing Structure</p>
-                        </div>
-                        <div className="p-3">
-                            <ul className="space-y-2 text-sm">
-                                <li className="flex items-start">
-                                    <DynamicIcon name="check" className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                                    <span><strong>Starting at $2,500/month</strong> for core operational services (specialized VA teams, ChatGPT integration)</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <DynamicIcon name="check" className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                                    <span><strong>Advertising Management:</strong> 10-15% of ad spend based on marketplace volume</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <DynamicIcon name="check" className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                                    <span>Custom packages available for sellers with special needs or larger operations</span>
-                                </li>
-                            </ul>
-                        </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <Card className="p-3">
+                            <div className="mb-2 flex items-center space-x-2">
+                                <DynamicIcon name="table" className="h-4 w-4 text-blue-600" />
+                                <p className="text-sm font-semibold">Spreadsheet Tools</p>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Excel, Google Sheets, Airtable, and other data management systems that typically require manual updating and report generation</p>
+                        </Card>
+                        
+                        <Card className="p-3">
+                            <div className="mb-2 flex items-center space-x-2">
+                                <DynamicIcon name="trello" className="h-4 w-4 text-blue-600" />
+                                <p className="text-sm font-semibold">Project Management</p>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Monday.com, ClickUp, Asana, Trello, and other task tracking systems that often exist separately from your client data</p>
+                        </Card>
+                        
+                        <Card className="p-3">
+                            <div className="mb-2 flex items-center space-x-2">
+                                <DynamicIcon name="users" className="h-4 w-4 text-blue-600" />
+                                <p className="text-sm font-semibold">CRM Systems</p>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Salesforce, HubSpot, Zoho, and other client relationship managers that typically require manual data entry and management</p>
+                        </Card>
+                        
+                        <Card className="p-3">
+                            <div className="mb-2 flex items-center space-x-2">
+                                <DynamicIcon name="calendar" className="h-4 w-4 text-blue-600" />
+                                <p className="text-sm font-semibold">Scheduling Tools</p>
+                            </div>
+                            <p className="text-xs text-muted-foreground">Calendly, Cal.com, Acuity, and other appointment management systems that typically exist separate from client communication</p>
+                        </Card>
                     </div>
                     
                     <div className="overflow-hidden rounded-lg border">
                         <div className="bg-muted p-3">
-                            <p className="font-medium">Local Business Automation Suite</p>
+                            <p className="font-medium">How Our Integration Works</p>
                         </div>
                         <div className="p-3">
                             <ul className="space-y-2 text-sm">
                                 <li className="flex items-start">
                                     <DynamicIcon name="check" className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                                    <span><strong>Starting at $1,200/month</strong> for the core AI automation suite</span>
+                                    <span><strong>No Migration Required:</strong> Keep using your existing tools—we connect to them, not replace them</span>
                                 </li>
                                 <li className="flex items-start">
                                     <DynamicIcon name="check" className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                                    <span>Additional capacity and features available for larger client volumes</span>
+                                    <span><strong>Bidirectional Data Flow:</strong> Updates in one system automatically reflect in others</span>
                                 </li>
                                 <li className="flex items-start">
                                     <DynamicIcon name="check" className="mr-2 mt-0.5 h-4 w-4 text-primary" />
-                                    <span>Implementation fee varies based on complexity of existing systems ($1,500-3,000)</span>
+                                    <span><strong>Conversation Interface:</strong> Access everything through simple chat in ChatGPT or WhatsApp</span>
                                 </li>
                             </ul>
                         </div>
@@ -384,10 +396,10 @@ export default function Faqs3() {
                     
                     <div className="rounded-lg border p-3">
                         <div className="flex items-center space-x-2">
-                            <DynamicIcon name="bar-chart-2" className="h-4 w-4 text-primary" />
-                            <p className="text-sm font-medium">Typical ROI Timeframes</p>
+                            <DynamicIcon name="zap" className="h-4 w-4 text-amber-500" />
+                            <p className="text-sm font-medium">Beyond Standard Integrations</p>
                         </div>
-                        <p className="mt-1 text-xs text-muted-foreground">Most clients see positive ROI within 90-120 days through reduced operational costs, higher conversion rates, improved advertising efficiency, and time savings that allow business owners to focus on strategic growth rather than daily management.</p>
+                        <p className="mt-1 text-xs text-muted-foreground">For specialized systems without standard APIs, our team builds custom connections. We've successfully integrated with proprietary marketplace tools, industry-specific software, and even legacy systems with no official integration support.</p>
                     </div>
                 </div>
             ),
