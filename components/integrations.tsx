@@ -4,8 +4,23 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { InfiniteSlider } from '@/components/motion-primitives/infinite-slider'
+import { useCallback } from 'react'
 
 export default function IntegrationsSection() {
+    const scrollToBooking = useCallback(() => {
+        const targetElement = document.getElementById('booking-calendar-container');
+        if (targetElement) {
+            const headerOffset = 70; // Default offset if header ref is not available
+            const buffer = 20;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - headerOffset - buffer;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    }, []);
     return (
         <section>
             <div className="bg-white dark:bg-background py-24 md:py-22 py-24 pb-2 md:py-2 md:pb-6">
@@ -17,8 +32,8 @@ export default function IntegrationsSection() {
                         <Button
                             variant="outline"
                             size="sm"
-                            asChild>
-                            <Link href="#">Get Started</Link>
+                            onClick={scrollToBooking}>
+                            Get Started
                         </Button>
                     </div>
                     
