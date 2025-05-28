@@ -26,7 +26,7 @@ export function AIChatMockup() {
             {/* Chat Interface - Header */}
             <div className="h-12 bg-background dark:bg-black flex items-center justify-between px-4 border-b dark:border-[#333333]">
               <div className="flex items-center">
-                <span className="font-medium text-foreground">Chatbot</span>
+                <span className="font-medium text-foreground">Your Brand</span>
                 <button className="ml-2 p-1 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md">
                   <Plus className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                 </button>
