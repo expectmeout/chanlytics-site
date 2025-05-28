@@ -159,21 +159,21 @@ export default function ExampleBody() {
           <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
             <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">
               <h2 className="text-4xl font-medium lg:text-5xl">Specialized Teams. Unified Data. One Interface.</h2>
-              <p>Forget expensive generalists. At Chanlytics, we combine <strong>specialized Amazon VA teams</strong>, <strong>in-house advertising experts</strong>, and our proprietary <strong>ChatGPT plugin</strong> that lets you monitor performance and direct operations through simple conversation.</p>
+              <p>Forget expensive generalists and siloed software. At Chanlytics, we combine <strong>specialized operational teams</strong>, <strong>expert growth strategists</strong>, and our proprietary <strong>Chanlytics AI Engine (featuring a ChatGPT plugin)</strong>. This allows you to monitor performance, automate workflows, and direct operations through simple conversation, whether you're scaling an e-commerce brand or streamlining a local business.</p>
             </div>
 
             <div className="grid gap-12 divide-y *:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0">
               <div className="space-y-4">
-                <div className="text-5xl font-bold">3x</div>
-                <p>Higher Expertise with Specialized VAs</p>
+                <div className="text-5xl font-bold">Expert</div>
+                <p>Teams for Specialized Tasks</p>
               </div>
               <div className="space-y-4">
-                <div className="text-5xl font-bold">1</div>
-                <p>ChatGPT Plugin for All Your Data</p>
+                <div className="text-5xl font-bold">Unified</div>
+                <p>AI Engine for Data & Control</p>
               </div>
               <div className="space-y-4">
-                <div className="text-5xl font-bold">100%</div>
-                <p>In-House Amazon Advertising</p>
+                <div className="text-5xl font-bold">Strategic</div>
+                <p>Growth & Automation Solutions</p>
               </div>
             </div>
           </div>
@@ -187,7 +187,7 @@ export default function ExampleBody() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="mb-12 text-center">
               <h2 className="text-3xl font-normal tracking-tight sm:text-4xl md:text-5xl">Our Client Success Stories</h2>
-              <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">See how our three-pillar system has transformed brands with unified operations, strategic advertising, and AI-powered analytics working in perfect harmony.</p>
+              <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">See how our integrated AI solutions have transformed e-commerce brands with unified operations and strategic growth. We're now bringing similar automation power to empower local businesses.</p>
             </div>
             
             <div className="relative pl-3 pr-0 px-4"> 
@@ -353,8 +353,8 @@ export default function ExampleBody() {
         <div className="py-16 md:py-14">
           <div className="mx-auto max-w-5xl px-6">
             <div className="text-center">
-              <h2 className="text-balance text-4xl font-normal lg:text-5xl">Connect With a Marketplace Expert</h2>
-              <p className="mt-2 text-muted-foreground">Schedule a free consultation to discuss your marketplace needs.</p>
+              <h2 className="text-balance text-4xl font-normal lg:text-5xl">Connect With an Automation & Growth Expert</h2>
+              <p className="mt-2 text-muted-foreground">Schedule a free consultation to discuss your business's automation and growth needs.</p>
               
               <div className="flex justify-center gap-4 mt-6 mb-10">
                 <Button

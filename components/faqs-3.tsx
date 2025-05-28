@@ -55,7 +55,7 @@ export default function FAQsThree() {
         {
             id: 'item-1',
             icon: 'users-2',
-            question: 'How does your three-pillar system work together?',
+            question: 'What are Chanlytics\' core solution areas and how do they work?',
             answer: (
                 <div className="space-y-4">
                     <div className="flex items-start space-x-3">
@@ -88,9 +88,19 @@ export default function FAQsThree() {
                         </div>
                     </div>
                     
+                    <div className="mt-4 pt-4 border-t">
+                        <p className="font-medium">For Local Businesses: The Automated Ecosystem</p>
+                        <p className="text-sm text-muted-foreground mb-2">We deploy an interconnected suite of AI systems to automate the entire client lifecycle:</p>
+                        <ul className="list-disc list-inside space-y-1 text-sm">
+                            <li><strong>AI WhatsApp Intelligence Agent:</strong> CRM-integrated ChatGPT plugin for real-time client and business insights via WhatsApp.</li>
+                            <li><strong>AI Receptionist:</strong> 24/7 AI voice agent for missed call handling, lead qualification, and appointment setting.</li>
+                            <li><strong>AI Reviews & Referrals:</strong> Manages online reputation by routing positive reviews and prompting referrals, while privately handling negative feedback.</li>
+                            <li><strong>AI Client Onboarding & Communication:</strong> Streamlines onboarding with automated, personalized communications and document management based on CRM status.</li>
+                        </ul>
+                    </div>
                     <div className="mt-3 rounded-lg border bg-muted/50 p-3">
-                        <p className="text-xs font-medium">The Key Difference</p>
-                        <p className="text-sm">While others offer expensive generalists or fragmented solutions, our system delivers specialized expertise, unified data, and streamlined operations, all accessible through familiar chat interfaces.</p>
+                        <p className="text-xs font-medium">The Chanlytics Difference</p>
+                        <p className="text-sm">Whether for e-commerce or local services, Chanlytics provides specialized expertise and AI-powered automation, unifying data and streamlining operations through intuitive interfaces like our ChatGPT plugin. We deliver tailored solutions, not just generic tools.</p>
                     </div>
                 </div>
             ),
@@ -122,10 +132,12 @@ export default function FAQsThree() {
                     <div>
                         <p className="mb-2 font-medium">Example Tasks You Can Accomplish:</p>
                         <ol className="ml-5 list-decimal space-y-1 text-sm">
-                            <li>"Show me today's VA team updates for product listings"</li>
-                            <li>"What's the current inventory status for my top 5 SKUs?"</li>
-                            <li>"Summarize this week's advertising performance"</li>
-                            <li>"Which operational bottlenecks need immediate attention?"</li>
+                            <li><strong>E-commerce:</strong> "Show me today's VA team updates for product listings"</li>
+                            <li><strong>E-commerce:</strong> "What's the current inventory status for my top 5 SKUs?"</li>
+                            <li><strong>Local Business:</strong> "What's John Doe's current tax filing status?"</li>
+                            <li><strong>Local Business:</strong> "How many new clients did we onboard last month?"</li>
+                            <li><strong>General:</strong> "Summarize this week's advertising/marketing performance"</li>
+                            <li><strong>General:</strong> "Which operational bottlenecks need immediate attention?"</li>
                         </ol>
                     </div>
                     
@@ -517,6 +529,57 @@ export default function FAQsThree() {
                 </div>
             ),
         },
+        {
+            id: 'item-localbiz-1',
+            icon: 'building',
+            question: 'What types of local businesses can benefit from Chanlytics automation?',
+            answer: (
+                <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Our AI automation ecosystem is designed for service-based local businesses looking to streamline client management, improve lead capture, and automate marketing. This includes, but is not limited to:</p>
+                    <ul className="list-disc list-inside text-sm space-y-1">
+                        <li>Professional services (e.g., tax consultants, law firms, accounting firms)</li>
+                        <li>Healthcare providers (e.g., clinics, dental offices)</li>
+                        <li>Home services (e.g., plumbers, electricians, HVAC technicians)</li>
+                        <li>Salons and spas</li>
+                        <li>And any business that relies on appointments, client communication, and managing online reviews.</li>
+                    </ul>
+                    <p className="text-sm text-muted-foreground mt-2">The core idea is to let you focus on your expertise while our AI handles repetitive administrative and marketing tasks.</p>
+                </div>
+            ),
+        },
+        {
+            id: 'item-localbiz-2',
+            icon: 'phone-call',
+            question: 'How does the AI Receptionist improve lead capture?',
+            answer: (
+                <div className="space-y-3">
+                    <p className="text-sm text-muted-foreground">Missed calls are missed opportunities. Our AI Receptionist ensures this doesn't happen:</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li><strong>24/7 Availability:</strong> Answers every call, even outside business hours or when your team is busy.</li>
+                        <li><strong>FAQ Handling:</strong> Instantly answers common questions, freeing up human staff.</li>
+                        <li><strong>Lead Qualification:</strong> Asks predefined questions to qualify leads based on your criteria.</li>
+                        <li><strong>Appointment Setting:</strong> Directly schedules qualified leads into your calendar system.</li>
+                    </ul>
+                    <Badge variant="outline">Ensures No Lead is Lost & Saves Staff Time</Badge>
+                </div>
+            ),
+        },
+        {
+            id: 'item-localbiz-3',
+            icon: 'star',
+            question: 'How does the AI Reviews & Referrals system work?',
+            answer: (
+                <div className="space-y-3">
+                    <p className="text-sm text-muted-foreground">This system automates your reputation management and referral generation:</p>
+                    <ul className="list-disc list-inside space-y-1 text-sm">
+                        <li><strong>Positive Review Routing:</strong> Automatically encourages clients who leave 4-5 star feedback to post their review on public sites like Google, boosting your online presence.</li>
+                        <li><strong>Negative Feedback Management:</strong> Privately directs negative feedback (1-3 stars) to the business owner or manager for immediate attention and service recovery, preventing public damage.</li>
+                        <li><strong>Automated Referral Prompts:</strong> After a positive review, the system can automatically prompt satisfied clients to refer friends or colleagues, often with predefined incentives you can set up.</li>
+                    </ul>
+                    <p className="text-sm text-muted-foreground mt-2">This creates a virtuous cycle of positive reviews attracting new clients, and satisfied clients generating direct referrals.</p>
+                </div>
+            ),
+        }
     ]
 
     return (
@@ -525,15 +588,15 @@ export default function FAQsThree() {
                 <div className="flex flex-col gap-10 md:flex-row md:gap-16">
                     <div className="md:w-1/3">
                         <div className="sticky top-20">
-                            <h2 id="integrated-marketplace" className="mt-4 text-3xl font-bold">Our Integrated Marketplace Solution</h2>
+                            <h2 id="integrated-marketplace" className="mt-4 text-3xl font-bold">Chanlytics: Your Partner in AI-Powered Automation</h2>
                             <p className="text-muted-foreground mt-4">
-                                Have questions about our three-pillar system of VA Management, Strategic Advertising, and AI-Powered Analytics? Find answers below or{' '}
+                                Chanlytics offers powerful AI automation solutions tailored for both e-commerce businesses and local service providers. Whether you're looking to optimize marketplace operations or streamline your entire local business client lifecycle, find answers to common questions below. For personalized assistance,{' '}
                                 <Link
-                                    href="#"
+                                    href="https://schedule.chanlytics.com/schedule/25min"
                                     className="text-primary font-medium hover:underline">
                                     contact our team
                                 </Link>{' '}
-                                for personalized assistance.
+                                .
                             </p>
                         </div>
                     </div>
