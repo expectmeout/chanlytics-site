@@ -467,9 +467,9 @@ export default function Faqs3() {
                         <div className="sticky top-20">
                             <h2 id="integrated-marketplace" className="mt-4 text-3xl font-bold">Chanlytics: Your Partner in AI-Powered Automation</h2>
                             <p className="text-muted-foreground mt-4">
-                                Chanlytics offers powerful AI automation solutions tailored for both e-commerce businesses and local service providers. Whether you're looking to optimize marketplace operations or streamline your entire local business client lifecycle, find answers to common questions below. For personalized assistance,{' '}
+                            Chanlytics provides AI automation for e-commerce and local service businesses, optimizing daily operations and streamlining client onboarding & communications. To get started,{' '}
                                 <Link
-                                    href="https://schedule.chanlytics.com/schedule/25min"
+                                    href="https://cal.com/chanlytics/25min"
                                     className="text-primary font-medium hover:underline">
                                     contact our team
                                 </Link>{' '}

@@ -159,7 +159,7 @@ export default function ExampleBody() {
           <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
             <div className="relative z-10 mx-auto max-w-xl space-y-6 text-center">
               <h2 className="text-4xl font-medium lg:text-5xl">Specialized Teams. Unified Data. One Interface.</h2>
-              <p>Forget expensive generalists and siloed software. At Chanlytics, we combine <strong>specialized operational teams</strong>, <strong>expert growth strategists</strong>, and our proprietary <strong>Chanlytics AI Engine (featuring a ChatGPT plugin)</strong>. This allows you to monitor performance, automate workflows, and direct operations through simple conversation, whether you're scaling an e-commerce brand or streamlining a local business.</p>
+              <p>The first conversational AI platform for business operations. Chanlytics lets you monitor, automate, and manage operations through simple conversation—whether you're scaling e-commerce or running a local business.</p>
             </div>
 
             <div className="grid gap-12 divide-y *:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0">
