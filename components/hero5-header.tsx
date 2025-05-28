@@ -211,17 +211,17 @@ export const HeroHeader = forwardRef<HTMLElement, {}>((props, ref) => {
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit md:items-center">
-                                {/* Button for mobile - only show when NOT scrolled */}
+                                {/* Single static button for mobile */}
                                 <Button
                                     size="sm"
-                                    className={cn('block lg:hidden', isScrolled && 'hidden')}
+                                    className="block lg:hidden"
                                     onClick={scrollToBooking}>
                                     <span>Get in Touch</span>
                                 </Button>
                                 {/* Button for desktop - only show when IS scrolled */}
                                 <Button
                                     size="sm"
-                                    className={cn('hidden', isScrolled && 'hidden lg:inline-flex')}
+                                    className={cn('hidden', isScrolled && 'lg:inline-flex')}
                                     onClick={scrollToBooking}>
                                     <span>Get in Touch</span>
                                 </Button>
