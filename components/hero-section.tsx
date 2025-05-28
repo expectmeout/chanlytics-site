@@ -53,7 +53,7 @@ function HeroSection() {
                     <div className="h-320 -translate-y-87.5 absolute left-0 top-0 w-60 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(0,0%,85%,.04)_0,hsla(0,0%,45%,.02)_80%,transparent_100%)]" />
                 </div>
                 <section>
-                    <div className="relative pt-24 md:pt-36">
+                    <div className="relative pt-16 sm:pt-20 md:pt-28 lg:pt-36">
                         <AnimatedGroup
                             variants={{
                                 container: {
@@ -108,7 +108,7 @@ function HeroSection() {
                                     </Link>
                                 </AnimatedGroup>
 
-                                <h1 className="mt-6 text-balance text-6xl md:text-7xl lg:mt-16 xl:text-[5.25rem]">
+                                <h1 className="mt-4 text-balance text-4xl sm:text-5xl md:text-6xl lg:mt-12 xl:text-[5.25rem]">
                                     <TextEffect
                                         preset="fade-in-blur"
                                         speedSegment={0.3}
@@ -152,7 +152,7 @@ function HeroSection() {
                         </div>
                         
                         {/* Two-column layout for animation and chat interface */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12 max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 mt-6 sm:mt-8 lg:mt-12 max-w-6xl mx-auto">
                             <AnimatedGroup
                                 variants={{
                                     container: {
@@ -343,7 +343,7 @@ function HeroSection() {
                         </div>
                     </div>
                 </section>
-                <div className="pt-56">  {/* Increased padding-top for more space */}
+                <div className="pt-28 sm:pt-36 md:pt-44 lg:pt-56">  {/* Responsive padding-top */}
                     <LogoCloud />
                 </div>
             </main>
