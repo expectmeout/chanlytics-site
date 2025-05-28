@@ -213,13 +213,13 @@ export const HeroHeader = forwardRef<HTMLElement, {}>((props, ref) => {
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit md:items-center">
                                 <Button
                                     size="sm"
-                                    className={cn(isScrolled && 'lg:hidden')}
+                                    className={cn('lg:hidden', isScrolled && 'hidden')}
                                     onClick={scrollToBooking}>
                                     <span>Get in Touch</span>
                                 </Button>
                                 <Button
                                     size="sm"
-                                    className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}
+                                    className={cn('hidden lg:inline-flex', isScrolled && 'lg:inline-flex')}
                                     onClick={scrollToBooking}>
                                     <span>Get in Touch</span>
                                 </Button>
