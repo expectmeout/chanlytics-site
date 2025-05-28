@@ -190,7 +190,7 @@ export default function ExampleBody() {
               <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">See how our integrated AI solutions have transformed e-commerce brands with unified operations and strategic growth. We're now bringing similar automation power to empower local businesses.</p>
             </div>
             
-            <div className="relative pl-3 pr-0 px-4"> 
+            <div className="relative px-2 sm:px-4"> 
               <Carousel
                 opts={{
                   align: "start",
@@ -200,8 +200,8 @@ export default function ExampleBody() {
               >
                 <CarouselContent className="overflow-visible gap-2 px-4"> {/* Reduced gap */}
                   {caseStudies.map((cs, index) => (
-                    <CarouselItem key={index} className="basis-1/3">
-                      <div className="p-1"> 
+                    <CarouselItem key={index} className="basis-full sm:basis-1/2 md:basis-1/3">
+                      <div className="p-0.5 sm:p-1"> 
                         <CardUI className="card-glow relative z-10 h-full overflow-hidden flex flex-col dark:bg-black p-0">
                           <div className="w-full h-48 overflow-hidden relative rounded-t-lg m-0 p-0">
                             <img 
@@ -335,8 +335,8 @@ export default function ExampleBody() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="hidden md:flex absolute -left-16 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-white shadow-md dark:bg-blue-700 dark:hover:bg-blue-600 h-9 w-9" />
-                <CarouselNext className="hidden md:flex absolute -right-16 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-white shadow-md dark:bg-blue-700 dark:hover:bg-blue-600 h-9 w-9" />
+                <CarouselPrevious className="absolute left-0 sm:-left-4 md:-left-16 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-white shadow-md dark:bg-blue-700 dark:hover:bg-blue-600 h-7 w-7 sm:h-9 sm:w-9" />
+                <CarouselNext className="absolute right-0 sm:-right-4 md:-right-16 top-1/2 -translate-y-1/2 z-10 bg-white hover:bg-white shadow-md dark:bg-blue-700 dark:hover:bg-blue-600 h-7 w-7 sm:h-9 sm:w-9" />
               </Carousel>
             </div>
           </div>
