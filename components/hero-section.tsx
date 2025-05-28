@@ -152,7 +152,7 @@ function HeroSection() {
                         </div>
                         
                         {/* Two-column layout for animation and chat interface */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 sm:gap-4 lg:gap-8 mt-1 sm:mt-3 lg:mt-6 max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 sm:gap-4 lg:gap-8 mt-0 sm:mt-3 lg:mt-6 max-w-6xl mx-auto">
                             <AnimatedGroup
                                 variants={{
                                     container: {
@@ -166,7 +166,7 @@ function HeroSection() {
                                     ...transitionVariants,
                                 }}>
                                 <div className="flex items-center justify-center h-full relative z-10 flex-col pt-0 pb-0">
-                                    <div className="-mt-2 sm:mt-0">
+                                    <div className="-mt-3 sm:mt-0">
                                         <InterfaceTransition />
                                     </div>
                                     {/* Desktop L-Connector */}
@@ -338,14 +338,14 @@ function HeroSection() {
                                     },
                                     ...transitionVariants,
                                 }}>
-                                <div className="relative overflow-hidden z-10">
+                                <div className="relative overflow-hidden z-10 -mt-3 sm:mt-0">
                                     <AIChatMockup />
                                 </div>
                             </AnimatedGroup>
                         </div>
                     </div>
                 </section>
-                <div className="pt-20 sm:pt-28 md:pt-36 lg:pt-48">  {/* Responsive padding-top */}
+                <div className="pt-14 sm:pt-24 md:pt-32 lg:pt-44">  {/* Responsive padding-top */}
                     <LogoCloud />
                 </div>
             </main>
