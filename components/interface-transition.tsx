@@ -31,75 +31,37 @@ const InterfaceTransition = () => {
           <AnimatedShinyText>Replacing multiple complex tools with one simple interface</AnimatedShinyText>
         </div>
       </div>
-      
-      {/* Slow, clear wave pattern animation */}
-      <div className="relative h-48 mx-auto mb-8">
-        {/* Container for platform animations */}
-        <div className="absolute inset-0 flex items-center justify-center">
+
+      {/* Platform grid display */}
+      <div className="relative mx-auto mb-8">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 pt-2">
+          {platforms.map((platform, index) => (
+            <div key={index} className="flex items-center bg-background/80 backdrop-blur-sm px-2 py-1.5 rounded-lg border shadow-sm transition-all hover:shadow-md hover:bg-background/90">
+              {platform.icon}
+              <span className="text-xs font-medium truncate">{platform.name}</span>
+            </div>
+          ))}
+        </div>
+        
+        {/* Original animation container - hidden but keeps same structure */}
+        <div className="hidden absolute inset-0 flex items-center justify-center">
           {/* Left platform */}
-          <motion.div
-            className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm"
-            initial={{ opacity: 0, x: -60, y: -10 }}
-            animate={{
-              opacity: [0, 1, 1, 0.3, 0],
-              y: [-10, 0, 70, 120, 140],
-              x: -60
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 9,
-              repeatDelay: 0, // Remove delay between animations for smoother loop
-              ease: [0.4, 0, 0.2, 1], // Custom easing for smoother animation
-              times: [0, 0.2, 0.7, 0.9, 1] // Control timing of keyframes for smoother transitions
-            }}
-          >
+          <div className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm">
             {platforms[0].icon}
             <span className="text-xs font-medium">{platforms[0].name}</span>
-          </motion.div>
+          </div>
 
-          {/* Center platform - appears after left */}
-          <motion.div
-            className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm z-10"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{
-              opacity: [0, 1, 1, 0.3, 0],
-              y: [-20, 0, 60, 120, 140],
-              x: 0
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 9,
-              delay: 3,
-              repeatDelay: 0, // Remove delay between animations for smoother loop
-              ease: [0.4, 0, 0.2, 1], // Custom easing for smoother animation
-              times: [0, 0.2, 0.7, 0.9, 1] // Control timing of keyframes for smoother transitions
-            }}
-          >
+          {/* Center platform */}
+          <div className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm z-10">
             {platforms[1].icon}
             <span className="text-xs font-medium">{platforms[1].name}</span>
-          </motion.div>
+          </div>
 
-          {/* Right platform - appears after center */}
-          <motion.div
-            className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm"
-            initial={{ opacity: 0, x: 60, y: -10 }}
-            animate={{
-              opacity: [0, 1, 1, 0.3, 0],
-              y: [-10, 0, 70, 120, 140],
-              x: 60
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 9,
-              delay: 6,
-              repeatDelay: 0, // Remove delay between animations for smoother loop
-              ease: [0.4, 0, 0.2, 1], // Custom easing for smoother animation
-              times: [0, 0.2, 0.7, 0.9, 1] // Control timing of keyframes for smoother transitions
-            }}
-          >
+          {/* Right platform */}
+          <div className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm">
             {platforms[2].icon}
             <span className="text-xs font-medium">{platforms[2].name}</span>
-          </motion.div>
+          </div>
         </div>
 
         {/* Very slow flowing particles to connect with AI Chat */}
