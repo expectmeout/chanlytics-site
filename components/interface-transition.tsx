@@ -21,22 +21,26 @@ const InterfaceTransition = () => {
     { name: 'Excel Spreadsheets', icon: <FileSpreadsheet className="mr-2 h-4 w-4" /> }
   ];
   
-  // Use React state to track which platforms are currently shown
-  const [currentIndices, setCurrentIndices] = React.useState([0, 1, 2]);
-  
-  // Cycle through all platforms with useEffect
+  // State to manage the current batch of platforms to display
+  const numBatches = Math.ceil(platforms.length / 3);
+  const [currentBatchIndex, setCurrentBatchIndex] = React.useState(0);
+
+  // Effect to cycle through batches
   React.useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentIndices(prev => [
-        (prev[0] + 1) % platforms.length,
-        (prev[1] + 1) % platforms.length,
-        (prev[2] + 1) % platforms.length
-      ]);
-    }, 9000); // Match the animation duration
-    
-    return () => clearInterval(intervalId);
-  }, [platforms.length]);
-  
+      setCurrentBatchIndex(prevBatchIndex => (prevBatchIndex + 1) % numBatches);
+    }, 9000); // Duration of one full animation cycle for a set of 3 platforms
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, [platforms.length, numBatches]);
+
+  // Determine the indices for the current batch
+  const currentIndices = [
+    (currentBatchIndex * 3 + 0) % platforms.length,
+    (currentBatchIndex * 3 + 1) % platforms.length,
+    (currentBatchIndex * 3 + 2) % platforms.length,
+  ];
+
   return (
     <div className="pt-8 pb-4 overflow-visible max-w-3xl mx-auto text-center">
       <div className="hidden sm:block text-sm text-gray-500 dark:text-gray-400 mb-3">
