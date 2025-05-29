@@ -21,8 +21,21 @@ const InterfaceTransition = () => {
     { name: 'Excel Spreadsheets', icon: <FileSpreadsheet className="mr-2 h-4 w-4" /> }
   ];
   
-  // Display all platforms
-  const cycleItems = Array.from({ length: platforms.length }, (_, i) => i); // Include all platforms
+  // Use React state to track which platforms are currently shown
+  const [currentIndices, setCurrentIndices] = React.useState([0, 1, 2]);
+  
+  // Cycle through all platforms with useEffect
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndices(prev => [
+        (prev[0] + 1) % platforms.length,
+        (prev[1] + 1) % platforms.length,
+        (prev[2] + 1) % platforms.length
+      ]);
+    }, 9000); // Match the animation duration
+    
+    return () => clearInterval(intervalId);
+  }, [platforms.length]);
   
   return (
     <div className="pt-8 pb-4 overflow-visible max-w-3xl mx-auto text-center">
@@ -31,37 +44,75 @@ const InterfaceTransition = () => {
           <AnimatedShinyText>Replacing multiple complex tools with one simple interface</AnimatedShinyText>
         </div>
       </div>
-
-      {/* Platform grid display */}
-      <div className="relative mx-auto mb-8">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2 pt-2">
-          {platforms.map((platform, index) => (
-            <div key={index} className="flex items-center bg-background/80 backdrop-blur-sm px-2 py-1.5 rounded-lg border shadow-sm transition-all hover:shadow-md hover:bg-background/90">
-              {platform.icon}
-              <span className="text-xs font-medium truncate">{platform.name}</span>
-            </div>
-          ))}
-        </div>
-        
-        {/* Original animation container - hidden but keeps same structure */}
-        <div className="hidden absolute inset-0 flex items-center justify-center">
+      
+      {/* Slow, clear wave pattern animation */}
+      <div className="relative h-48 mx-auto mb-8">
+        {/* Container for platform animations */}
+        <div className="absolute inset-0 flex items-center justify-center">
           {/* Left platform */}
-          <div className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm">
-            {platforms[0].icon}
-            <span className="text-xs font-medium">{platforms[0].name}</span>
-          </div>
+          <motion.div
+            className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm"
+            initial={{ opacity: 0, x: -60, y: -10 }}
+            animate={{
+              opacity: [0, 1, 1, 0.3, 0],
+              y: [-10, 0, 70, 120, 140],
+              x: -60
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 9,
+              repeatDelay: 0, // Remove delay between animations for smoother loop
+              ease: [0.4, 0, 0.2, 1], // Custom easing for smoother animation
+              times: [0, 0.2, 0.7, 0.9, 1] // Control timing of keyframes for smoother transitions
+            }}
+          >
+            {platforms[currentIndices[0]].icon}
+            <span className="text-xs font-medium">{platforms[currentIndices[0]].name}</span>
+          </motion.div>
 
-          {/* Center platform */}
-          <div className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm z-10">
-            {platforms[1].icon}
-            <span className="text-xs font-medium">{platforms[1].name}</span>
-          </div>
+          {/* Center platform - appears after left */}
+          <motion.div
+            className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm z-10"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{
+              opacity: [0, 1, 1, 0.3, 0],
+              y: [-20, 0, 60, 120, 140],
+              x: 0
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 9,
+              delay: 3,
+              repeatDelay: 0, // Remove delay between animations for smoother loop
+              ease: [0.4, 0, 0.2, 1], // Custom easing for smoother animation
+              times: [0, 0.2, 0.7, 0.9, 1] // Control timing of keyframes for smoother transitions
+            }}
+          >
+            {platforms[currentIndices[1]].icon}
+            <span className="text-xs font-medium">{platforms[currentIndices[1]].name}</span>
+          </motion.div>
 
-          {/* Right platform */}
-          <div className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm">
-            {platforms[2].icon}
-            <span className="text-xs font-medium">{platforms[2].name}</span>
-          </div>
+          {/* Right platform - appears after center */}
+          <motion.div
+            className="absolute flex items-center bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border shadow-sm"
+            initial={{ opacity: 0, x: 60, y: -10 }}
+            animate={{
+              opacity: [0, 1, 1, 0.3, 0],
+              y: [-10, 0, 70, 120, 140],
+              x: 60
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 9,
+              delay: 6,
+              repeatDelay: 0, // Remove delay between animations for smoother loop
+              ease: [0.4, 0, 0.2, 1], // Custom easing for smoother animation
+              times: [0, 0.2, 0.7, 0.9, 1] // Control timing of keyframes for smoother transitions
+            }}
+          >
+            {platforms[currentIndices[2]].icon}
+            <span className="text-xs font-medium">{platforms[currentIndices[2]].name}</span>
+          </motion.div>
         </div>
 
         {/* Very slow flowing particles to connect with AI Chat */}
