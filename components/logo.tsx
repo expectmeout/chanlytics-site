@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 export const Logo = ({ className }: { className?: string }) => {
     return (
         <svg
-            viewBox="0 0 230 50"
+            viewBox="0 0 240 50"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={cn('h-6 w-auto', className)}>
