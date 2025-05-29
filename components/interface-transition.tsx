@@ -21,8 +21,8 @@ const InterfaceTransition = () => {
     { name: 'Excel Spreadsheets', icon: <FileSpreadsheet className="mr-2 h-4 w-4" /> }
   ];
   
-  // Create a sequence of 3 visible platforms that will cycle through
-  const cycleItems = [0, 1, 2]; // Starting indices
+  // Display all platforms
+  const cycleItems = Array.from({ length: platforms.length }, (_, i) => i); // Include all platforms
   
   return (
     <div className="pt-8 pb-4 overflow-visible max-w-3xl mx-auto text-center">
@@ -54,7 +54,7 @@ const InterfaceTransition = () => {
             }}
           >
             {platforms[0].icon}
-            <span className="text-sm font-medium">{platforms[0].name}</span>
+            <span className="text-xs font-medium">{platforms[0].name}</span>
           </motion.div>
 
           {/* Center platform - appears after left */}
@@ -76,7 +76,7 @@ const InterfaceTransition = () => {
             }}
           >
             {platforms[1].icon}
-            <span className="text-sm font-medium">{platforms[1].name}</span>
+            <span className="text-xs font-medium">{platforms[1].name}</span>
           </motion.div>
 
           {/* Right platform - appears after center */}
@@ -98,7 +98,7 @@ const InterfaceTransition = () => {
             }}
           >
             {platforms[2].icon}
-            <span className="text-sm font-medium">{platforms[2].name}</span>
+            <span className="text-xs font-medium">{platforms[2].name}</span>
           </motion.div>
         </div>
 
