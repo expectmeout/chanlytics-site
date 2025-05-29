@@ -8,12 +8,17 @@ import { AnimatedShinyText } from './magicui/animated-shiny-text';
 const InterfaceTransition = () => {
   // Platform data with icons
   const platforms = [
-    { name: 'Spreadsheets', icon: <FileSpreadsheet className="mr-2 h-4 w-4" /> },
-    { name: 'Amazon Seller Central', icon: <ShoppingCart className="mr-2 h-4 w-4" /> },
-    { name: 'Analytics Dashboards', icon: <BarChart3 className="mr-2 h-4 w-4" /> },
+    { name: 'Charts & Analytics', icon: <BarChart3 className="mr-2 h-4 w-4" /> },
     { name: 'Database Reports', icon: <Table className="mr-2 h-4 w-4" /> },
-    { name: 'Document Repositories', icon: <FileText className="mr-2 h-4 w-4" /> },
-    { name: 'Email Threads', icon: <Mail className="mr-2 h-4 w-4" /> },
+    { name: 'Documents & PDFs', icon: <FileText className="mr-2 h-4 w-4" /> },
+    { name: 'Email Inbox', icon: <Mail className="mr-2 h-4 w-4" /> },
+    { name: 'Amazon Seller Central', icon: <ShoppingCart className="mr-2 h-4 w-4" /> },
+    { name: 'Inventory Management', icon: <Table className="mr-2 h-4 w-4" /> },
+    { name: 'POS Systems', icon: <ShoppingCart className="mr-2 h-4 w-4" /> },
+    { name: 'Scheduling Software', icon: <FileText className="mr-2 h-4 w-4" /> },
+    { name: 'Invoices & Contracts', icon: <FileSpreadsheet className="mr-2 h-4 w-4" /> },
+    { name: 'CRM Dashboards', icon: <BarChart3 className="mr-2 h-4 w-4" /> },
+    { name: 'Excel Spreadsheets', icon: <FileSpreadsheet className="mr-2 h-4 w-4" /> }
   ];
   
   // Create a sequence of 3 visible platforms that will cycle through
