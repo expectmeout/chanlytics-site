@@ -1,117 +1,92 @@
 import { InfiniteSlider } from '@/components/motion-primitives/infinite-slider'
-import { ProgressiveBlur } from './motion-primitives/progressive-blur'
-import Image from 'next/image'
+import { ProgressiveBlur } from '@/components/motion-primitives/progressive-blur'
 
-export const LogoCloud = () => {
+export default function LogoCloud() {
     return (
-        <section className="bg-background pb-12 md:pb-22 -mt-3 md:-mt-24 lg:-mt-32">
-            <div className="group relative m-auto max-w-6xl px-6">
+        <section className="bg-background overflow-hidden py-16">
+            <div className="group relative m-auto max-w-7xl px-6">
                 <div className="flex flex-col items-center md:flex-row">
-                    <div className="inline md:max-w-44 md:border-r md:pr-6">
-                        <p className="text-end text-sm">Featured Products</p>
+                    <div className="md:max-w-44 md:border-r md:pr-6">
+                        <p className="text-end text-sm">Powering the best teams</p>
                     </div>
-                    <div className="relative py-0 md:w-[calc(100%-11rem)]">
+                    <div className="relative py-6 md:w-[calc(100%-11rem)]">
                         <InfiniteSlider
-                            speedOnHover={15}
-                            speed={30}
-                            gap={64}>
-                    <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/hairdrop-care.png"
-                                        alt="Hair Care Product"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
+                            speedOnHover={20}
+                            speed={40}
+                            gap={112}>
+                            <div className="flex">
+                                <img
+                                    className="mx-auto h-5 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/nvidia.svg"
+                                    alt="Nvidia Logo"
+                                    height="20"
+                                    width="auto"
+                                />
                             </div>
 
                             <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/enzyme-supplement.png"
-                                        alt="Enzyme Supplement"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
+                                <img
+                                    className="mx-auto h-4 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/column.svg"
+                                    alt="Column Logo"
+                                    height="16"
+                                    width="auto"
+                                />
                             </div>
-                            
                             <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/stroller.png"
-                                        alt="Stroller"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
+                                <img
+                                    className="mx-auto h-4 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/github.svg"
+                                    alt="GitHub Logo"
+                                    height="16"
+                                    width="auto"
+                                />
                             </div>
-
                             <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/earplug.png"
-                                        alt="Ear Plugs"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
-                            </div> 
-
-                            <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/guasha-beauty.png"
-                                        alt="Guasha Beauty Tool"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
+                                <img
+                                    className="mx-auto h-5 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/nike.svg"
+                                    alt="Nike Logo"
+                                    height="20"
+                                    width="auto"
+                                />
                             </div>
-                            
                             <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/joint-supplement.png"
-                                        alt="Joint Supplement"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
+                                <img
+                                    className="mx-auto h-5 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
+                                    alt="Lemon Squeezy Logo"
+                                    height="20"
+                                    width="auto"
+                                />
                             </div>
-                            
                             <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/epoxy-product.png"
-                                        alt="Epoxy Product"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
+                                <img
+                                    className="mx-auto h-4 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/laravel.svg"
+                                    alt="Laravel Logo"
+                                    height="16"
+                                    width="auto"
+                                />
+                            </div>
+                            <div className="flex">
+                                <img
+                                    className="mx-auto h-7 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/lilly.svg"
+                                    alt="Lilly Logo"
+                                    height="28"
+                                    width="auto"
+                                />
                             </div>
 
                             <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/sheets-light.png"
-                                        alt="Sheets Light"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
-                            </div>
-                            
-                            <div className="flex">
-                                <div className="mx-auto w-36 h-36 relative">
-                                    <Image
-                                        src="/sheets-dark.png"
-                                        alt="Sheets Dark"
-                                        fill
-                                        className="object-contain"
-                                    />
-                                </div>
+                                <img
+                                    className="mx-auto h-6 w-fit dark:invert"
+                                    src="https://html.tailus.io/blocks/customers/openai.svg"
+                                    alt="OpenAI Logo"
+                                    height="24"
+                                    width="auto"
+                                />
                             </div>
                         </InfiniteSlider>
 

@@ -7,7 +7,7 @@ export const Logo = ({ className }: { className?: string }) => {
             viewBox="0 0 240 50"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className={cn('h-6 w-auto', className)}>
+            className={cn('h-[26px] w-auto', className)}>
 
             <g transform="translate(15 9)" fill="url(#a)">
                 <rect x="4" y="8" width="8" height="8" rx="2"/>

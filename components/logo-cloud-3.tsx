@@ -3,11 +3,11 @@ import { ProgressiveBlur } from '@/components/motion-primitives/progressive-blur
 
 export default function LogoCloud3() {
     return (
-        <section className="overflow-hidden py-24">
+        <section className="overflow-hidden py-16">
             <div className="group relative m-auto max-w-7xl px-6">
                 <div className="flex flex-col items-center md:flex-row">
                     <div className="md:max-w-44 md:border-r md:pr-6">
-                        <p className="text-end text-sm">Seamless AI Integrations</p>
+                        <p className="text-center text-sm">The worlds largest companies trust Chanlytics</p>
                     </div>
                     <div className="relative py-6 md:w-[calc(100%-11rem)]">
                         <InfiniteSlider

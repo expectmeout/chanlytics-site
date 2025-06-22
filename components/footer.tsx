@@ -1,33 +1,31 @@
-import Link from 'next/link'
+'use client';
+import React from 'react';
 
 const links = [
-    {
-        title: 'Our Process',
-        href: '/our-process',
-    },
-    {
-        title: 'Dedicated VA Teams',
-        href: '/services/operations',
-    },
-    {
-        title: 'Sponsored Advertising',
-        href: '/services/advertising',
-    },
-    {
-        title: 'AI-Powered Automation',
-        href: '/services/ai-automations',
-    },
-    {
-        title: 'Pricing',
-        href: '/pricing',
-    },
-    {
-        title: 'Contact Us',
-        href: '#',
-    },
-]
+    { title: 'Features', href: '#features' },
+    { title: 'FAQ', href: '#marketplace-solution-faqs' },
+    { title: 'Pricing', href: '#booking' },
+    { title: 'Contact Us', href: '#booking' },
+];
 
 export default function FooterSection() {
+    const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+        e.preventDefault();
+        const targetElement = document.getElementById(targetId.substring(1));
+        if (targetElement) {
+            const offset = -80; // Adjust this value to account for the sticky header
+            const bodyRect = document.body.getBoundingClientRect().top;
+            const elementRect = targetElement.getBoundingClientRect().top;
+            const elementPosition = elementRect - bodyRect;
+            const offsetPosition = elementPosition + offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+            });
+        }
+    };
+
     return (
         <footer className="border-b bg-white py-12 dark:bg-transparent">
             <div className="mx-auto max-w-5xl px-6">
@@ -35,12 +33,13 @@ export default function FooterSection() {
                     <span className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Chanlytics, All rights reserved</span>
                     <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
                         {links.map((link, index) => (
-                            <Link
+                            <a
                                 key={index}
                                 href={link.href}
-                                className="text-muted-foreground hover:text-primary block duration-150">
+                                onClick={(e) => handleScroll(e, link.href)}
+                                className="text-muted-foreground hover:text-primary block duration-150 cursor-pointer">
                                 <span>{link.title}</span>
-                            </Link>
+                            </a>
                         ))}
                     </div>
                 </div>

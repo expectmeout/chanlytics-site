@@ -1,117 +1,97 @@
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Card, CardContent } from '@/components/ui/card'
+"use client";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns-1";
+import { motion } from "framer-motion";
+import React, { useState, useEffect } from 'react';
 
-type Testimonial = {
-    name: string
-    role: string
-    image: string
-    quote: string
+interface Testimonial {
+  text: string;
+  image: string;
+  name: string;
+  role: string;
 }
 
-const testimonials: Testimonial[] = [
-    {
-        name: 'Jonathan Yombo',
-        role: 'E-commerce Lead, National Brand',
-        image: 'https://randomuser.me/api/portraits/men/1.jpg',
-        quote: 'Switching from expensive full-time employees to Chanlytics\' specialized VAs cut our operational costs by 60%. Their AI system streamlined our entire logistics process while improving compliance.',
-    },
-    {
-        name: 'Yucel Faruksahan',
-        role: 'Brand Manager',
-        image: 'https://randomuser.me/api/portraits/men/7.jpg',
-        quote: 'The ChatGPT plugin is revolutionary. I can check operations, analyze sales data, and generate reports with a simple chat prompt - no more switching between complex dashboards and spreadsheets.',
-    },
-    {
-        name: 'Rodrigo Aguilar',
-        role: 'Marketplace Operations',
-        image: 'https://randomuser.me/api/portraits/men/11.jpg',
-        quote: 'Their specialized optimization systems increased our conversion rates by 28%. The unified ChatGPT interface keeps me updated on progress without endless status meetings.',
-    },
-    {
-        name: 'Shekinah Tshiokufila',
-        role: 'Marketplace Director',
-        image: 'https://randomuser.me/api/portraits/men/4.jpg',
-        quote: 'Before Chanlytics, we wasted hours tracking team work across multiple tools. Now their ChatGPT plugin gives me real-time updates and generates performance charts instantly.',
-    },
-    {
-        name: 'Marcus Lee',
-        role: 'Operations Manager',
-        image: 'https://randomuser.me/api/portraits/men/21.jpg',
-        quote: 'Their AI automation has been a game-changer for both our online store and physical location. The ChatGPT plugin creates detailed reports instantly that previously took days of compiling data.',
-    },
-    {
-        name: 'Priya Patel',
-        role: 'Owner, Artisan Home Goods',
-        image: 'https://randomuser.me/api/portraits/women/68.jpg',
-        quote: 'We replaced multiple software systems with Chanlytics\' AI automation and actually improved our client relationships. Their platform makes managing both online and in-store operations effortless.',
-    },
-    {
-        name: 'David Kim',
-        role: 'Founder, Professional Services Firm',
-        image: 'https://randomuser.me/api/portraits/men/18.jpg',
-        quote: 'Their AI Receptionist has transformed our client intake process. I love that I can check on all client communications through their ChatGPT interface without logging into multiple systems.',
-    },
-    {
-        name: 'Sofia Martinez',
-        role: 'Creative Director',
-        image: 'https://randomuser.me/api/portraits/women/65.jpg',
-        quote: 'Their specialized creative systems deliver amazing content while the ChatGPT interface keeps me updated on progress. I love being able to request changes through the same chat I use for everything else.',
-    },
-    {
-        name: 'James Carter',
-        role: 'Founder, UrbanEssentials',
-        image: 'https://randomuser.me/api/portraits/men/23.jpg',
-        quote: 'Streamlining our operations with Chanlytics\' AI automation saved us over $120K annually in staffing while improving our marketplace performance. The unified interface is brilliant for managing everything.',
-    },
-]
+const Testimonials = () => {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
-const chunkArray = (array: Testimonial[], chunkSize: number): Testimonial[][] => {
-    const result: Testimonial[][] = []
-    for (let i = 0; i < array.length; i += chunkSize) {
-        result.push(array.slice(i, i + chunkSize))
-    }
-    return result
-}
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await fetch('https://randomuser.me/api/?results=9&inc=name,picture');
+        const data = await response.json();
+        const users = data.results;
 
-const testimonialChunks = chunkArray(testimonials, Math.ceil(testimonials.length / 3))
+        const roles = [
+          "Operations Manager", "IT Manager", "Customer Support Lead",
+          "CEO", "Project Manager", "Business Analyst",
+          "Marketing Director", "Sales Manager", "E-commerce Manager"
+        ];
 
-export default function WallOfLoveSection() {
-    return (
-        <section>
-            <div className="py-8 md:py-0">
-                <div className="mx-auto max-w-6xl px-6">
-                    <div className="text-center">
-                        <h2 className="text-title text-3xl font-semibold">Trusted by E-commerce & Local Businesses</h2>
-                        <p className="text-body mt-6">Our AI systems deliver measurable growth, operational clarity, and enhanced client experiences for both online sellers and local service providers.</p>
-                    </div>
-                    <div className="mt-8 grid gap-3 [--color-card:var(--color-muted)] sm:grid-cols-2 md:mt-12 lg:grid-cols-3 dark:[--color-muted:var(--color-zinc-900)]">
-                        {testimonialChunks.map((chunk, chunkIndex) => (
-                            <div key={chunkIndex} className="space-y-3 *:border-none *:shadow-none">
-                                {chunk.map(({ name, role, quote, image }, index) => (
-                                    <Card key={index}>
-                                        <CardContent className="grid grid-cols-[auto_1fr] gap-3 pt-6">
-                                            <Avatar className="size-9">
-                                                <AvatarImage alt={name} src={image} loading="lazy" width="120" height="120" />
-                                                <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-                                            </Avatar>
+        const originalTexts = [
+          "Chanlytics' AI agent is a game-changer. It instantly responds to leads from our social media, so we never miss an opportunity. Our booking rate has skyrocketed.",
+          "We used to lose so many leads to missed calls. Now, Chanlytics' AI handles them 24/7, booking appointments automatically. It's like having a receptionist who never sleeps.",
+          "The end-to-end automation is incredible. From capturing a lead to sending the final invoice, everything is handled. It has completely streamlined our sales process.",
+          "The internal AI assistant is my favorite feature. I can just ask 'How many new clients did we onboard this week?' and get an instant answer. No more digging through spreadsheets.",
+          "Integrating Chanlytics with our existing CRM was seamless. It automated our entire workflow, from lead nurturing to requesting reviews. Our efficiency has gone through the roof.",
+          "Our clients are happier than ever. They get instant responses and easy booking, no matter when they reach out. Chanlytics has transformed our customer service.",
+          "Since implementing Chanlytics, our lead conversion has increased by 40%. The AI handles all the initial follow-up, so our sales team can focus on closing deals.",
+          "We get a ton of inquiries through Instagram DMs. Chanlytics' AI responds instantly and books demos for us. It's been a massive unlock for our social media marketing.",
+          "Chanlytics automated our entire client pipeline. We capture more leads, book more appointments, and manage everything effortlessly. It's the most powerful business automation tool we've ever used.",
+        ];
 
-                                            <div>
-                                                <h3 className="font-medium">{name}</h3>
+        const combinedData = users.map((user: any, index: number) => ({
+          text: originalTexts[index],
+          image: user.picture.thumbnail,
+          name: `${user.name.first} ${user.name.last}`,
+          role: roles[index],
+        }));
 
-                                                <span className="text-muted-foreground block text-sm tracking-wide">{role}</span>
+        setTestimonials(combinedData);
+      } catch (error) {
+        console.error("Failed to fetch testimonials:", error);
+      }
+    };
 
-                                                <blockquote className="mt-3">
-                                                    <p className="text-gray-700 dark:text-gray-300">{quote}</p>
-                                                </blockquote>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
-}
+    fetchTestimonials();
+  }, []);
+
+  if (testimonials.length === 0) {
+    return <div className="text-center my-20">Loading testimonials...</div>;
+  }
+
+  const firstColumn = testimonials.slice(0, 3);
+  const secondColumn = testimonials.slice(3, 6);
+  const thirdColumn = testimonials.slice(6, 9);
+
+  return (
+    <section className="bg-background my-8 relative">
+      <div className="container z-10 mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="flex flex-col items-center justify-center max-w-[540px] mx-auto"
+        >
+          <div className="flex justify-center">
+            <div className="border py-1 px-4 rounded-lg">Testimonials</div>
+          </div>
+
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tighter mt-5">
+            What our users say
+          </h2>
+          <p className="text-center mt-5 opacity-75">
+            See what our customers have to say about us.
+          </p>
+        </motion.div>
+
+        <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
+          <TestimonialsColumn testimonials={firstColumn} duration={15} />
+          <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
+          <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Testimonials;

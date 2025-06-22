@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { TextEffect } from '@/components/motion-primitives/text-effect'
 import { AnimatedGroup } from '@/components/motion-primitives/animated-group'
 import { HeroHeader } from '@/components/hero5-header'
-import { LogoCloud } from '@/components/logo-cloud'
+import LogoCloud from '@/components/logo-cloud'
 import Image from 'next/image'
 import { Typewriter } from 'react-simple-typewriter'
 
