@@ -220,7 +220,7 @@ const SmartPortalContent = () => {
 // Feature 4: Personal Assistant Agent
 const PersonalAssistantContent = () => {
   const [query, setQuery] = useState("How many appointments did we book this week?");
-  const [response, setResponse] = useState("You booked 42 appointments this week - a 23% increase from last week! Tuesday was your best day with 11 bookings.");
+  const [response, setResponse] = useState("You booked 42 appointments this week - a 23% increase from last week!");
 
   return (
     <div className="h-full flex flex-col justify-between p-4">

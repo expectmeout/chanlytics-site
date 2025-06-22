@@ -734,7 +734,7 @@ function LeadToCustomerFlow() {
 function AIChatInterface() {
   const [messages, setMessages] = useState([
     { type: 'user', content: 'How many appointments did we book this week?', format: 'text' },
-    { type: 'ai', content: 'You booked 42 appointments this week - a 23% increase from last week! Tuesday was your best day with 11 bookings.', format: 'text' },
+    { type: 'ai', content: 'You booked 42 appointments this week - a 23% increase from last week!', format: 'text' },
     { type: 'user', content: 'voice', format: 'voice', duration: '0:03' },
     { type: 'ai', content: 'Ashley Johnson paid invoice #INV-078 yesterday for $2,400. All current invoices are up to date!', format: 'text' },
   ]);
