@@ -20,7 +20,7 @@ export const Logo = ({ className }: { className?: string }) => {
                 y="50%" 
                 dominantBaseline="middle" 
                 fontFamily="'Playwright Display', sans-serif" 
-                fontSize="28" 
+                fontSize="27" 
                 fontWeight="400" 
                 letterSpacing="1" 
                 fill="currentColor">
