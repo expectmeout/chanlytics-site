@@ -12,15 +12,37 @@ import {
   Zap,
   Shield,
   BarChart3,
+  Linkedin,
+  Mail,
+  Slack,
+  MessageSquare,
+  Twitter,
+  Store,
+  Building2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { LucideProps } from "lucide-react";
+
+interface Message {
+  role: "lead" | "agent";
+  text: string;
+}
+
+interface Platform {
+  name: string;
+  icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
+  color: string;
+  bgColor: string;
+  messages: Message[];
+}
+
+type BusinessType = "local" | "agency";
 
 export default function AiAgentHero() {
   const features = [
-    { icon: <Zap className="h-4 w-4" />, label: "Instant Response" },
-    { icon: <Shield className="h-4 w-4" />, label: "24/7 Available" },
-    { icon: <BarChart3 className="h-4 w-4" />, label: "Smart Analytics" },
-    { icon: <Sparkles className="h-4 w-4" />, label: "AI Powered" },
+    { icon: <Zap className="h-4 w-4" />, label: "Speed to Lead" },
+    { icon: <Sparkles className="h-4 w-4" />, label: "AI-Powered" },
+    { icon: <BarChart3 className="h-4 w-4" />, label: "Smart Dashboard" },
   ];
 
   return (
@@ -95,64 +117,210 @@ export default function AiAgentHero() {
 
 function PhoneCarousel() {
   const [currentPlatform, setCurrentPlatform] = React.useState(0);
+  const [businessType, setBusinessType] = React.useState<BusinessType>("local");
+  const [direction, setDirection] = React.useState(0);
+
+  const swipeVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? '100%' : '-100%',
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? '100%' : '-100%',
+      opacity: 0,
+    }),
+  };
   
-  const platforms = [
-    {
-      name: "Instagram DM",
-      icon: Instagram,
-      color: "from-[#2B7FFE] to-blue-500",
-      bgColor: "bg-gradient-to-br from-[#2B7FFE]/10 to-blue-500/10",
-      messages: [
-        { role: "lead", text: "Hey! Saw your ad, any openings this week?" },
-        { role: "agent", text: "Hi! Yes, I have several slots. Which service?" },
-        { role: "lead", text: "Premium package looks great!" },
-        { role: "agent", text: "Perfect! Tomorrow 2PM or Thursday 10AM?" },
-      ],
-    },
-    {
-      name: "WhatsApp Business",
-      icon: MessageCircle,
-      color: "from-green-500 to-emerald-500",
-      bgColor: "bg-gradient-to-br from-green-500/10 to-emerald-500/10",
-      messages: [
-        { role: "lead", text: "Help with lead management?" },
-        { role: "agent", text: "Our AI system handles that 24/7!" },
-        { role: "lead", text: "How does it work?" },
-        { role: "agent", text: "Responds automatically, books meetings, follows up 🚀" },
-      ],
-    },
-    {
-      name: "Facebook Messenger",
-      icon: Facebook,
-      color: "from-blue-500 to-blue-600",
-      bgColor: "bg-gradient-to-br from-blue-500/10 to-blue-600/10",
-      messages: [
-        { role: "lead", text: "Good for dental practices?" },
-        { role: "agent", text: "Perfect fit! Handles bookings and reminders." },
-        { role: "lead", text: "How fast to set up?" },
-        { role: "agent", text: "Within 48 hours! When's good for a demo? 🦷" },
-      ],
-    },
-  ];
+  const platformsData: Record<BusinessType, Platform[]> = {
+    local: [
+      {
+        name: "Instagram DM",
+        icon: Instagram,
+        color: "from-[#2B7FFE] to-blue-500",
+        bgColor: "bg-gradient-to-br from-[#2B7FFE]/10 to-blue-500/10",
+        messages: [
+          { role: "lead", text: "Hi! Do you have any appointments for a haircut tomorrow?" },
+          { role: "agent", text: "Hello! Yes, I have slots at 10 AM, 2 PM, and 4 PM. Which works best for you?" },
+          { role: "lead", text: "2 PM would be perfect!" },
+          { role: "agent", text: "Great! I've booked you for 2 PM tomorrow. You'll receive a confirmation text shortly! 💇‍♀️" },
+        ],
+      },
+      {
+        name: "WhatsApp",
+        icon: MessageCircle,
+        color: "from-green-500 to-emerald-500",
+        bgColor: "bg-gradient-to-br from-green-500/10 to-emerald-500/10",
+        messages: [
+          { role: "lead", text: "Is your restaurant open for delivery tonight?" },
+          { role: "agent", text: "Yes! We're open until 10 PM. Would you like to see our menu?" },
+          { role: "lead", text: "Yes please! Also do you have vegan options?" },
+          { role: "agent", text: "Absolutely! Here's our menu link. We have a full vegan section. Order now and get 10% off! 🌱" },
+        ],
+      },
+      {
+        name: "Facebook Page",
+        icon: Facebook,
+        color: "from-blue-500 to-blue-600",
+        bgColor: "bg-gradient-to-br from-blue-500/10 to-blue-600/10",
+        messages: [
+          { role: "lead", text: "What are your dental cleaning prices?" },
+          { role: "agent", text: "Our standard cleaning is $120. First-time patients get 20% off!" },
+          { role: "lead", text: "That sounds good. When can I come in?" },
+          { role: "agent", text: "I can book you as early as tomorrow at 9 AM or Thursday at 3 PM. Which works better? 🦷" },
+        ],
+      },
+      {
+        name: "Google Business",
+        icon: MessageSquare,
+        color: "from-red-500 to-orange-500",
+        bgColor: "bg-gradient-to-br from-red-500/10 to-orange-500/10",
+        messages: [
+          { role: "lead", text: "Do you repair iPhone screens?" },
+          { role: "agent", text: "Yes! iPhone screen repairs starting at $89. Same-day service available." },
+          { role: "lead", text: "How long does it take?" },
+          { role: "agent", text: "Usually 30-45 minutes. Can you drop by today? We're open until 7 PM 📱" },
+        ],
+      },
+      {
+        name: "Twitter DM",
+        icon: Twitter,
+        color: "from-sky-400 to-sky-500",
+        bgColor: "bg-gradient-to-br from-sky-400/10 to-sky-500/10",
+        messages: [
+          { role: "lead", text: "Saw your tweet about the gym membership deal!" },
+          { role: "agent", text: "Great timing! 50% off for new members this week only 💪" },
+          { role: "lead", text: "What's included?" },
+          { role: "agent", text: "Full gym access, all classes, and a free PT session. Want to book a tour?" },
+        ],
+      },
+    ],
+    agency: [
+      {
+        name: "LinkedIn DM",
+        icon: Linkedin,
+        color: "from-blue-600 to-blue-700",
+        bgColor: "bg-gradient-to-br from-blue-600/10 to-blue-700/10",
+        messages: [
+          { role: "lead", text: "Your AI lead management solution looks interesting. How does it work?" },
+          { role: "agent", text: "Thanks for reaching out! We help agencies automate client interactions across all platforms." },
+          { role: "lead", text: "What's the typical ROI for agencies?" },
+          { role: "agent", text: "Agencies see 3-5x ROI within 90 days. Can I show you a 15-min demo tomorrow? 📈" },
+        ],
+      },
+      {
+        name: "Slack Connect",
+        icon: Slack,
+        color: "from-purple-500 to-pink-500",
+        bgColor: "bg-gradient-to-br from-purple-500/10 to-pink-500/10",
+        messages: [
+          { role: "lead", text: "Team needs better lead tracking. Can your system integrate with our CRM?" },
+          { role: "agent", text: "Absolutely! We integrate with HubSpot, Salesforce, and 20+ other CRMs." },
+          { role: "lead", text: "What about custom APIs?" },
+          { role: "agent", text: "Yes, full API access included. Our team can help with custom integrations too! 🔧" },
+        ],
+      },
+      {
+        name: "Email",
+        icon: Mail,
+        color: "from-gray-600 to-gray-700",
+        bgColor: "bg-gradient-to-br from-gray-600/10 to-gray-700/10",
+        messages: [
+          { role: "lead", text: "Following up on your AI automation proposal." },
+          { role: "agent", text: "Thanks! Our solution can handle 1000+ conversations simultaneously." },
+          { role: "lead", text: "What about multilingual support?" },
+          { role: "agent", text: "We support 50+ languages with native-level responses. Let's discuss your specific needs? 🌍" },
+        ],
+      },
+      {
+        name: "WhatsApp",
+        icon: MessageCircle,
+        color: "from-green-500 to-emerald-500",
+        bgColor: "bg-gradient-to-br from-green-500/10 to-emerald-500/10",
+        messages: [
+          { role: "lead", text: "Need AI solution for our 50+ clients. Volume pricing?" },
+          { role: "agent", text: "Yes! Enterprise plans start at $2k/month for unlimited clients." },
+          { role: "lead", text: "White label options?" },
+          { role: "agent", text: "Full white label included! Your branding, our AI power. Demo this week? 🚀" },
+        ],
+      },
+      {
+        name: "Twitter DM",
+        icon: Twitter,
+        color: "from-sky-400 to-sky-500",
+        bgColor: "bg-gradient-to-br from-sky-400/10 to-sky-500/10",
+        messages: [
+          { role: "lead", text: "Your AI thread got our attention. B2B focused?" },
+          { role: "agent", text: "Absolutely! Built specifically for B2B lead nurturing and qualification." },
+          { role: "lead", text: "Integration timeline?" },
+          { role: "agent", text: "48 hours from signup to full deployment. Our team handles everything! ⚡" },
+        ],
+      },
+    ],
+  };
+
+  const platforms = platformsData[businessType];
 
   const nextPlatform = () => {
+    setDirection(1);
     setCurrentPlatform((prev) => (prev + 1) % platforms.length);
   };
 
   const prevPlatform = () => {
+    setDirection(-1);
     setCurrentPlatform((prev) => (prev - 1 + platforms.length) % platforms.length);
   };
 
   React.useEffect(() => {
     const timer = setInterval(nextPlatform, 8000); // Auto-advance every 8 seconds
     return () => clearInterval(timer);
-  }, []);
+  }, [businessType, platforms.length]);
+
+  // Reset to first platform when switching business type
+  React.useEffect(() => {
+    setCurrentPlatform(0);
+  }, [businessType]);
 
   const currentPlatformData = platforms[currentPlatform];
   const PlatformIcon = currentPlatformData.icon;
 
   return (
     <div className="relative">
+      {/* Business Type Tabs */}
+      <div className="mb-6 flex justify-center">
+        <div className="inline-flex rounded-lg bg-zinc-100 p-1 dark:bg-zinc-800">
+          <button
+            onClick={() => setBusinessType("local")}
+            className={cn(
+              "flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all",
+              businessType === "local"
+                ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white"
+                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+            )}
+          >
+            <Store className="h-4 w-4" />
+            Local Businesses
+          </button>
+          <button
+            onClick={() => setBusinessType("agency")}
+            className={cn(
+              "flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium transition-all",
+              businessType === "agency"
+                ? "bg-white text-zinc-900 shadow-sm dark:bg-zinc-700 dark:text-white"
+                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+            )}
+          >
+            <Building2 className="h-4 w-4" />
+            Agencies
+          </button>
+        </div>
+      </div>
+
       {/* Phone Frame */}
       <div className="relative mx-auto h-[600px] w-[300px] rounded-[3rem] border-8 border-zinc-800 bg-zinc-900 p-2 shadow-2xl">
         {/* Screen with Status Bar */}
@@ -187,7 +355,7 @@ function PhoneCarousel() {
               </span>
             </div>
             <div className="flex items-center gap-1">
-              {platforms.map((_, idx) => (
+              {platforms.map((_: Platform, idx: number) => (
                 <div
                   key={idx}
                   className={cn(
@@ -202,17 +370,32 @@ function PhoneCarousel() {
           </div>
 
           {/* Chat Messages */}
-          <div className="flex h-[calc(100%-92px)] flex-col-reverse justify-start bg-zinc-50 p-4 dark:bg-zinc-900">
-            <AnimatePresence mode="wait">
+          <div className="relative h-[calc(100%-92px)] overflow-hidden bg-zinc-50 dark:bg-zinc-900">
+            <AnimatePresence initial={false} custom={direction}>
               <motion.div
-                key={currentPlatform}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col gap-3"
+                key={`${businessType}-${currentPlatform}`}
+                variants={swipeVariants}
+                custom={direction}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.2 },
+                }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.1}
+                onDragEnd={(_, { offset }) => {
+                  if (offset.x < -50) {
+                    nextPlatform();
+                  } else if (offset.x > 50) {
+                    prevPlatform();
+                  }
+                }}
+                className="absolute inset-0 flex flex-col justify-end gap-3 p-4"
               >
-                {currentPlatformData.messages.map((message, idx) => (
+                {currentPlatformData.messages.map((message: Message, idx: number) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, x: message.role === "lead" ? 20 : -20 }}
@@ -239,7 +422,7 @@ function PhoneCarousel() {
                   <Bot className="h-4 w-4 text-[#2B7FFE]" />
                   <span className="text-xs text-zinc-500 dark:text-zinc-400">AI Agent is typing...</span>
                   <div className="flex gap-1">
-                    {[0, 1, 2].map((i) => (
+                    {[0, 1, 2].map((i: number) => (
                       <motion.div
                         key={i}
                         className="h-1.5 w-1.5 rounded-full bg-[#2B7FFE]"

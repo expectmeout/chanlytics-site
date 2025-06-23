@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AvatarCircles } from '@/components/magicui/avatar-circles';
+import { LeadToCustomerFlow } from '@/components/leads-to-customer-flow';
 import { cn } from '@/lib/utils';
 import {
   TrendingUp,
@@ -451,8 +452,8 @@ export default function FeaturesShowcase() {
         <p className="text-xs text-gray-600 dark:text-zinc-500">Lead Conversion</p>
       </div>
       <div className="rounded-lg bg-gray-100 dark:bg-zinc-800/50 p-4">
-        <p className="text-2xl font-bold text-gray-900 dark:text-white">87%</p>
-        <p className="text-xs text-gray-600 dark:text-zinc-500">Automation Rate</p>
+        <p className="text-2xl font-bold text-gray-900 dark:text-white">89%</p>
+        <p className="text-xs text-gray-600 dark:text-zinc-500">Show Up Rate</p>
       </div>
       <div className="rounded-lg bg-gray-100 dark:bg-zinc-800/50 p-4">
         <p className="text-2xl font-bold text-gray-900 dark:text-white">4.9★</p>
@@ -639,97 +640,6 @@ function AnimatedNotificationsList() {
     </div>
   );
 }
-
-// Lead to Customer Flow Component
-function LeadToCustomerFlow() {
-  const [activeStage, setActiveStage] = useState(0);
-  
-  const journey = [
-    { stage: 'Lead', icon: <Zap className="h-4 w-4" />, color: 'from-blue-500 to-cyan-500' },
-    { stage: 'Qualified', icon: <Target className="h-4 w-4" />, color: 'from-blue-500 to-cyan-500' },
-    { stage: 'Booked', icon: <Calendar className="h-4 w-4" />, color: 'from-blue-500 to-cyan-500' },
-    { stage: 'Serviced', icon: <CheckCircle className="h-4 w-4" />, color: 'from-blue-500 to-cyan-500' },
-    { stage: 'Invoiced', icon: <CreditCard className="h-4 w-4" />, color: 'from-blue-500 to-cyan-500' },
-    { stage: 'Reviewed', icon: <Star className="h-4 w-4" />, color: 'from-blue-500 to-cyan-500' },
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStage((prev) => (prev + 1) % journey.length);
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="relative rounded-xl bg-gray-50 dark:bg-zinc-800/30 p-6">
-      {/* Journey Path */}
-      <div className="relative mb-8">
-        <div className="absolute inset-x-0 top-5 h-0.5 bg-gray-300 dark:bg-zinc-700" />
-        <motion.div
-          className="absolute left-0 top-5 h-0.5 bg-gradient-to-r from-blue-500 to-cyan-500"
-          initial={{ width: '0%' }}
-          animate={{ width: `${((activeStage + 1) / journey.length) * 100}%` }}
-          transition={{ duration: 0.5 }}
-        />
-        
-        <div className="relative flex justify-between">
-          {journey.map((item, idx) => (
-            <div key={idx} className="flex flex-col items-center">
-              <motion.div
-                animate={{
-                  scale: activeStage === idx ? 1.2 : 1,
-                  y: activeStage === idx ? -5 : 0,
-                }}
-                className={cn(
-                  "relative z-10 flex h-10 w-10 items-center justify-center rounded-full transition-all",
-                  activeStage >= idx
-                    ? `bg-gradient-to-br ${item.color} text-white shadow-lg`
-                    : "bg-gray-200 dark:bg-zinc-800 text-gray-500 dark:text-zinc-500"
-                )}
-              >
-                {item.icon}
-                {activeStage === idx && (
-                  <motion.div
-                    className="absolute inset-0 rounded-full bg-blue-400"
-                    initial={{ scale: 1, opacity: 0.5 }}
-                    animate={{ scale: 2, opacity: 0 }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                  />
-                )}
-              </motion.div>
-              <span className="mt-2 text-xs text-gray-600 dark:text-zinc-500">{item.stage}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* AI Actions Display */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeStage}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="rounded-lg bg-gray-100 dark:bg-zinc-800/50 p-4"
-        >
-          <div className="flex items-center gap-2 text-sm">
-            <Bot className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-            <span className="font-medium text-gray-900 dark:text-white">AI Action:</span>
-            <span className="text-gray-600 dark:text-zinc-400">
-              {activeStage === 0 && "Instantly responding to inquiry via Instagram DM"}
-              {activeStage === 1 && "Qualifying lead based on needs and budget"}
-              {activeStage === 2 && "Booking appointment for tomorrow at 2 PM"}
-              {activeStage === 3 && "Sending post-service follow-up"}
-              {activeStage === 4 && "Generating and sending invoice automatically"}
-              {activeStage === 5 && "Requesting review and testimonial"}
-            </span>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
-}
-
 // AI Chat Interface Component
 function AIChatInterface() {
   const [messages, setMessages] = useState([
