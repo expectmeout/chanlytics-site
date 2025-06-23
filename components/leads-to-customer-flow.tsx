@@ -29,7 +29,7 @@ export function LeadToCustomerFlow() {
         stage: 'Qualified', 
         icon: <Target className="h-4 w-4" />, 
         color: 'from-cyan-500 to-blue-500',
-        action: "Analyzing conversation to qualify lead based on predefined criteria."
+        action: "Asking questions and analyzing conversation to qualify and book the lead based on predefined criteria."
       },
       { 
         stage: 'Booked', 
@@ -41,19 +41,19 @@ export function LeadToCustomerFlow() {
         stage: 'Serviced', 
         icon: <CheckCircle className="h-4 w-4" />, 
         color: 'from-purple-500 to-pink-500',
-        action: "Automating post-service follow-up and logging interaction in the Smart Portal."
+        action: "Automating post-service follow-up and logging every interaction with the client in the Smart Portal."
       },
       { 
         stage: 'Invoiced', 
         icon: <CreditCard className="h-4 w-4" />, 
         color: 'from-pink-500 to-orange-500',
-        action: "Generating and sending the client a detailed invoice for services completed."
+        action: "Automatically generating and sending the client a detailed invoice for all services that have been completed."
       },
       { 
         stage: 'Reviewed', 
         icon: <Star className="h-4 w-4" />, 
         color: 'from-orange-500 to-yellow-500',
-        action: "Requesting a Google review and referral from happy customers."
+        action: "Automatically requesting a Google review and asking for a referral from happy and returning customers."
       },
     ];
   

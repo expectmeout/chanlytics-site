@@ -167,10 +167,10 @@ export default function ExampleBody() {
         <section id="marketplace-solution-faqs">
           <Faqs3 />
         </section>
-        <div className="py-16 md:py-14">
+        <div className="py-5 md:py-14">
           <div className="mx-auto max-w-5xl px-6">
             <div className="text-center">
-              <h2 className="text-balance text-4xl font-normal lg:text-5xl">Connect With an Automation & Growth Expert</h2>
+              <h2 className="text-balance text-3xl font-bold lg:text-4xl">Connect With Automation & Growth Experts</h2>
               <p className="mt-2 text-muted-foreground">Schedule a free consultation to discuss your business's automation and growth needs.</p>
               
               <div className="flex justify-center gap-4 mt-6 mb-10">
@@ -197,11 +197,11 @@ export default function ExampleBody() {
                   size="lg"
                   variant="outline"
                   onClick={() => {
-                    const caseStudiesSection = document.getElementById('client-success-stories');
-                    if (caseStudiesSection) {
+                    const featuresSection = document.getElementById('features');
+                    if (featuresSection) {
                       // Adjust scroll to account for sticky header if necessary
                       const headerOffset = 70; // Example offset, adjust as needed
-                      const elementPosition = caseStudiesSection.getBoundingClientRect().top;
+                      const elementPosition = featuresSection.getBoundingClientRect().top;
                       const offsetPosition = elementPosition + window.scrollY - headerOffset;
                       window.scrollTo({
                         top: offsetPosition,
@@ -209,7 +209,7 @@ export default function ExampleBody() {
                       });
                     }
                   }}>
-                  <span>View Our Case Studies</span>
+                  <span>See Features</span>
                 </Button>
               </div>
               

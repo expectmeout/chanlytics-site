@@ -622,18 +622,18 @@ function AnimatedNotificationsList() {
       
       {/* Stats footer */}
       <div className="absolute bottom-0 left-0 right-0 bg-white/80 dark:bg-black/80 p-4 backdrop-blur-sm">
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div>
+        <div className="grid grid-cols-3 gap-3">
+          <div className="rounded-lg bg-gray-100 dark:bg-zinc-800/50 p-3">
+            <p className="text-xs text-gray-600 dark:text-zinc-400">Today</p>
             <p className="text-lg font-bold text-gray-900 dark:text-white">127</p>
-            <p className="text-xs text-gray-600 dark:text-zinc-500">Today</p>
           </div>
-          <div>
+          <div className="rounded-lg bg-gray-100 dark:bg-zinc-800/50 p-3">
+            <p className="text-xs text-gray-600 dark:text-zinc-400">This Week</p>
             <p className="text-lg font-bold text-gray-900 dark:text-white">1.2k</p>
-            <p className="text-xs text-gray-600 dark:text-zinc-500">This Week</p>
           </div>
-          <div>
+          <div className="rounded-lg bg-gray-100 dark:bg-zinc-800/50 p-3">
+            <p className="text-xs text-gray-600 dark:text-zinc-400">Response Rate</p>
             <p className="text-lg font-bold text-gray-900 dark:text-white">98%</p>
-            <p className="text-xs text-gray-600 dark:text-zinc-500">Response Rate</p>
           </div>
         </div>
       </div>
