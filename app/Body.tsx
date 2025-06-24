@@ -215,6 +215,7 @@ export default function ExampleBody() {
               
               <div id="booking" className="mt-12">
                 <BookingCalendar />
+                <elevenlabs-convai agent-id="agent_01jyh5yg3vf0jtxq1tge80nkhn"></elevenlabs-convai>
               </div>
             </div>
           </div>

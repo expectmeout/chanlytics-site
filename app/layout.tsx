@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import ServiceWorkerInit from '@/components/ServiceWorkerInit'
 import FooterSection from '@/components/footer'
+import Script from "next/script";
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -41,6 +42,8 @@ export default function RootLayout({
                 </ThemeProvider>
                 <FooterSection />
                 <ServiceWorkerInit />
+
+                <Script src="https://unpkg.com/@elevenlabs/convai-widget-embed" strategy="lazyOnload" />
             </body>
             <GoogleAnalytics gaId="G-6KY6TLKXKY" />
         </html>
