@@ -13,7 +13,7 @@ export const SiteFooter = () => (
                 <LogoIcon className="size-5" />
             </Link>
             <p className="mt-2">Modern Shadcn UI Marketing blocks</p>
-            <div className="mt-4 flex">
+            <div className="mt-4 flex items-center">
                 <Button
                     asChild
                     variant="link"
@@ -26,7 +26,18 @@ export const SiteFooter = () => (
                         <ArrowUpRight className="!size-3.5 opacity-50" />
                     </Link>
                 </Button>
-                <ThemeToggle />
+                <span className="text-muted-foreground mx-2">|</span>
+                <Button
+                    asChild
+                    variant="link"
+                    className="text-foreground decoration-primary -ml-2 gap-1">
+                    <Link href="/privacy-policy" className="text-sm">
+                        Privacy Policy
+                    </Link>
+                </Button>
+                <div className="ml-auto">
+                    <ThemeToggle />
+                </div>
             </div>
         </div>
     </footer>
