@@ -1,6 +1,7 @@
 "use client"
 
 import { Cpu, Lock, Sparkles, Zap, TrendingUp, TrendingDown, Award, ChevronRight } from 'lucide-react'
+import { ElevenLabsConvai } from '@/components/ElevenLabsConvai'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -215,7 +216,7 @@ export default function ExampleBody() {
               
               <div id="booking" className="mt-12">
                 <BookingCalendar />
-                <elevenlabs-convai agent-id="agent_01jyh5yg3vf0jtxq1tge80nkhn"></elevenlabs-convai>
+                <ElevenLabsConvai agent-id="agent_01jyh5yg3vf0jtxq1tge80nkhn" />
               </div>
             </div>
           </div>

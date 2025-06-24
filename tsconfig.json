@@ -22,9 +22,8 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "typeRoots": ["./types"]
   },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/pricing/page.tsx", "types/**/*.d.ts"],
+      "include": ["next-env.d.ts", "types/**/*.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"],
   "overrides": {
     "react-is": "^19.0.0-rc-69d4b800-20241021"
