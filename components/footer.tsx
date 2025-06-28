@@ -1,11 +1,13 @@
 'use client';
 import React from 'react';
+import Link from 'next/link';
 
 const links = [
     { title: 'Features', href: '#features' },
     { title: 'FAQ', href: '#marketplace-solution-faqs' },
     { title: 'Pricing', href: '#booking' },
     { title: 'Contact Us', href: '#booking' },
+    { title: 'Privacy Policy', href: '/privacy-policy' },
 ];
 
 export default function FooterSection() {
@@ -32,15 +34,30 @@ export default function FooterSection() {
                 <div className="flex flex-wrap justify-between gap-6">
                     <span className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Chanlytics, All rights reserved</span>
                     <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
-                        {links.map((link, index) => (
-                            <a
-                                key={index}
-                                href={link.href}
-                                onClick={(e) => handleScroll(e, link.href)}
-                                className="text-muted-foreground hover:text-primary block duration-150 cursor-pointer">
-                                <span>{link.title}</span>
-                            </a>
-                        ))}
+                        {links.map((link, index) => {
+                            const isAnchor = link.href.startsWith('#');
+                            if (isAnchor) {
+                                return (
+                                    <a
+                                        key={index}
+                                        href={link.href}
+                                        onClick={(e) => handleScroll(e, link.href)}
+                                        className="text-muted-foreground hover:text-primary block duration-150 cursor-pointer"
+                                    >
+                                        <span>{link.title}</span>
+                                    </a>
+                                );
+                            }
+                            return (
+                                <Link
+                                    key={index}
+                                    href={link.href}
+                                    className="text-muted-foreground hover:text-primary block duration-150 cursor-pointer"
+                                >
+                                    <span>{link.title}</span>
+                                </Link>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
