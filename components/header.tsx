@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/logo'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -15,8 +16,10 @@ const menuItems = [
 ];
 
 export const HeroHeader = () => {
-    const [menuState, setMenuState] = React.useState(false)
-        const [isScrolled, setIsScrolled] = React.useState(false);
+    const [menuState, setMenuState] = React.useState(false);
+    const [isScrolled, setIsScrolled] = React.useState(false);
+    const pathname = usePathname();
+    const isHomePage = pathname === '/';
 
     const handleScroll = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
@@ -71,12 +74,20 @@ export const HeroHeader = () => {
                             <ul className="flex gap-8 text-[15px]">
                                 {menuItems.map((item, index) => (
                                     <li key={index}>
-                                        <a
-                                            href={item.href}
-                                            onClick={(e) => handleScroll(e, item.href)}
-                                            className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
-                                            <span>{item.name}</span>
-                                        </a>
+                                        {isHomePage ? (
+                                            <a
+                                                href={item.href}
+                                                onClick={(e) => handleScroll(e, item.href)}
+                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                <span>{item.name}</span>
+                                            </a>
+                                        ) : (
+                                            <Link
+                                                href={`/${item.href}`}
+                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                <span>{item.name}</span>
+                                            </Link>
+                                        )}
                                     </li>
                                 ))}
                             </ul>
@@ -87,11 +98,21 @@ export const HeroHeader = () => {
                                 <ul className="space-y-6 text-[17px]">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
-                                            <Link
-                                                href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
-                                                <span>{item.name}</span>
-                                            </Link>
+                                            {isHomePage ? (
+                                                <a
+                                                    href={item.href}
+                                                    onClick={(e) => handleScroll(e, item.href)}
+                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                    <span>{item.name}</span>
+                                                </a>
+                                            ) : (
+                                                <Link
+                                                    href={`/${item.href}`}
+                                                    onClick={() => setMenuState(false)}
+                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                    <span>{item.name}</span>
+                                                </Link>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
