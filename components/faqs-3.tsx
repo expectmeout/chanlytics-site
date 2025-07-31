@@ -73,14 +73,35 @@ export function Faqs3() {
         icon: 'bot',
         question: 'What is the AI Agent System and how does it capture leads?',
         answer: (
-            <div className="space-y-3 text-sm text-muted-foreground">
-                <p>Our AI Agent System works 24/7 across multiple platforms (website chat, social media DMs, SMS, calls) to instantly engage with potential customers. It intelligently qualifies leads, answers common questions, and seamlessly books appointments directly into your calendar, ensuring you never miss an opportunity.</p>
-                <p>Key benefits include:</p>
-                <ul className="list-disc space-y-1 pl-5">
-                    <li>Instant responses to inquiries, day or night.</li>
-                    <li>Automated appointment scheduling and qualification.</li>
-                    <li>Consistent brand voice across all communication channels.</li>
-                    <li>Significant reduction in missed leads and follow-up delays.</li>
+            <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <Badge variant="outline" className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 border-blue-200 dark:border-blue-800">
+                        <span className="text-blue-700 dark:text-blue-300">24/7 Operation</span>
+                    </Badge>
+                    <Badge variant="outline" className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-green-200 dark:border-green-800">
+                        <span className="text-green-700 dark:text-green-300">15+ Hours Saved</span>
+                    </Badge>
+                    <Badge variant="outline" className="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 border-purple-200 dark:border-purple-800">
+                        <span className="text-purple-700 dark:text-purple-300">Instant Response</span>
+                    </Badge>
+                </div>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                        <span className="text-green-500 mt-0.5">✓</span>
+                        <span>Handles every lead across Instagram, WhatsApp, website chat, and phone calls</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                        <span className="text-green-500 mt-0.5">✓</span>
+                        <span>Instantly engages, qualifies, and books qualified appointments</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                        <span className="text-green-500 mt-0.5">✓</span>
+                        <span>Stop working nights and weekends chasing leads</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                        <span className="text-green-500 mt-0.5">✓</span>
+                        <span>Focus on closing deals while AI handles the front-end</span>
+                    </li>
                 </ul>
             </div>
         ),
@@ -88,127 +109,258 @@ export function Faqs3() {
     {
         id: 'item-2',
         icon: 'settings-2',
-        question: 'How do Backend AI Automations streamline my operations?',
+        question: 'Is this just another CRM?',
         answer: (
-            <div className="space-y-3 text-sm text-muted-foreground">
-                <p>Chanlytics' Backend AI Automations handle the repetitive, time-consuming tasks that bog down your business. This includes automated appointment reminders, invoice generation and sending, payment collection, and even requesting client reviews or referrals post-service.</p>
-                <p>This system helps you:</p>
-                <ul className="list-disc space-y-1 pl-5">
-                    <li>Reduce manual data entry and administrative workload.</li>
-                    <li>Improve cash flow with automated invoicing and payment reminders.</li>
-                    <li>Enhance client experience with timely communications.</li>
-                    <li>Systematically build social proof through automated review requests.</li>
-                </ul>
+            <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
+                        <h4 className="font-semibold text-red-800 dark:text-red-300 mb-1">Traditional CRMs</h4>
+                        <ul className="text-xs space-y-1 text-red-700 dark:text-red-400">
+                            <li>• Passive databases</li>
+                            <li>• Manual data entry</li>
+                            <li>• You manage everything</li>
+                        </ul>
+                    </div>
+                    <div className="p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                        <h4 className="font-semibold text-green-800 dark:text-green-300 mb-1">Chanlytics</h4>
+                        <ul className="text-xs space-y-1 text-green-700 dark:text-green-400">
+                            <li>• Active growth engine</li>
+                            <li>• AI-powered automation</li>
+                            <li>• Works for you 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="space-y-2 text-sm text-muted-foreground">
+                    <p className="font-medium text-gray-900 dark:text-white">Key Differences:</p>
+                    <ul className="space-y-1">
+                        <li className="flex items-start gap-2">
+                            <span className="text-blue-500 mt-0.5">→</span>
+                            <span>AI doesn't just store data - it actively uses it to grow your business</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                            <span className="text-blue-500 mt-0.5">→</span>
+                            <span>Automates entire workflow from lead capture to client reviews</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                            <span className="text-blue-500 mt-0.5">→</span>
+                            <span>Actively increases revenue while giving you back your time</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         ),
     },
     {
         id: 'item-3',
-        icon: 'layout-dashboard',
-        question: 'What insights can I get from the Smart Portal?',
+        icon: 'plug-zap',
+        question: 'How does this integrate with my existing tools?',
         answer: (
-            <div className="space-y-3 text-sm text-muted-foreground">
-                <p>The Smart Portal is your central hub for understanding business performance and client interactions. It provides real-time analytics, tracks AI agent performance (e.g., call/chat transcripts, conversion rates), and offers insights into customer behavior and operational efficiency.</p>
-                <p>With the Smart Portal, you can:</p>
-                <ul className="list-disc space-y-1 pl-5">
-                    <li>Monitor key performance indicators (KPIs) at a glance.</li>
-                    <li>Review AI agent interactions for quality assurance and training.</li>
-                    <li>Identify trends and opportunities for business growth.</li>
-                    <li>Access all your critical business data in one organized place.</li>
-                </ul>
+            <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                        <div className="flex items-center gap-2 mb-2">
+                            <DynamicIcon name="link" className="h-4 w-4 text-green-600 dark:text-green-400" />
+                            <h4 className="font-semibold text-green-800 dark:text-green-300">Seamless Integration</h4>
+                        </div>
+                        <ul className="space-y-1 text-xs text-green-700 dark:text-green-400">
+                            <li>• HubSpot, Salesforce, Slack</li>
+                            <li>• Instagram, Facebook, LinkedIn</li>
+                            <li>• QuickBooks, Google Workspace</li>
+                            <li>• 1000+ apps supported</li>
+                        </ul>
+                    </div>
+                    <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                        <div className="flex items-center gap-2 mb-2">
+                            <DynamicIcon name="settings" className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                            <h4 className="font-semibold text-blue-800 dark:text-blue-300">No Disruption</h4>
+                        </div>
+                        <ul className="space-y-1 text-xs text-blue-700 dark:text-blue-400">
+                            <li>• Keep your existing tools</li>
+                            <li>• Zero learning curve</li>
+                            <li>• Everything works better</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                    <div className="p-3 rounded-lg bg-gray-50 dark:bg-gray-900/20 border border-gray-200 dark:border-gray-700">
+                        <p className="font-medium text-gray-900 dark:text-white mb-2">What This Means:</p>
+                        <ul className="space-y-2">
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-500 mt-0.5">✓</span>
+                                <span><strong>Zero disruption:</strong> Your current tools stay exactly as they are</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-500 mt-0.5">✓</span>
+                                <span><strong>Everything unified:</strong> Chanlytics connects all your tools automatically</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-500 mt-0.5">✓</span>
+                                <span><strong>Better together:</strong> Your existing apps work smarter as one system</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         ),
     },
     {
         id: 'item-4',
-        icon: 'brain-circuit',
-        question: 'How does the Personal AI Assistant help me manage my business?',
+        icon: 'rocket',
+        question: 'What does the onboarding process look like?',
         answer: (
-            <div className="space-y-3 text-sm text-muted-foreground">
-                <p>Think of the Personal AI Assistant as your internal "ChatGPT" fine-tuned on your specific business data. You can ask it questions in natural language like "How many appointments did we book last week?" or "What's the status of Ashley's invoice?" and get instant, accurate answers.</p>
-                <p>It allows you to:</p>
-                <ul className="list-disc space-y-1 pl-5">
-                    <li>Get quick answers without sifting through spreadsheets or multiple apps.</li>
-                    <li>Access client details and project statuses on the go.</li>
-                    <li>Improve decision-making with readily available information.</li>
-                    <li>Empower your team with self-serve access to business intelligence.</li>
-                </ul>
+            <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="text-center p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                        <DynamicIcon name="clock" className="h-5 w-5 text-green-600 dark:text-green-400 mx-auto mb-1" />
+                        <p className="text-sm font-medium text-green-800 dark:text-green-300">Fast Setup</p>
+                        <p className="text-xs text-green-600 dark:text-green-400">White-glove service</p>
+                    </div>
+                    <div className="text-center p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                        <DynamicIcon name="graduation-cap" className="h-5 w-5 text-blue-600 dark:text-blue-400 mx-auto mb-1" />
+                        <p className="text-sm font-medium text-blue-800 dark:text-blue-300">Full Training</p>
+                        <p className="text-xs text-blue-600 dark:text-blue-400">Complete support</p>
+                    </div>
+                    <div className="text-center p-3 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
+                        <DynamicIcon name="shield-check" className="h-5 w-5 text-purple-600 dark:text-purple-400 mx-auto mb-1" />
+                        <p className="text-sm font-medium text-purple-800 dark:text-purple-300">Risk-Free</p>
+                        <p className="text-xs text-purple-600 dark:text-purple-400">Full support</p>
+                    </div>
+                </div>
+                <div className="space-y-3 text-sm text-muted-foreground">
+                    <div className="p-3 rounded-lg bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border border-yellow-200 dark:border-yellow-800">
+                        <p className="font-medium text-yellow-800 dark:text-yellow-300 mb-2">What We Handle:</p>
+                        <ul className="space-y-1 text-xs">
+                            <li>• Complete AI script setup</li>
+                            <li>• Workflow automation configuration</li>
+                            <li>• Full team training and onboarding</li>
+                        </ul>
+                    </div>
+                    <div className="p-3 rounded-lg bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border border-emerald-200 dark:border-emerald-800">
+                        <p className="font-medium text-emerald-800 dark:text-emerald-300 mb-2">Your Guarantee:</p>
+                        <ul className="space-y-1 text-xs text-muted-foreground">
+                            <li>• Risk-free trial with our full support</li>
+                            <li>• Dedicated success manager on day one</li>
+                            <li>• Everything to gain, nothing to lose</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         ),
     },
     {
         id: 'item-5',
-        icon: 'git-fork',
-        question: 'What does it mean that Chanlytics is an "Integrated System"?',
+        icon: 'shield-check',
+        question: 'How secure is my company and client data?',
         answer: (
-            <div className="space-y-3 text-sm text-muted-foreground">
-                <p>The Integrated System is the backbone that connects all Chanlytics features and, crucially, your existing business tools (like HubSpot, QuickBooks, Google Calendar, etc.). It ensures a seamless flow of information from lead capture to service delivery and beyond, creating a unified automation hub.</p>
-                <p>This integration means:</p>
-                <ul className="list-disc space-y-1 pl-5">
-                    <li>No more data silos; information is shared across all platforms.</li>
-                    <li>A complete A-Z process management from onboarding to upselling.</li>
-                    <li>Reduced manual data transfer between different software.</li>
-                    <li>A holistic view of your business operations and customer journey.</li>
-                </ul>
+            <div className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
+                        <div className="flex items-center gap-2 mb-2">
+                            <DynamicIcon name="lock" className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                            <h4 className="font-semibold text-blue-800 dark:text-blue-300">Encryption</h4>
+                        </div>
+                        <ul className="space-y-1 text-xs text-blue-700 dark:text-blue-400">
+                            <li>• End-to-end encryption</li>
+                            <li>• Data encrypted in transit</li>
+                            <li>• Data encrypted at rest</li>
+                        </ul>
+                    </div>
+                    <div className="p-4 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
+                        <div className="flex items-center gap-2 mb-2">
+                            <DynamicIcon name="shield" className="h-4 w-4 text-green-600 dark:text-green-400" />
+                            <h4 className="font-semibold text-green-800 dark:text-green-300">Access Control</h4>
+                        </div>
+                        <ul className="space-y-1 text-xs text-green-700 dark:text-green-400">
+                            <li>• Strict access controls</li>
+                            <li>• Role-based permissions</li>
+                            <li>• Enterprise-grade security</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="space-y-3">
+                    <div className="flex items-center gap-2">
+                        <Badge variant="outline" className="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20">
+                            <span className="text-purple-700 dark:text-purple-300">GDPR Compliant</span>
+                        </Badge>
+                        <Badge variant="outline" className="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/20 dark:to-red-900/20">
+                            <span className="text-orange-700 dark:text-orange-300">SOC 2 Type II</span>
+                        </Badge>
+                        <Badge variant="outline" className="bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-teal-900/20 dark:to-cyan-900/20">
+                            <span className="text-teal-700 dark:text-teal-300">ISO 27001</span>
+                        </Badge>
+                    </div>
+                    <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-900/20 border border-gray-200 dark:border-gray-700">
+                        <p className="font-medium text-gray-900 dark:text-white mb-2">Security Features:</p>
+                        <ul className="space-y-2 text-sm">
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-500 mt-0.5">✓</span>
+                                <span><strong>Enterprise-grade cloud:</strong> Built on secure, certified infrastructure</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-500 mt-0.5">✓</span>
+                                <span><strong>Compliance:</strong> Fully compliant with GDPR, SOC 2, and major regulations</span>
+                            </li>
+                            <li className="flex items-start gap-2">
+                                <span className="text-green-500 mt-0.5">✓</span>
+                                <span><strong>Best practices:</strong> Industry-leading security protocols and monitoring</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        ),
+        )
     },
     ]
 
     return (
-        <section className="py-16 md:py-24 bg-background">
-            <div className="mx-auto max-w-5xl px-4 md:px-6">
-                <div className="flex flex-col gap-10 md:flex-row md:gap-16">
-                    <div className="md:w-1/3">
-                        <div className="sticky top-20">
-                            <h2 id="integrated-marketplace" className="mt-4 text-3xl font-bold">Frequently Asked Questions</h2>
-                            <p className="text-muted-foreground mt-4">
-                            Find answers to common questions about Chanlytics AI automation services. If you don't see your question here, feel free to{' '}
-                                <button
-                                    type="button"
-                                    onClick={scrollToBooking}
-                                    className="cursor-pointer text-primary font-medium hover:underline bg-transparent border-none p-0">
-                                    contact our team
-                                </button>{' '}
-                                .
-                            </p>
-                        </div>
-                    </div>
-                    <div className="md:w-2/3">
-                        <Accordion
-                            type="single"
-                            collapsible
-                            className="w-full space-y-2">
-                            {faqItems.map((item) => (
-                                <div key={item.id} className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/70 shadow-md backdrop-blur-sm transition-shadow dark:bg-zinc-900/60 dark:border-zinc-800">
-                                    {/* Glow gradient overlay */}
-                                    <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                        <div className="absolute -inset-px rounded-2xl bg-[radial-gradient(ellipse_at_top_left,rgba(59,130,246,0.25),transparent_60%)] dark:bg-[radial-gradient(ellipse_at_top_left,rgba(59,130,246,0.15),transparent_60%)]" />
-                                    </div>
-                                    <AccordionItem
-                                        value={item.id}
-                                        className="border-b-0">
-                                        <AccordionTrigger className="cursor-pointer items-center py-5 hover:no-underline px-4">
-                                            <div className="flex items-center gap-3">
-                                                <div className="flex size-6">
-                                                    <DynamicIcon
-                                                        name={item.icon}
-                                                        className="m-auto size-4"
-                                                    />
-                                                </div>
-                                                <span className="text-base">{item.question}</span>
+        <section id="marketplace-solution-faqs" className="pt-2 pb-20 md:pt-10 md:pb-28 bg-white dark:bg-background">
+            <div className="container mx-auto px-6">
+                <div className="max-w-3xl mx-auto text-center">
+                    <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl mb-4 text-gray-900 dark:text-white">
+                        Frequently Asked Questions
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-300 text-lg mb-12">
+                        Find answers to common questions about Chanlytics AI automation services. If you don't see your question here, feel free to{' '}
+                        <button
+                            type="button"
+                            onClick={scrollToBooking}
+                            className="cursor-pointer text-primary font-medium hover:underline bg-transparent border-none p-0">
+                            contact our team
+                        </button>.
+                    </p>
+                </div>
+                <div className="space-y-4 max-w-4xl mx-auto">
+                    <Accordion
+                        type="single"
+                        collapsible
+                        className="w-full space-y-4">
+                        {faqItems.map((item) => (
+                            <div key={item.id} className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#0070F3]/10 to-[#38bdf8]/10 backdrop-blur-lg border border-[#0070F3]/20 dark:border-[#38bdf8]/30 shadow-lg shadow-black/10 dark:shadow-black/30 transition-all duration-300 hover:shadow-xl">
+                                {/* Hover effect overlay */}
+                                <div className="absolute top-0 left-[-100%] h-full w-full bg-gradient-to-r from-transparent via-teal-50/30 dark:via-teal-900/10 to-transparent transition-all duration-700 ease-in-out group-hover:left-full" />
+                                <AccordionItem
+                                    value={item.id}
+                                    className="border-b-0">
+                                    <AccordionTrigger className="group/trigger cursor-pointer items-center py-5 hover:no-underline px-6 transition-colors duration-200">
+                                        <div className="flex items-center gap-3">
+                                            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#0070F3]/20 to-[#38bdf8]/20 text-[#0070F3] dark:text-[#38bdf8] transition-colors duration-300">
+                                                <DynamicIcon
+                                                    name={item.icon}
+                                                    className="h-4 w-4"
+                                                />
                                             </div>
-                                        </AccordionTrigger>
-                                        <AccordionContent className="pb-5">
-                                            <div className="px-9">
-                                                {item.answer}
-                                            </div>
-                                        </AccordionContent>
-                                    </AccordionItem>
-                                </div>
-                            ))}
-                        </Accordion>
-                    </div>
+                                            <span className="text-base text-left text-gray-900 group-hover/trigger:text-[#0070F3] dark:text-white dark:group-hover/trigger:text-[#38bdf8] transition-colors">{item.question}</span>
+                                        </div>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="pb-5">
+                                        <div className="px-9">
+                                            {item.answer}
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </div>
+                        ))}
+                    </Accordion>
                 </div>
             </div>
         </section>

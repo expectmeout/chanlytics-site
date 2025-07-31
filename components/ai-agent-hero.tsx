@@ -40,9 +40,9 @@ type BusinessType = "local" | "agency";
 
 export default function AiAgentHero() {
   const features = [
-    { icon: <Zap className="h-4 w-4" />, label: "Speed to Lead" },
-    { icon: <Sparkles className="h-4 w-4" />, label: "AI-Powered" },
-    { icon: <BarChart3 className="h-4 w-4" />, label: "Smart Dashboard" },
+    { icon: <Zap className="h-4 w-4" />, label: "24/7 Instant Engagement" },
+    { icon: <Sparkles className="h-4 w-4" />, label: "Automated Appointment Booking" },
+    { icon: <BarChart3 className="h-4 w-4" />, label: "Real-Time Business Insights" },
   ];
 
   return (
@@ -64,20 +64,18 @@ export default function AiAgentHero() {
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-[#2B7FFE] dark:bg-blue-900/30 dark:text-blue-300">
             <Bot className="h-4 w-4" />
-            AI-Powered Lead Management
+            Your Autonomous Sales System
           </div>
           
           <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl">
-            Never Miss a Lead with{" "}
+            Turn Social Media DMs into Booked Appointments,{" "}
             <span className="bg-gradient-to-r from-blue-500 to-[#2B7FFE] bg-clip-text text-transparent">
-              Chanlytics AI
+              Automatically
             </span>
           </h1>
           
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-300">
-            Your AI agents engage instantly across every platform – booking meetings, 
-            answering questions, and nurturing relationships 24/7 while you focus on 
-            growing your business.
+            Chanlytics AI captures leads from Instagram, qualifies them in conversation, books them into your calendar, and syncs to your CRM. Wake up to a schedule full of qualified meetings.
           </p>
 
           {/* Feature pills */}
@@ -96,8 +94,6 @@ export default function AiAgentHero() {
               </motion.div>
             ))}
           </div>
-
-
         </motion.div>
 
         {/* Enhanced Phone Carousel */}

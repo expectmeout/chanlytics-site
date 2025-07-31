@@ -32,6 +32,8 @@ import {
 } from 'lucide-react';
 import { LogoIcon } from './logo';
 
+import { ShineBorder } from '@/components/magicui/shine-border';
+
 // Unified Platform Response Component
 function UnifiedPlatformResponse() {
   const [activeResponse, setActiveResponse] = useState(0);
@@ -322,7 +324,7 @@ const avatars = [
 
 export default function FeaturesShowcase() {
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-gradient-to-b dark:from-[#09090B] dark:to-[#09090C] pt-[0px] pb-24">
+    <section className="relative overflow-hidden bg-white dark:bg-background pt-[0px] pb-24">
       {/* Subtle gradient background */}
 
       
@@ -433,7 +435,7 @@ export default function FeaturesShowcase() {
   whileInView={{ opacity: 1, y: 0 }}
   viewport={{ once: true }}
   transition={{ delay: 0.4 }}
-  className="group relative col-span-full overflow-hidden rounded-2xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-gradient-to-br dark:from-zinc-900 dark:to-black p-8 transition-all hover:border-gray-300 dark:hover:border-zinc-700 lg:col-span-2"
+  className="group relative col-span-full overflow-hidden rounded-2xl border border-transparent bg-white dark:bg-gradient-to-br dark:from-zinc-900 dark:to-black p-8 transition-all lg:col-span-2"
 >
   <div className="absolute right-0 top-0 h-32 w-32 bg-gradient-to-br from-blue-500/10 to-blue-500/10 blur-3xl" />
   <div className="relative">
@@ -445,8 +447,9 @@ export default function FeaturesShowcase() {
     </p>
     
     <LeadToCustomerFlow />
-    
+
     <div className="mt-6 grid grid-cols-3 gap-4">
+
       <div className="rounded-lg bg-gray-100 dark:bg-zinc-800/50 p-4">
         <p className="text-2xl font-bold text-gray-900 dark:text-white">3.2x</p>
         <p className="text-xs text-gray-600 dark:text-zinc-500">Lead Conversion</p>
@@ -468,10 +471,10 @@ export default function FeaturesShowcase() {
   whileInView={{ opacity: 1, y: 0 }}
   viewport={{ once: true }}
   transition={{ delay: 0.6 }}
-  className="group relative overflow-hidden rounded-2xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-gradient-to-br dark:from-zinc-900 dark:to-black p-8 transition-all hover:border-gray-300 dark:hover:border-zinc-700"
+  className="group relative col-span-1 overflow-hidden rounded-2xl border border-transparent bg-white dark:bg-gradient-to-br dark:from-zinc-900 dark:to-black p-8 transition-all"
 >
   <div className="absolute right-0 top-0 h-32 w-32 bg-gradient-to-br from-blue-500/10 to-blue-500/10 blur-3xl" />
-  <div className="relative">
+  <div className="relative z-10">
     <div className="mb-4 flex items-center justify-between">
       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
         24/7 AI Business Assistant
@@ -484,13 +487,43 @@ export default function FeaturesShowcase() {
     <p className="mb-6 text-sm text-gray-600 dark:text-zinc-400">
       Ask anything about your business - type or speak, get instant insights.
     </p>
-    
-    <AIChatInterface />
+
+    <div className="relative rounded-xl bg-white/5 p-4">
+      <AIChatInterface />
+    </div>
   </div>
+  <ShineBorder
+    className="absolute inset-0"
+    shineColor={["#0070F3", "#38bdf8"]}
+    borderWidth={2}
+  />
 </motion.div>
 
-
-
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ delay: 0.8 }}
+  className="group relative col-span-1 overflow-hidden rounded-2xl border border-gray-200 dark:border-zinc-800 bg-white dark:bg-gradient-to-br dark:from-zinc-900 dark:to-black p-8 transition-all hover:border-gray-300 dark:hover:border-zinc-700"
+>
+  <div className="absolute right-0 top-0 h-32 w-32 bg-gradient-to-br from-blue-500/10 to-blue-500/10 blur-3xl" />
+  <div className="relative">
+    <div className="mb-4 flex items-center justify-between">
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+        Your Business's AI Brain, Available 24/7
+      </h3>
+      <span className="flex items-center gap-2 rounded-full bg-green-500/20 px-3 py-1 text-xs font-medium text-green-600 dark:text-green-400">
+        <span className="h-2 w-2 rounded-full bg-green-500"></span>
+        Online
+      </span>
+    </div>
+    <p className="mb-6 text-sm text-gray-600 dark:text-zinc-400">
+      Go beyond simple chatbots. Your personal AI assistant is connected to your entire business—calls, chats, CRM data, and appointments. Ask it anything and get instant, accurate answers.
+    </p>
+    
+    <UnifiedPlatformResponse />
+  </div>
+</motion.div>
         </div>
       </div>
     </section>
@@ -643,10 +676,13 @@ function AnimatedNotificationsList() {
 // AI Chat Interface Component
 function AIChatInterface() {
   const [messages, setMessages] = useState([
-    { type: 'user', content: 'How many appointments did we book this week?', format: 'text' },
-    { type: 'ai', content: 'You booked 42 appointments this week - a 23% increase from last week!', format: 'text' },
-    { type: 'user', content: 'voice', format: 'voice', duration: '0:03' },
-    { type: 'ai', content: 'Ashley Johnson paid invoice #INV-078 yesterday for $2,400. All current invoices are up to date!', format: 'text' },
+    { type: 'user', content: 'How many appointments did we book this week from Instagram?', format: 'text' },
+    {
+      type: 'ai',
+      content: "You booked 42 appointments from Instagram this week. That's a 23% increase from last week! Your most booked service was 'Premium Fade' with 18 appointments.",
+      format: 'text'
+    },
+    { type: 'ai', content: 'Sure, here is the audio summary of the report.', format: 'audio', duration: '0:45' }
   ]);
   const [inputMode, setInputMode] = useState('text');
   const [isRecording, setIsRecording] = useState(false);
@@ -672,7 +708,7 @@ function AIChatInterface() {
                   "max-w-[80%] rounded-lg px-3 py-1.5 text-xs",
                   msg.type === 'user'
                     ? "bg-[#2975E8] text-white"
-                    : "bg-gray-200 dark:bg-zinc-800 text-gray-900 dark:text-zinc-100"
+                    : "bg-gradient-to-r from-[#0070F3]/40 via-[#0070F3]/20 to-[#38bdf8]/40 text-gray-800 dark:from-[#0070F3]/30 dark:to-[#38bdf8]/30 dark:text-white border border-[#0070F3]/20 dark:border-[#38bdf8]/30"
                 )}
               >
                 {msg.content}

@@ -1,314 +1,268 @@
-import { Gemini, Replit, MagicUI, VSCodium, MediaWiki, GooglePaLM } from '@/components/logos'
-import { LogoIcon } from '@/components/logo'
+import { ShineBorder } from '@/components/magicui/shine-border';
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
-import { InfiniteSlider } from '@/components/motion-primitives/infinite-slider'
-import { useCallback } from 'react'
-import { 
-  FileText, 
-  Mailbox, 
-  Rss, 
-  Cloud, 
-  BarChart3, 
-  Star, 
-  Database, 
-  Sparkles,
-  Image,
-  Link2,
-  Figma,
-  FileJson,
+import { useCallback, type ComponentType } from 'react'
+import {
   ChevronRight,
-  Table,
-  Wrench,
-  Brain,
-  Layers,
-  GitBranch,
-  Calendar,
-  MessageSquare,
+  Sparkles,
   Shield,
   Zap,
-  Hash,
-  Globe,
-  Slack,
-  Code2,
-  Palette,
-  Music,
-  Video,
-  Map,
-  Heart,
-  Activity
+  Users,
+  Database,
+  Check
 } from 'lucide-react'
 
+// Brand icons from react-icons
+import {
+  SiSlack,
+  SiHubspot,
+  SiSalesforce,
+  SiNotion,
+  SiAsana,
+  SiTrello,
+  SiDiscord,
+  SiGmail,
+  SiGooglesheets,
+  SiGoogledrive,
+  SiInstagram,
+  SiFacebook,
+  SiX,
+  SiLinkedin,
+  SiYoutube,
+  SiTiktok,
+  SiWhatsapp,
+  SiTelegram,
+  SiStripe,
+  SiPaypal,
+  SiShopify,
+  SiWoocommerce,
+  SiMailchimp,
+  SiZoom,
+  SiCalendly
+} from 'react-icons/si'
+
+// Integration logos with brand colors - organized into 3 rows
+const integrations = [
+  // Row 1
+  [
+    { name: 'Slack', icon: SiSlack, bg: 'bg-[#4A154B]', color: 'text-white' },
+    { name: 'HubSpot', icon: SiHubspot, bg: 'bg-[#FF7A59]', color: 'text-white' },
+    { name: 'Salesforce', icon: SiSalesforce, bg: 'bg-[#00A1E0]', color: 'text-white' },
+    { name: 'Notion', icon: SiNotion, bg: 'bg-gray-800', color: 'text-white' },
+    { name: 'Asana', icon: SiAsana, bg: 'bg-[#F06A6A]', color: 'text-white' },
+    { name: 'Trello', icon: SiTrello, bg: 'bg-[#0052CC]', color: 'text-white' },
+    { name: 'Discord', icon: SiDiscord, bg: 'bg-[#5865F2]', color: 'text-white' },
+    { name: 'Gmail', icon: SiGmail, bg: 'bg-[#EA4335]', color: 'text-white' },
+    { name: 'Google Sheets', icon: SiGooglesheets, bg: 'bg-[#0F9D58]', color: 'text-white' },
+  ],
+  // Row 2
+  [
+    { name: 'Google Drive', icon: SiGoogledrive, bg: 'bg-[#4285F4]', color: 'text-white' },
+    { name: 'Instagram', icon: SiInstagram, bg: 'bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737]', color: 'text-white' },
+    { name: 'Facebook', icon: SiFacebook, bg: 'bg-[#1877F2]', color: 'text-white' },
+    { name: 'Twitter/X', icon: SiX, bg: 'bg-gray-900', color: 'text-white' },
+    { name: 'LinkedIn', icon: SiLinkedin, bg: 'bg-[#0A66C2]', color: 'text-white' },
+    { name: 'YouTube', icon: SiYoutube, bg: 'bg-[#FF0000]', color: 'text-white' },
+    { name: 'TikTok', icon: SiTiktok, bg: 'bg-black', color: 'text-white' },
+    { name: 'WhatsApp', icon: SiWhatsapp, bg: 'bg-[#25D366]', color: 'text-white' },
+    { name: 'Telegram', icon: SiTelegram, bg: 'bg-[#26A5E4]', color: 'text-white' },
+  ],
+  // Row 3
+  [
+    { name: 'Stripe', icon: SiStripe, bg: 'bg-[#635BFF]', color: 'text-white' },
+    { name: 'PayPal', icon: SiPaypal, bg: 'bg-[#003087]', color: 'text-white' },
+    { name: 'Shopify', icon: SiShopify, bg: 'bg-[#96BF48]', color: 'text-white' },
+    { name: 'WooCommerce', icon: SiWoocommerce, bg: 'bg-[#7F54B3]', color: 'text-white' },
+    { name: 'MailChimp', icon: SiMailchimp, bg: 'bg-[#FFE01B]', color: 'text-black' },
+    { name: 'Zoom', icon: SiZoom, bg: 'bg-[#2D8CFF]', color: 'text-white' },
+    { name: 'Calendly', icon: SiCalendly, bg: 'bg-[#006BFF]', color: 'text-white' },
+  ]
+];
+
 interface IntegrationCardProps {
-  children: React.ReactNode;
-  className?: string;
+  name: string;
+  icon: ComponentType<any>;
+  bg: string;
+  color: string;
 }
 
-const IntegrationCard = ({ children, className }: IntegrationCardProps) => (
-  <div className={cn(
-    'bg-background relative flex size-16 md:size-20 rounded-2xl border border-border/50 shadow-sm transition-all hover:shadow-md hover:scale-105 hover:border-border',
-    className
-  )}>
-    <div className="m-auto size-fit *:size-7 md:*:size-8">{children}</div>
+const IntegrationCard = ({ name, icon: Icon, bg, color }: IntegrationCardProps) => (
+  <div className="group relative flex-shrink-0 px-3">
+    <div className={cn(
+      "relative w-16 h-16 rounded-xl transition-all duration-500",
+      "hover:scale-110 hover:shadow-2xl cursor-pointer",
+      "border border-gray-700/30",
+      bg
+    )}>
+      <div className={cn(
+        "absolute inset-0 rounded-xl flex items-center justify-center",
+        color
+      )}>
+        <Icon className="w-8 h-8" />
+      </div>
+      {/* Subtle glow effect on hover */}
+      <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-white/10 to-transparent" />
+    </div>
+    <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+      <span className="text-xs text-gray-300 whitespace-nowrap bg-gray-800/90 backdrop-blur-sm px-2 py-1 rounded shadow-lg border border-gray-700/50">
+        {name}
+      </span>
+    </div>
   </div>
-)
+);
 
-export default function IntegrationsSection() {
-    const scrollToBooking = useCallback(() => {
-        const targetElement = document.getElementById('booking-calendar-container');
-        if (targetElement) {
-            const headerOffset = 70;
-            const buffer = 20;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.scrollY - headerOffset - buffer;
+const IntegrationsSection = () => {
+  const scrollToBooking = useCallback(() => {
+    const targetElement = document.getElementById('booking');
+    if (targetElement) {
+      const headerOffset = 70;
+      const buffer = 20;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset - buffer;
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  }, []);
+
+  return (
+    <section className="py-20 overflow-hidden bg-gray-900">
+      <style>{`
+        .scroll-container {
+          display: flex;
+          overflow: hidden;
+          position: relative;
+          width: 100%;
         }
-    }, []);
+        
+        .scroll-content {
+          display: flex;
+          animation: scroll 80s linear infinite;
+        }
+        
+        .scroll-content-reverse {
+          display: flex;
+          animation: scroll-reverse 80s linear infinite;
+        }
+        
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        
+        @keyframes scroll-reverse {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        
+        .scroll-container:hover .scroll-content,
+        .scroll-container:hover .scroll-content-reverse {
+          animation-play-state: paused;
+        }
+      `}</style>
+      
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold tracking-tight text-white mb-6">
+            Connect Everything. Automate Anything.
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Join <span className="font-semibold text-blue-400">6,500+ integrations</span> in one unified platform. 
+            Your entire business ecosystem, connected with AI-powered automation.
+          </p>
+        </div>
 
-    return (
-        <section className="py-0 md:py-6 overflow-hidden">
-                {/* Full-width Integration Marquee */}
-                <div className="relative">
-                    {/* Background gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/10 to-transparent pointer-events-none" />
-                    <div className="container mx-auto px-6 pt-0">
-                {/* Header */}
-                <div className="mx-auto max-w-3xl text-center mb-2">
-                    <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl mb-4">
-                        Plug AI into your own data &<br />
-                        <span className="bg-gradient-to-r from-blue-500 to-[#2B7FFE] bg-clip-text text-transparent">over 500 integrations</span>
-                    </h2>
-                    <p className="text-muted-foreground text-lg mb-8">
-                        Let our AI seamlessly manage your essential business tools. From your CRM to your accounting software, 
-                        Chanlytics connects your backend systems into a single, automated powerhouse.
-                    </p>
-                </div>
-                {/* CTA */}
-                <div className="text-center mt-0">
-                    <Button
-                        variant="outline"
-                        size="lg"
-                        onClick={scrollToBooking}
-                        className="text-base mb-14">
-                        Get Started
-                    </Button>
-                </div>
-            </div>
-                    {/* Multiple rows of sliding integrations */}
-                    <div className="space-y-6">
-                        {/* Row 1 - Slides Left */}
-                        <InfiniteSlider
-                            gap={24}
-                            speed={30}
-                            speedOnHover={20}>
-                            <IntegrationCard className="bg-green-100/80 dark:bg-green-900/20">
-                                <FileText className="text-green-600 dark:text-green-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Mailbox className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <Rss className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Cloud className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-indigo-100/80 dark:bg-indigo-900/20">
-                                <BarChart3 className="text-indigo-600 dark:text-indigo-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <MagicUI />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Database className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-purple-100/80 dark:bg-purple-900/20">
-                                <Sparkles className="text-purple-600 dark:text-purple-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Image className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Link2 className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Figma className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <Replit />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-green-100/80 dark:bg-green-900/20">
-                                <FileText className="text-green-600 dark:text-green-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Mailbox className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <Rss className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Cloud className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-indigo-100/80 dark:bg-indigo-900/20">
-                                <BarChart3 className="text-indigo-600 dark:text-indigo-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <MagicUI />
-                            </IntegrationCard>
-                        </InfiniteSlider>
-
-                        {/* Row 2 - Slides Right */}
-                        <InfiniteSlider
-                            gap={24}
-                            speed={30}
-                            speedOnHover={20}
-                            reverse>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Star className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <Gemini />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <FileJson className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-purple-100/80 dark:bg-purple-900/20">
-                                <Brain className="text-purple-600 dark:text-purple-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Table className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Layers className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Zap className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <ChevronRight className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <VSCodium />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Wrench className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <MediaWiki />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <Palette className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Star className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <Gemini />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <FileJson className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-purple-100/80 dark:bg-purple-900/20">
-                                <Brain className="text-purple-600 dark:text-purple-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Table className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Layers className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Star className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <Gemini />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <FileJson className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-purple-100/80 dark:bg-purple-900/20">
-                                <Brain className="text-purple-600 dark:text-purple-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Table className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Layers className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                        </InfiniteSlider>
-
-                        {/* Row 3 - Slides Left */}
-                        <InfiniteSlider
-                            gap={24}
-                            speed={30}
-                            speedOnHover={20}>
-                            <IntegrationCard className="bg-purple-100/80 dark:bg-purple-900/20">
-                                <Calendar className="text-purple-600 dark:text-purple-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-green-100/80 dark:bg-green-900/20">
-                                <MessageSquare className="text-green-600 dark:text-green-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <GooglePaLM />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Shield className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <Hash className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Globe className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Video className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Map className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-green-100/80 dark:bg-green-900/20">
-                                <Activity className="text-green-600 dark:text-green-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-purple-100/80 dark:bg-purple-900/20">
-                                <Slack className="text-purple-600 dark:text-purple-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <VSCodium />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-indigo-100/80 dark:bg-indigo-900/20">
-                                <FileText className="text-indigo-600 dark:text-indigo-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-red-100/80 dark:bg-red-900/20">
-                                <Star className="text-red-600 dark:text-red-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <Replit />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-purple-100/80 dark:bg-purple-900/20">
-                                <Calendar className="text-purple-600 dark:text-purple-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-green-100/80 dark:bg-green-900/20">
-                                <MessageSquare className="text-green-600 dark:text-green-400" />
-                            </IntegrationCard>
-                            <IntegrationCard>
-                                <GooglePaLM />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-blue-100/80 dark:bg-blue-900/20">
-                                <Shield className="text-blue-600 dark:text-blue-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-orange-100/80 dark:bg-orange-900/20">
-                                <Hash className="text-orange-600 dark:text-orange-400" />
-                            </IntegrationCard>
-                            <IntegrationCard className="bg-gray-100/80 dark:bg-gray-900/20">
-                                <Globe className="text-gray-600 dark:text-gray-400" />
-                            </IntegrationCard>
-                        </InfiniteSlider>
+        {/* Sliding Integrations Grid */}
+        <div className="relative mb-16">
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none" />
+          
+          <div className="space-y-8">
+            {integrations.map((row, rowIndex) => (
+              <div key={rowIndex} className="scroll-container">
+                <div className={rowIndex % 2 === 0 ? "scroll-content" : "scroll-content-reverse"}>
+                  {/* Duplicate the items multiple times to ensure seamless scrolling */}
+                  {[...Array(6)].map((_, duplicateIndex) => (
+                    <div key={duplicateIndex} className="flex">
+                      {row.map((integration, idx) => (
+                        <IntegrationCard key={`${duplicateIndex}-${idx}`} {...integration} />
+                      ))}
                     </div>
+                  ))}
                 </div>
-        </section>
-    )
-}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="relative overflow-hidden bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
+            <ShineBorder shineColor={["#0070F3", "#38bdf8"]} />
+            <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
+              <Users className="h-6 w-6 text-blue-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-3">
+              Social Media Automation
+            </h3>
+            <p className="text-gray-400">
+              Connect Instagram, Facebook, X, and more. Automate lead engagement and content workflows across all social channels.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300">
+            <ShineBorder shineColor={["#a855f7", "#d8b4fe"]} />
+            <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-6">
+              <Database className="h-6 w-6 text-purple-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-3">
+              CRM & Data Integration
+            </h3>
+            <p className="text-gray-400">
+              Sync HubSpot, Salesforce, Google Sheets, and other tools to create a unified view of your customer and business data.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-green-500/50 transition-all duration-300">
+            <ShineBorder shineColor={["#22c55e", "#86efac"]} />
+            <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6">
+              <Shield className="h-6 w-6 text-green-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-3">
+              Secure & Reliable
+            </h3>
+            <p className="text-gray-400">
+              Your data is protected with enterprise-grade security, including SOC 2 compliance and end-to-end encryption.
+            </p>
+          </div>
+        </div>
+
+        {/* CTA Section */}
+        <div className="text-center">
+          <div className="inline-flex flex-col sm:flex-row gap-4">
+            <Button
+              size="lg"
+              onClick={scrollToBooking}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+            >
+              Start Connecting Apps
+              <ChevronRight className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default IntegrationsSection;

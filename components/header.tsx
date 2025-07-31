@@ -23,20 +23,27 @@ export const HeroHeader = () => {
 
     const handleScroll = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
-        const targetElement = document.getElementById(targetId.substring(1));
-        if (targetElement) {
-            const offset = -80; // Adjust this value to account for the sticky header
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = targetElement.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition + offset;
+        const id = targetId.substring(1); // Remove '#' from id
+        const targetElement = document.getElementById(id);
 
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth',
-            });
+        if (isHomePage) {
+            if (targetElement) {
+                const offset = 80; // Height of the sticky header
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth',
+                });
+            }
+        } else {
+            window.location.href = `/#${id}`;
         }
-        setMenuState(false); // Close menu on click
+
+        if (menuState) {
+            setMenuState(false); // Close menu on click if it's open
+        }
     };
 
     React.useEffect(() => {
@@ -61,33 +68,28 @@ export const HeroHeader = () => {
                                 <Logo />
                             </Link>
 
-                            <button
-                                onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
-                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
-                                <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
-                                <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
-                            </button>
+                            <div className="flex items-center gap-2 lg:hidden">
+                                <ModeToggle />
+                                <button
+                                    onClick={() => setMenuState(!menuState)}
+                                    aria-label={menuState ? 'Close Menu' : 'Open Menu'}
+                                    className="relative z-20 block cursor-pointer p-2.5">
+                                    <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
+                                    <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />
+                                </button>
+                            </div>
                         </div>
 
                         <div className="absolute inset-0 m-auto hidden size-fit lg:block">
                             <ul className="flex gap-8 text-[15px]">
                                 {menuItems.map((item, index) => (
                                     <li key={index}>
-                                        {isHomePage ? (
-                                            <a
-                                                href={item.href}
-                                                onClick={(e) => handleScroll(e, item.href)}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
-                                                <span>{item.name}</span>
-                                            </a>
-                                        ) : (
-                                            <Link
-                                                href={`/${item.href}`}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
-                                                <span>{item.name}</span>
-                                            </Link>
-                                        )}
+                                        <a
+                                            href={item.href}
+                                            onClick={(e) => handleScroll(e, item.href)}
+                                            className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                            <span>{item.name}</span>
+                                        </a>
                                     </li>
                                 ))}
                             </ul>
@@ -98,28 +100,21 @@ export const HeroHeader = () => {
                                 <ul className="space-y-6 text-[17px]">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
-                                            {isHomePage ? (
                                                 <a
                                                     href={item.href}
                                                     onClick={(e) => handleScroll(e, item.href)}
                                                     className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
                                                     <span>{item.name}</span>
                                                 </a>
-                                            ) : (
-                                                <Link
-                                                    href={`/${item.href}`}
-                                                    onClick={() => setMenuState(false)}
-                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
-                                                    <span>{item.name}</span>
-                                                </Link>
-                                            )}
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                             <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
-
-                                <ModeToggle />
+                                {/* Mode toggle visible on desktop only */}
+                                <div className="hidden lg:block">
+                                    <ModeToggle />
+                                </div>
 
                                 <Button
                                     asChild

@@ -4,18 +4,15 @@ import React from 'react'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-import { TextEffect } from '@/components/motion-primitives/text-effect'
+import HeroVideoDialog from '@/components/magicui/hero-video-dialog'
 import { TextEffectWrapper } from '@/components/motion-primitives/text-effect-wrapper'
 import { AnimatedGroup } from '@/components/motion-primitives/animated-group'
 import { HeroHeader } from './header'
 import { Typewriter } from 'react-simple-typewriter';
-import { ShimmerButton } from '@/components/magicui/shimmer-button';
 import { AuroraText } from '@/components/magicui/aurora-text';
 import { ShineBorder } from '@/components/magicui/shine-border';
-import { AnimatedShinyText } from '@/components/magicui/animated-shiny-text';
 
-import LogoCloud3 from './logo-cloud-3';
+import LogoCloud from './logo-cloud';
 import { RetroGrid } from "@/components/magicui/retro-grid";
 
 const transitionVariants = {
@@ -63,12 +60,15 @@ export default function HeroSection() {
                     <div className="relative pt-24 md:pt-36">
                         <RetroGrid className="-z-20" />
                         <div className="mx-auto max-w-[1400px] px-6">
+                        </div>
+                        <div className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--color-background)_75%)]"></div>
+                        <div className="mx-auto max-w-7xl px-6">
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                                 <AnimatedGroup variants={transitionVariants}>
                                     <Link
-                                        href="#"
-                                        className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-                                        <AnimatedShinyText className="text-foreground text-sm">Introducing AI ChatGPT Plugin</AnimatedShinyText>
+                                        href="#link"
+                                        className="hover:bg-background bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:bg-zinc-800/50 dark:border-zinc-700 dark:hover:bg-zinc-800">
+                                        <span className="text-foreground text-sm">AI Business Operating System</span>
                                         <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
 
                                         <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
@@ -85,7 +85,7 @@ export default function HeroSection() {
                                 </AnimatedGroup>
 
                                 <h1 className="mt-4 text-balance font-bold text-[44px] md:text-[52px] lg:text-[60px] xl:text-[67px] 2xl:text-[78px] leading-none text-gray-900 dark:text-white">
-                                    AI-Powered <AuroraText colors={["#0070F3", "#38bdf8"]}>Infrastructure</AuroraText>
+                                    <span className="whitespace-nowrap">AI-Powered</span> <AuroraText colors={["#0070F3", "#38bdf8"]}>Infrastructure</AuroraText>
                                 </h1>
                                 <div className="mt-0 h-[4.5em] md:h-[5em] flex items-start justify-center">
                                     <TextEffectWrapper
@@ -122,24 +122,21 @@ export default function HeroSection() {
                                         ...transitionVariants,
                                     }}
                                     className="mt-5 flex flex-col items-center justify-center gap-2 md:flex-row">
-                                    <div
+                                    <Button
                                         key={1}
-                                        className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
-                                        <Button
-                                            asChild
-                                            size="lg"
-                                            className="rounded-xl px-5 text-base">
-                                            <Link href="#features" onClick={(e) => handleScroll(e, 'features')}>
-                                                <span className="text-nowrap">See Features</span>
-                                            </Link>
-                                        </Button>
-                                    </div>
+                                        asChild
+                                        size="lg"
+                                        className="rounded-xl px-5 text-base">
+                                        <Link href="#features" onClick={(e) => handleScroll(e, 'features')}>
+                                            <span className="text-nowrap">See Features</span>
+                                        </Link>
+                                    </Button>
                                     <Button
                                         key={2}
                                         asChild
                                         size="lg"
                                         variant="ghost"
-                                        className="h-10.5 rounded-xl px-5">
+                                        className="h-10.5 rounded-xl px-5 hover:bg-gray-100 dark:hover:bg-gray-800">
                                         <Link href="#booking" onClick={(e) => handleScroll(e, 'booking')}>
                                             <span className="text-nowrap">Schedule a Demo</span>
                                         </Link>
@@ -165,29 +162,31 @@ export default function HeroSection() {
                                     aria-hidden
                                     className="bg-linear-to-b to-background absolute inset-0 z-10 from-transparent from-35%"
                                 />
-                                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
+                                <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-7xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
                                     <div
                                         className="absolute -z-10 top-0 left-1/2 -translate-x-1/2 w-2/3 h-1/3"
                                         style={{
-                                            background: 'radial-gradient(ellipse 50% 50% at 50% 0%, #0070F3, transparent 80%)',
+                                            background: 'radial-gradient(ellipse 50% 50% at 50% 0%, #277DFC, transparent 80%)',
                                             filter: 'blur(60px)',
                                         }}
                                     />
-                                    <ShineBorder borderWidth={1.5} shineColor={["#0070F3", "#38bdf8"]} />
-                                    <Image
-                                        className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
-                                        src="/chanlytics-portal-dark.png"
-                                        alt="app screen"
-                                        width="2700"
-                                        height="1440"
-                                    />
-                                    <Image
-                                        className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
-                                        src="/chanlytics-portal-light.png"
-                                        alt="app screen"
-                                        width="2700"
-                                        height="1440"
-                                    />
+                                    <div className="relative z-10">
+                                        <HeroVideoDialog
+                                            className="block dark:hidden"
+                                            animationStyle="from-center"
+                                            videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+                                            thumbnailSrc="/chanlytics-portal-light.png"
+                                            thumbnailAlt="Hero Video"
+                                        />
+                                        <HeroVideoDialog
+                                            className="hidden dark:block"
+                                            animationStyle="from-center"
+                                            videoSrc="https://www.youtube.com/embed/qh3NGpYRG3I?si=4rb-zSdDkVK9qxxb"
+                                            thumbnailSrc="/chanlytics-portal-dark.png"
+                                            thumbnailAlt="Hero Video"
+                                        />
+                                    </div>
+                                    <ShineBorder borderWidth={1.5} shineColor={["#277DFC", "#0E7490"]} />
                                 </div>
                             </div>
                         </AnimatedGroup>
@@ -195,7 +194,7 @@ export default function HeroSection() {
                 </section>
                 <section className="bg-background pb-[10px] pt-4 md:pb-[8px]">
                     <div className="relative m-auto max-w-[1400px] px-6">
-                        <LogoCloud3 />
+                        <LogoCloud />
                     </div>
                 </section>
             </main>
