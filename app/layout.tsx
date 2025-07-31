@@ -14,10 +14,49 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-    title: 'Chanlytics | Marketplace Growth Through Virtual Assistants & AI',
-    description: 'Our three-pillar system combines specialized VA teams, a unified ChatGPT interface, and strategic advertising for efficient marketplace growth.',
-    keywords: 'virtual assistants, VA management, Amazon FBA, Walmart marketplace, ChatGPT plugin, business operations, e-commerce, marketplace optimization, listing optimization, AI interface, business analytics, remote teams, upwork, specialized VAs',
-}
+  title: 'AI Operating System for Small Business | Chanlytics',
+  description:
+    'Complete AI automation for small businesses. Capture leads from every channel—email, phone, SMS, WhatsApp, Instagram DMs. Automate lead nurturing, appointment booking, payments, reviews & reactivations. Real-time insights & AI assistant included.',
+  keywords:
+    'AI operating system, small business automation, omnichannel lead capture, AI lead management, automated appointment booking, WhatsApp automation, Instagram DM automation, Facebook messenger automation, email automation, SMS automation, voice call AI, lead nurturing automation, payment collection automation, review management, customer reactivation, AI business assistant, real-time business insights, KPI tracking, conversation analytics, AI agent monitoring',
+  openGraph: {
+    title: 'AI Operating System for Small Business | Chanlytics',
+    description:
+      'Capture & convert leads 24/7 from every channel. AI agents handle email, calls, texts, WhatsApp, social DMs—from first contact to payment & reviews. Monitor everything with real-time analytics.',
+    url: 'https://chanlytics.com',
+    siteName: 'Chanlytics',
+    images: [
+      {
+        url: 'https://chanlytics.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Chanlytics – Complete AI Operating System for Small Business'
+      }
+    ],
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI Operating System for Small Business | Chanlytics',
+    description:
+      'One AI system captures leads from every channel & automates your entire customer journey. Real-time insights, AI assistant & complete business automation.',
+    images: ['https://chanlytics.com/og-image.png']
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://chanlytics.com',
+  },
+};
 
 export default function RootLayout({
     children,
@@ -42,7 +81,6 @@ export default function RootLayout({
                 </ThemeProvider>
                 <FooterSection />
                 <ServiceWorkerInit />
-
                 <Script src="https://unpkg.com/@elevenlabs/convai-widget-embed" strategy="lazyOnload" />
             </body>
         <GoogleAnalytics gaId="G-6KY6TLKXKY" />
