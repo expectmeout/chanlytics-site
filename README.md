@@ -1,6 +1,6 @@
 # Tailark
 
-Speed up your workflow with responsive, pre-built shadcn-UI and Tailwindcss blocks designed for marketing websites.
+This is the official website for Chanlytics, an AI-powered operating system for small businesses. It is built with Next.js, Tailwind CSS, and TypeScript.
 
 [Tailark](https://tailark.com)
 

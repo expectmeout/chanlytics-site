@@ -12,7 +12,7 @@ export const SiteFooter = () => (
                 className="hover:bg-muted -m-2 inline-block rounded-full p-2 duration-200">
                 <LogoIcon className="size-5" />
             </Link>
-            <p className="mt-2">Modern Shadcn UI Marketing blocks</p>
+
             <div className="mt-4 flex items-center">
                 <Button
                     asChild
