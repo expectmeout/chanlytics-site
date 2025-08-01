@@ -1,10 +1,7 @@
 declare namespace JSX {
   interface IntrinsicElements {
-    'elevenlabs-convai': React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLElement> & {
-        'agent-id'?: string;
-      },
-      HTMLElement
-    >;
+    'elevenlabs-convai': {
+      'agent-id'?: string;
+    } & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
   }
 }
