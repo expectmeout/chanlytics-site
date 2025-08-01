@@ -83,7 +83,7 @@ export default function RootLayout({
                 <ServiceWorkerInit />
                 <Script src="https://unpkg.com/@elevenlabs/convai-widget-embed" strategy="lazyOnload" />
             </body>
-        <GoogleAnalytics gaId="G-6KY6TLKXKY" />
+        <GoogleAnalytics gaId="G-REKFV939PM" />
         </html>
     )
 }
