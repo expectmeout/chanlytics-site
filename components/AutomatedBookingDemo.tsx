@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, Bot, Calendar, CheckCircle, Clock, MapPin, User, Sparkles } from 'lucide-react';
 
@@ -86,9 +87,13 @@ const AutomatedBookingDemo = () => {
     <div ref={containerRef} className="relative h-[600px] w-full max-w-lg mx-auto rounded-2xl overflow-hidden shadow-2xl">
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img 
+        <Image 
           src="/girl-on-the-phone.png"
           alt="Customer calling"
+          fill
+          priority={false}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          quality={75}
           className="w-full h-full object-cover"
         />
         {/* Gradient overlay for better text visibility */}

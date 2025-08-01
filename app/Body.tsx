@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, CheckCircle } from 'lucide-react';
@@ -11,7 +12,10 @@ import IntroSection from '@/components/IntroSection';
 import InteractiveShowcase from '@/components/InteractiveShowcase';
 import IntegrationsSection from '@/components/integrations';
 import { Faqs3 } from '@/components/faqs-3';
-import BookingCalendar from '@/components/booking-calendar';
+const BookingCalendar = dynamic(() => import('@/components/booking-calendar'), {
+  ssr: false,
+  loading: () => <div className="w-full h-[700px] bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+});
 import { ElevenLabsConvai } from '@/components/ElevenLabsConvai';
 import DiscoveryCallFeatures from '@/components/DiscoveryCallFeatures';
 import Testimonials from '@/components/Testimonials';
