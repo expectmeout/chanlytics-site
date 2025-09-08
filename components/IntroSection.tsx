@@ -6,6 +6,7 @@ import React, { useRef } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { ShineBorder } from '@/components/magicui/shine-border';
 
 // Use a fixed array to ensure consistent hook calls
 const words = ['Stop', 'Losing', 'Leads.', 'Start', 'Automating'];
@@ -58,7 +59,7 @@ export default function IntroSection() {
   });
 
   return (
-    <section className='py-3 overflow-clip bg-white dark:bg-[#09090B] relative'>      
+    <section className='py-12 md:py-16 overflow-clip bg-white dark:bg-[#09090B] relative'>      
       {/* Aurora Background Effect */}
       <div className="absolute inset-0 overflow-hidden">
         <div
@@ -81,20 +82,23 @@ export default function IntroSection() {
           "
         ></div>
       </div>
-      <div className='w-full py-6 relative z-10'>
-        <div className='container mx-auto px-6'>
+      <div className='w-full relative z-10'>
+        <div className='max-w-5xl mx-auto px-6'>
         <div className='sticky top-28 lg:top-32'>
-          <div className='text-6xl md:text-7xl lg:text-8xl text-balance text-center font-semibold mt-6 text-gray-600 dark:text-gray-400'>
+          <div className='text-6xl md:text-7xl lg:text-8xl text-balance text-center font-semibold mt-4 text-gray-600 dark:text-gray-400'>
             <div>
               {wordSpans}
               {' '}<AuroraText colors={["#0070F3", "#38bdf8"]}>Growth.</AuroraText>
             </div>
-            <p className="text-lg text-gray-600 dark:text-gray-300 text-center mt-8 max-w-2xl mx-auto">
-              Chanlytics is your all-in-one AI platform to capture every lead, and get visibility into your business performance—24/7.
+            <p className="text-lg text-gray-600 dark:text-gray-300 text-center mt-6 max-w-2xl mx-auto">
+              AI that turns inbound interest into confirmed bookings—and reactivates old leads—while giving you live analytics in your pocket.
             </p>
-            <Button size="lg" className="mt-8 text-base" onClick={scrollToBooking}>
-              Book Your Free Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <div className="mt-6 inline-flex rounded-lg bg-white/90 dark:bg-gray-800/60 shadow-sm border border-gray-600/30 dark:border-gray-600/30 relative overflow-hidden">
+              <ShineBorder borderWidth={1.5} shineColor={["#0070F3", "#38bdf8"]} />
+              <Button size="lg" className="text-base" onClick={scrollToBooking}>
+                Book Your Free Strategy Call <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
         <div className='h-[135vh]' ref={scrollTarget} />

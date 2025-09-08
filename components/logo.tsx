@@ -41,6 +41,36 @@ export const Logo = ({ className }: { className?: string }) => {
     )
 }
 
+// Branded geometric loader matching the CHANLYTICS logo gradient and block motif
+export const LogoLoader = ({ className }: { className?: string }) => {
+    return (
+        <svg
+            viewBox="0 0 60 24"
+            xmlns="http://www.w3.org/2000/svg"
+            className={cn('h-4 w-auto', className)}
+        >
+            <defs>
+                <linearGradient id="logo-loader-gradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop stopColor="#38bdf8"/>
+                    <stop offset="1" stopColor="#3b82f6"/>
+                </linearGradient>
+            </defs>
+
+            <g transform="translate(0 2)" fill="url(#logo-loader-gradient)">
+                <rect x="0" y="4" width="12" height="12" rx="2">
+                    <animate attributeName="opacity" values="0.35;1;0.35" dur="1.2s" begin="0s" repeatCount="indefinite" />
+                </rect>
+                <rect x="16" y="8" width="12" height="12" rx="2" opacity="0.8">
+                    <animate attributeName="opacity" values="0.35;1;0.35" dur="1.2s" begin="0.2s" repeatCount="indefinite" />
+                </rect>
+                <rect x="32" y="12" width="12" height="12" rx="2" opacity="0.6">
+                    <animate attributeName="opacity" values="0.35;1;0.35" dur="1.2s" begin="0.4s" repeatCount="indefinite" />
+                </rect>
+            </g>
+        </svg>
+    )
+}
+
 // Option: Geometric Flow Icon
 export const LogoIcon = ({ className }: { className?: string }) => {
     return (

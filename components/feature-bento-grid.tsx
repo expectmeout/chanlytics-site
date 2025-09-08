@@ -107,7 +107,7 @@ const AIAgentContent = () => {
       <div className="mt-auto pt-4">
         <div className="flex items-center gap-3 mb-1">
             <Bot className="h-6 w-6 text-gray-700 dark:text-zinc-400" />
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">AI Agent System</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Omni‑Channel AI Agent</h3>
         </div>
         <p className="text-gray-600 dark:text-zinc-400 text-sm">24/7 lead capture across all platforms</p>
       </div>
@@ -171,7 +171,7 @@ const AutomationContent = () => {
       <div className="mt-auto pt-4">
         <div className="flex items-center gap-3 mb-1">
             <ShieldCheck className="h-6 w-6 text-gray-700 dark:text-zinc-300" />
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Backend AI Automations</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Workflow Automations</h3>
         </div>
         <p className="text-gray-600 dark:text-zinc-400 text-sm">End-to-end workflow automation</p>
       </div>
@@ -209,7 +209,7 @@ const SmartPortalContent = () => {
       <div className="mt-auto pt-4">
         <div className="flex items-center gap-3 mb-1">
             <BarChart3 className="h-6 w-6 text-gray-700 dark:text-zinc-300" />
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Smart Portal</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Live Analytics & Insights</h3>
         </div>
         <p className="text-gray-600 dark:text-zinc-400 text-sm">Real-time performance tracking</p>
       </div>
@@ -303,7 +303,7 @@ const IntegratedSystemContent = () => {
       <div className="mt-auto pt-4">
         <div className="flex items-center gap-3 mb-1">
             <Network className="h-6 w-6 text-gray-700 dark:text-zinc-300" />
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Integrated System</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Works With Your Stack</h3>
         </div>
         <p className="text-gray-600 dark:text-zinc-400 text-sm">Complete business automation hub</p>
       </div>

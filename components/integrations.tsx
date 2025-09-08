@@ -174,11 +174,10 @@ const IntegrationsSection = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold tracking-tight text-white mb-6">
-            Connect Everything. Automate Anything.
+            Works With Your Stack
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Join <span className="font-semibold text-blue-400">6,500+ integrations</span> in one unified platform. 
-            Your entire business ecosystem, connected with AI-powered automation.
+            Connect your CRM, calendars, messaging channels, and business tools—no heavy lift. AI coordinates conversations, bookings, and follow‑ups across them all.
           </p>
         </div>
 
@@ -206,17 +205,30 @@ const IntegrationsSection = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           <div className="relative overflow-hidden bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300">
             <ShineBorder shineColor={["#0070F3", "#38bdf8"]} />
             <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6">
               <Users className="h-6 w-6 text-blue-400" />
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">
-              Social Media Automation
+              Omni‑Channel AI Agent
             </h3>
             <p className="text-gray-400">
-              Connect Instagram, Facebook, X, and more. Automate lead engagement and content workflows across all social channels.
+              Conversations across DMs, SMS, email, WhatsApp, and calls—qualified and booked automatically, 24/7.
+            </p>
+          </div>
+
+          <div className="relative overflow-hidden bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-amber-500/50 transition-all duration-300">
+            <ShineBorder shineColor={["#f59e0b", "#fde68a"]} />
+            <div className="w-12 h-12 bg-amber-500/20 rounded-xl flex items-center justify-center mb-6">
+              <Zap className="h-6 w-6 text-amber-400" />
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-3">
+              Workflow Automations
+            </h3>
+            <p className="text-gray-400">
+              Trigger outreach, follow‑ups, reminders, and handoffs—no manual work. Just outcomes.
             </p>
           </div>
 
@@ -226,23 +238,23 @@ const IntegrationsSection = () => {
               <Database className="h-6 w-6 text-purple-400" />
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">
-              CRM & Data Integration
+              Live Analytics & Insights
             </h3>
             <p className="text-gray-400">
-              Sync HubSpot, Salesforce, Google Sheets, and other tools to create a unified view of your customer and business data.
+              Track bookings, conversion, and pipeline in real time. Ask your data questions—get instant answers.
             </p>
           </div>
 
           <div className="relative overflow-hidden bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-green-500/50 transition-all duration-300">
             <ShineBorder shineColor={["#22c55e", "#86efac"]} />
             <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-6">
-              <Shield className="h-6 w-6 text-green-400" />
+              <Check className="h-6 w-6 text-green-400" />
             </div>
             <h3 className="text-xl font-semibold text-white mb-3">
-              Secure & Reliable
+              Works With Your Stack
             </h3>
             <p className="text-gray-400">
-              Your data is protected with enterprise-grade security, including SOC 2 compliance and end-to-end encryption.
+              Connects to your CRM, calendars, and messaging tools—no heavy lift. Everything stays in sync.
             </p>
           </div>
         </div>
@@ -257,6 +269,9 @@ const IntegrationsSection = () => {
             >
               Start Connecting Apps
               <ChevronRight className="ml-2 h-5 w-5" />
+            </Button>
+            <Button size="lg" onClick={scrollToBooking} className="px-8 py-6 text-lg font-semibold">
+              Get Started
             </Button>
           </div>
         </div>

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useReducedMotion } from 'framer-motion';
 import { Bot, BarChart3, BrainCircuit, CheckCircle2, X, Sparkles, Zap, Phone, MessageSquare, Instagram, Facebook, MessageCircle, Linkedin, Mail, Slack, Store, Building2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ShineBorder } from '@/components/magicui/shine-border';
@@ -158,35 +158,39 @@ interface AnimatedCounterProps {
 }
 
 function AnimatedCounter({ value, suffix = "", decimals = 0 }: AnimatedCounterProps) {
+  const prefersReduced = useReducedMotion();
+  const ref = React.useRef<HTMLSpanElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: '-100px' });
   const [displayValue, setDisplayValue] = React.useState(0);
-  const [hasAnimated, setHasAnimated] = React.useState(false);
 
   React.useEffect(() => {
-    if (hasAnimated) return;
-    
-    const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
+    if (!inView) return;
+    if (prefersReduced) {
+      setDisplayValue(value);
+      return;
+    }
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= value) {
-        current = value;
-        clearInterval(timer);
-        setHasAnimated(true);
-      }
+    let frameId: number;
+    const duration = 1200; // ms
+    const start = performance.now();
+
+    const animate = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      // easeOutCubic
+      const eased = 1 - Math.pow(1 - t, 3);
+      const current = value * eased;
       setDisplayValue(current);
-    }, duration / steps);
+      if (t < 1) frameId = requestAnimationFrame(animate);
+    };
 
-    return () => clearInterval(timer);
-  }, [value, hasAnimated]);
+    frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [inView, prefersReduced, value]);
 
   return (
-    <>
-      {decimals > 0 ? displayValue.toFixed(decimals) : Math.floor(displayValue)}
-      {suffix}
-    </>
+    <span ref={ref} aria-live="polite">
+      {decimals > 0 ? displayValue.toFixed(decimals) : Math.floor(displayValue)}{suffix}
+    </span>
   );
 }
 
@@ -194,6 +198,10 @@ function PhoneCarousel() {
   const [currentPlatform, setCurrentPlatform] = React.useState(0);
   const [businessType, setBusinessType] = React.useState<BusinessType>("local");
   const [direction, setDirection] = React.useState(0);
+  const prefersReduced = useReducedMotion();
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const intervalRef = React.useRef<number | null>(null);
 
   const platforms = platformsData[businessType];
 
@@ -206,10 +214,29 @@ function PhoneCarousel() {
   const currentPlatformData = platforms[platformIndex];
   const PlatformIcon = currentPlatformData.icon;
 
+  // Autoplay with hover/visibility pause and reduced-motion support
   React.useEffect(() => {
-    const timer = setInterval(() => paginate(1), 8000);
-    return () => clearInterval(timer);
-  }, [currentPlatform, businessType]);
+    const clear = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
+
+    if (!prefersReduced && !isHovered && document.visibilityState === 'visible') {
+      intervalRef.current = window.setInterval(() => paginate(1), 7000);
+    }
+
+    const handleVisibility = () => {
+      if (document.visibilityState !== 'visible') clear();
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
+
+    return () => {
+      clear();
+      document.removeEventListener('visibilitychange', handleVisibility);
+    };
+  }, [prefersReduced, isHovered, businessType]);
 
   React.useEffect(() => {
     setCurrentPlatform(0);
@@ -228,6 +255,8 @@ function PhoneCarousel() {
                 ? "bg-white/90 text-gray-900 shadow-sm dark:bg-gray-800/60 dark:text-white dark:border dark:border-gray-600/30"
                 : "text-gray-600 hover:text-gray-900 dark:text-white/80 dark:hover:text-white"
             )}
+            aria-pressed={businessType === 'local'}
+            aria-label="Show local business conversations"
           >
             <Store className="h-4 w-4" />
             Local Businesses
@@ -240,6 +269,8 @@ function PhoneCarousel() {
                 ? "bg-white/90 text-gray-900 shadow-sm dark:bg-gray-800/60 dark:text-white dark:border dark:border-gray-600/30"
                 : "text-gray-600 hover:text-gray-900 dark:text-white/80 dark:hover:text-white"
             )}
+            aria-pressed={businessType === 'agency'}
+            aria-label="Show agency conversations"
           >
             <Building2 className="h-4 w-4" />
             Agencies
@@ -247,16 +278,35 @@ function PhoneCarousel() {
         </div>
       </div>
 
-      <div className="relative mx-auto h-[600px] w-[300px]">
-        <motion.div 
-          drag="x" 
-          dragConstraints={{ left: 0, right: 0 }} 
-          dragElastic={0.3} 
-          onDragEnd={(e, info) => { 
-            if (info.offset.x > 100) paginate(-1); 
-            else if (info.offset.x < -100) paginate(1); 
-          }} 
-          className="h-full w-full rounded-[3rem] border-8 border-gray-200/50 dark:border-gray-700/30 bg-background/40 backdrop-blur-lg p-2 shadow-2xl shadow-gray-900/20 dark:shadow-black/40 overflow-hidden"
+      <div
+        className="relative mx-auto h-[560px] sm:h-[600px] w-[280px] sm:w-[300px]"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        role="region"
+        aria-roledescription="carousel"
+        aria-label={`${businessType} platform conversation carousel`}
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            paginate(-1);
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            paginate(1);
+          }
+        }}
+        ref={containerRef}
+      >
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.25}
+          onDragEnd={(e, info) => {
+            const swipe = info.offset.x + info.velocity.x * 0.2;
+            if (swipe > 120) paginate(-1);
+            else if (swipe < -120) paginate(1);
+          }}
+          className="h-full w-full rounded-[3rem] border-8 border-gray-200/60 dark:border-gray-700/40 bg-background/40 backdrop-blur-lg p-2 shadow-2xl shadow-gray-900/20 dark:shadow-black/40 overflow-hidden ring-1 ring-black/5 dark:ring-white/5"
         >
         <div className="h-full w-full overflow-hidden rounded-[2.5rem] bg-white dark:bg-gray-900/90 backdrop-blur-sm">
           <div className={cn(
@@ -274,19 +324,35 @@ function PhoneCarousel() {
                 {currentPlatformData.name}
               </span>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1" role="tablist" aria-label="Conversation platforms">
               {platforms.map((_, idx) => (
-                <div
+                <button
                   key={idx}
+                  onClick={() => {
+                    setDirection(idx > platformIndex ? 1 : -1);
+                    setCurrentPlatform(prev => prev + (idx - platformIndex));
+                  }}
                   className={cn(
-                    "h-1.5 w-1.5 rounded-full transition-all",
-                    idx === platformIndex
-                      ? "w-4 bg-gray-800 dark:bg-white"
-                      : "bg-gray-300 dark:bg-gray-600"
+                    "min-w-11 min-h-11 inline-flex items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0070F3] dark:focus:ring-[#38bdf8] transition-all", 
+                    idx === platformIndex ? "bg-gray-200/60 dark:bg-gray-800/60" : "bg-transparent hover:bg-gray-100/60 dark:hover:bg-gray-800/40"
                   )}
-                />
+                  role="tab"
+                  aria-selected={idx === platformIndex}
+                  aria-current={idx === platformIndex ? 'true' : undefined}
+                  aria-controls="carousel-panel"
+                  aria-label={`Go to slide ${idx + 1}`}
+                >
+                  <span
+                    className={cn(
+                      "h-1.5 w-1.5 rounded-full", 
+                      idx === platformIndex ? "w-4 bg-gray-800 dark:bg-white" : "bg-gray-300 dark:bg-gray-600"
+                    )}
+                    aria-hidden="true"
+                  />
+                </button>
               ))}
             </div>
+            <span className="sr-only" aria-live="polite">{`Showing ${currentPlatformData.name} conversation, slide ${platformIndex + 1} of ${platforms.length}`}</span>
           </div>
 
           <div className="relative h-[calc(100%-52px)] overflow-hidden bg-gray-50 dark:bg-gray-950">
@@ -297,15 +363,16 @@ function PhoneCarousel() {
                 initial={{ x: direction > 0 ? '100%' : '-100%', opacity: 0 }}
                 animate={{ x: 0, opacity: 1, zIndex: 1 }}
                 exit={{ x: direction > 0 ? '-100%' : '100%', opacity: 0, zIndex: 0 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                transition={{ type: 'spring', stiffness: prefersReduced ? 150 : 260, damping: prefersReduced ? 26 : 32 }}
                 className="absolute inset-0 flex flex-col justify-end gap-3 p-4"
+                id="carousel-panel"
               >
                 {currentPlatformData.messages.map((message, idx) => (
                   <motion.div
                     key={idx}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: idx * 0.2 }}
+                    transition={{ duration: prefersReduced ? 0.2 : 0.35, delay: idx * 0.18 }}
                     className={cn(
                       "max-w-[85%] rounded-2xl px-4 py-2.5 text-sm shadow-sm",
                       message.role === "lead"
@@ -320,18 +387,18 @@ function PhoneCarousel() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: currentPlatformData.messages.length * 0.2 + 0.3 }}
+                  transition={{ delay: currentPlatformData.messages.length * 0.18 + 0.25 }}
                   className="mr-auto mt-1 flex items-center gap-2 rounded-2xl bg-gradient-to-r from-[#0070F3]/10 to-[#38bdf8]/10 px-4 py-3 shadow-sm border border-[#0070F3]/20 dark:border-[#38bdf8]/20 dark:from-[#0070F3]/20 dark:to-[#38bdf8]/20"
-                >
+                  >
                   <Bot className="h-4 w-4 text-[#0070F3] dark:text-[#38bdf8]" />
-                  <span className="text-xs text-gray-700 dark:text-gray-300">AI Agent is typing...</span>
+                  <span className="text-xs text-gray-700 dark:text-gray-300" aria-live="polite">AI Agent is typing...</span>
                   <div className="flex gap-1">
                     {[0, 1, 2].map((i) => (
                       <motion.div
                         key={i}
                         className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-[#0070F3] to-[#38bdf8]"
                         animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.2 }}
+                        transition={{ duration: prefersReduced ? 1.2 : 1.5, repeat: Infinity, delay: i * 0.2 }}
                       />
                     ))}
                   </div>
@@ -350,14 +417,18 @@ function PhoneCarousel() {
       </div>
       <button
         onClick={() => paginate(-1)}
-        className="group absolute -left-1 top-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-white/90 dark:bg-gray-800/60 shadow-sm border border-gray-600/30 dark:border-gray-600/30 p-2.5 hover:bg-white/70 dark:hover:bg-gray-800/60 transition-colors"
+        className="group absolute -left-1 top-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-white/90 dark:bg-gray-800/60 shadow-sm border border-gray-600/30 dark:border-gray-600/30 p-3.5 min-w-11 min-h-11 hover:bg-white/70 dark:hover:bg-gray-800/60 transition-colors"
+        aria-label="Previous conversation"
+        aria-controls="carousel-panel"
       >
         <ShineBorder borderWidth={1} shineColor={["#0070F3","#38bdf8"]} />
         <ChevronLeft className="h-6 w-6 text-gray-900 dark:text-white group-hover:text-[#0070F3] group-active:text-[#0070F3] dark:group-hover:text-[#38bdf8] dark:group-active:text-[#38bdf8] relative transition-colors" />
       </button>
       <button
         onClick={() => paginate(1)}
-        className="group absolute -right-1 top-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-white/90 dark:bg-gray-800/60 shadow-sm border border-gray-600/30 dark:border-gray-600/30 p-2.5 hover:bg-white/70 dark:hover:bg-gray-800/60 transition-colors"
+        className="group absolute -right-1 top-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-white/90 dark:bg-gray-800/60 shadow-sm border border-gray-600/30 dark:border-gray-600/30 p-3.5 min-w-11 min-h-11 hover:bg-white/70 dark:hover:bg-gray-800/60 transition-colors"
+        aria-label="Next conversation"
+        aria-controls="carousel-panel"
       >
         <ShineBorder borderWidth={1} shineColor={["#0070F3","#38bdf8"]} />
         <ChevronRight className="h-6 w-6 text-gray-900 dark:text-white group-hover:text-[#0070F3] group-active:text-[#0070F3] dark:group-hover:text-[#38bdf8] dark:group-active:text-[#38bdf8] relative transition-colors" />
@@ -901,13 +972,13 @@ export default function InteractiveShowcase() {
             align="left"
           />
           <div className="hidden sm:block mt-16 sm:mt-6"><FeatureShowcase 
-            title="See Your Business on Autopilot"
-            description="From first contact to final confirmation, Chanlytics' AI handles the entire booking process, turning inquiries into scheduled appointments without any manual effort."
+            title="Run On Autopilot, Across Every Channel"
+            description="Chanlytics connects to your tools and handles lead conversations end‑to‑end—DMs, SMS, email, WhatsApp, and calls. It qualifies, schedules, syncs calendars, and follows up—while you track everything and ask questions on the go."
             benefits={[
-              "24/7 Availability",
-              "Instant Responses",
-              "Error-Free Scheduling",
-              "Automatic Calendar Sync"
+              "Integrates with your stack",
+              "Multi‑channel conversations",
+              "Qualifies and books for you",
+              "Live analytics in your pocket"
             ]}
             visual={<AutomatedBookingDemo />}
             align="right"

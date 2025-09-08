@@ -35,7 +35,7 @@ export default function PricingOne(){
                         </CardContent>
                         <CardFooter className="mt-auto">
                             <Button asChild variant="outline" className='w-full'>
-                                <Link href="">
+                                <Link href="https://portal.chanlytics.com/auth/sign-up">
                                     <span className="btn-label"> Get Started</span>
                                 </Link>
                             </Button>
@@ -67,7 +67,7 @@ export default function PricingOne(){
                             </CardContent>
                             <CardFooter>
                                 <Button asChild className='w-full'>
-                                    <Link href="">
+                                    <Link href="https://portal.chanlytics.com/auth/sign-up">
                                         <span className="btn-label"> Get Started</span>
                                     </Link>
                                 </Button>
@@ -91,7 +91,7 @@ export default function PricingOne(){
                         </CardContent>
                         <CardFooter className="mt-auto">
                             <Button asChild variant="outline" className='w-full'>
-                                <Link href="">
+                                <Link href="https://portal.chanlytics.com/auth/sign-up">
                                     <span className="btn-label"> Get Started</span>
                                 </Link>
                             </Button>

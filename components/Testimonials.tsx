@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
 import { Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useCallback, useState } from "react";
  
 const reviews = [
   {
@@ -58,7 +60,7 @@ const ReviewCard = ({
   return (
     <figure
       className={cn(
-        "relative h-full w-64 cursor-pointer overflow-hidden rounded-xl border p-4",
+        "relative h-full w-64 md:w-72 cursor-pointer overflow-hidden rounded-xl border p-4 md:p-5",
         // light styles
         "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
         // dark styles
@@ -84,14 +86,42 @@ const ReviewCard = ({
 };
  
 export default function Testimonials() {
+  const [paused, setPaused] = useState(false);
+  const scrollToBooking = useCallback(() => {
+    const targetElement = document.getElementById('booking');
+    if (targetElement) {
+      const headerOffset = 70;
+      const buffer = 20;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset - buffer;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth',
+      });
+    }
+  }, []);
   return (
-    <section className="py-12 md:py-20">
+    <section className="pt-12 md:pt-20 pb-0">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">What Our Customers Say</h2>
-          <p className="mt-4 text-lg text-muted-foreground">Real stories from businesses we've helped grow.</p>
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">+More bookings. −Less busywork.</h2>
+          <p className="mt-4 text-lg text-muted-foreground">Examples from recent customers: +40% bookings in month one, 15+ hours saved per week, and zero missed leads.</p>
+          <div className="mt-6">
+            <Button size="lg" className="px-8" onClick={scrollToBooking}>
+              Get Started
+            </Button>
+          </div>
         </div>
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
+        <style>{`.paused * { animation-play-state: paused !important; }`}</style>
+        <div
+          className={cn("relative flex w-full flex-col items-center justify-center overflow-hidden", paused && "paused")}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+          onTouchCancel={() => setPaused(false)}
+        >
           <Marquee pauseOnHover className="[--duration:20s]">
             {firstRow.map((review) => (
               <ReviewCard key={review.username} {...review} />

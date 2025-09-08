@@ -71,7 +71,7 @@ export function Faqs3() {
     {
         id: 'item-1',
         icon: 'bot',
-        question: 'What is the AI Agent System and how does it capture leads?',
+        question: 'Which channels are supported?',
         answer: (
             <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -88,19 +88,19 @@ export function Faqs3() {
                 <ul className="space-y-2 text-sm text-muted-foreground">
                     <li className="flex items-start gap-2">
                         <span className="text-green-500 mt-0.5">✓</span>
-                        <span>Handles every lead across Instagram, WhatsApp, website chat, and phone calls</span>
+                        <span>Instagram DMs, Facebook Messenger, WhatsApp, SMS, email, website chat, and phone calls</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <span className="text-green-500 mt-0.5">✓</span>
-                        <span>Instantly engages, qualifies, and books qualified appointments</span>
+                        <span>Instantly engages, qualifies, books appointments, and follows up automatically</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <span className="text-green-500 mt-0.5">✓</span>
-                        <span>Stop working nights and weekends chasing leads</span>
+                        <span>Stop working nights and weekends chasing leads—AI handles first response 24/7</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <span className="text-green-500 mt-0.5">✓</span>
-                        <span>Focus on closing deals while AI handles the front-end</span>
+                        <span>Focus on closing deals while AI handles the front‑end conversations</span>
                     </li>
                 </ul>
             </div>
@@ -108,43 +108,16 @@ export function Faqs3() {
     },
     {
         id: 'item-2',
-        icon: 'settings-2',
-        question: 'Is this just another CRM?',
+        icon: 'send',
+        question: 'Can the AI reply on my behalf?',
         answer: (
             <div className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
-                        <h4 className="font-semibold text-red-800 dark:text-red-300 mb-1">Traditional CRMs</h4>
-                        <ul className="text-xs space-y-1 text-red-700 dark:text-red-400">
-                            <li>• Passive databases</li>
-                            <li>• Manual data entry</li>
-                            <li>• You manage everything</li>
-                        </ul>
-                    </div>
-                    <div className="p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
-                        <h4 className="font-semibold text-green-800 dark:text-green-300 mb-1">Chanlytics</h4>
-                        <ul className="text-xs space-y-1 text-green-700 dark:text-green-400">
-                            <li>• Active growth engine</li>
-                            <li>• AI-powered automation</li>
-                            <li>• Works for you 24/7</li>
-                        </ul>
-                    </div>
-                </div>
                 <div className="space-y-2 text-sm text-muted-foreground">
-                    <p className="font-medium text-gray-900 dark:text-white">Key Differences:</p>
+                    <p className="font-medium text-gray-900 dark:text-white">Yes—with guardrails:</p>
                     <ul className="space-y-1">
-                        <li className="flex items-start gap-2">
-                            <span className="text-blue-500 mt-0.5">→</span>
-                            <span>AI doesn't just store data - it actively uses it to grow your business</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-blue-500 mt-0.5">→</span>
-                            <span>Automates entire workflow from lead capture to client reviews</span>
-                        </li>
-                        <li className="flex items-start gap-2">
-                            <span className="text-blue-500 mt-0.5">→</span>
-                            <span>Actively increases revenue while giving you back your time</span>
-                        </li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span><span>Human‑in‑the‑loop approvals for key moments (pricing, cancellations, sensitive replies)</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span><span>Tone and playbooks you control; responses are fully auditable</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span><span>Disable or limit channels anytime—full control is always yours</span></li>
                     </ul>
                 </div>
             </div>
@@ -206,40 +179,40 @@ export function Faqs3() {
     {
         id: 'item-4',
         icon: 'rocket',
-        question: 'What does the onboarding process look like?',
+        question: 'How fast can we go live?',
         answer: (
             <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div className="text-center p-3 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
                         <DynamicIcon name="clock" className="h-5 w-5 text-green-600 dark:text-green-400 mx-auto mb-1" />
                         <p className="text-sm font-medium text-green-800 dark:text-green-300">Fast Setup</p>
-                        <p className="text-xs text-green-600 dark:text-green-400">White-glove service</p>
+                        <p className="text-xs text-green-600 dark:text-green-400">Most teams live in days</p>
                     </div>
                     <div className="text-center p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800">
                         <DynamicIcon name="graduation-cap" className="h-5 w-5 text-blue-600 dark:text-blue-400 mx-auto mb-1" />
                         <p className="text-sm font-medium text-blue-800 dark:text-blue-300">Full Training</p>
-                        <p className="text-xs text-blue-600 dark:text-blue-400">Complete support</p>
+                        <p className="text-xs text-blue-600 dark:text-blue-400">White‑glove onboarding</p>
                     </div>
                     <div className="text-center p-3 rounded-lg bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800">
                         <DynamicIcon name="shield-check" className="h-5 w-5 text-purple-600 dark:text-purple-400 mx-auto mb-1" />
-                        <p className="text-sm font-medium text-purple-800 dark:text-purple-300">Risk-Free</p>
-                        <p className="text-xs text-purple-600 dark:text-purple-400">Full support</p>
+                        <p className="text-sm font-medium text-purple-800 dark:text-purple-300">Risk‑Free</p>
+                        <p className="text-xs text-purple-600 dark:text-purple-400">We handle the heavy lift</p>
                     </div>
                 </div>
                 <div className="space-y-3 text-sm text-muted-foreground">
                     <div className="p-3 rounded-lg bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 border border-yellow-200 dark:border-yellow-800">
                         <p className="font-medium text-yellow-800 dark:text-yellow-300 mb-2">What We Handle:</p>
                         <ul className="space-y-1 text-xs">
-                            <li>• Complete AI script setup</li>
-                            <li>• Workflow automation configuration</li>
-                            <li>• Full team training and onboarding</li>
+                            <li>• AI playbooks and scripts</li>
+                            <li>• Workflow automations and integrations</li>
+                            <li>• Calendar and channel configuration</li>
                         </ul>
                     </div>
                     <div className="p-3 rounded-lg bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/20 dark:to-green-900/20 border border-emerald-200 dark:border-emerald-800">
                         <p className="font-medium text-emerald-800 dark:text-emerald-300 mb-2">Your Guarantee:</p>
                         <ul className="space-y-1 text-xs text-muted-foreground">
-                            <li>• Risk-free trial with our full support</li>
                             <li>• Dedicated success manager on day one</li>
+                            <li>• Clear milestones and timing</li>
                             <li>• Everything to gain, nothing to lose</li>
                         </ul>
                     </div>
@@ -307,6 +280,14 @@ export function Faqs3() {
                         </ul>
                     </div>
                 </div>
+                <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-900/20 border border-gray-200 dark:border-gray-700">
+                    <p className="font-medium text-gray-900 dark:text-white mb-2">Control:</p>
+                    <ul className="space-y-2 text-sm">
+                        <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span><span>Granular permissions and roles</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span><span>Approval workflows where you want them</span></li>
+                        <li className="flex items-start gap-2"><span className="text-green-500 mt-0.5">✓</span><span>Full audit trail of every message and action</span></li>
+                    </ul>
+                </div>
             </div>
         )
     },
@@ -337,7 +318,7 @@ export function Faqs3() {
                         {faqItems.map((item) => (
                             <div key={item.id} className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#0070F3]/10 to-[#38bdf8]/10 backdrop-blur-lg border border-[#0070F3]/20 dark:border-[#38bdf8]/30 shadow-lg shadow-black/10 dark:shadow-black/30 transition-all duration-300 hover:shadow-xl">
                                 {/* Hover effect overlay */}
-                                <div className="absolute top-0 left-[-100%] h-full w-full bg-gradient-to-r from-transparent via-teal-50/30 dark:via-teal-900/10 to-transparent transition-all duration-700 ease-in-out group-hover:left-full" />
+                                <div className="pointer-events-none absolute top-0 left-[-100%] h-full w-full bg-gradient-to-r from-transparent via-teal-50/30 dark:via-teal-900/10 to-transparent transition-all duration-150 ease-linear group-hover:left-full" />
                                 <AccordionItem
                                     value={item.id}
                                     className="border-b-0">

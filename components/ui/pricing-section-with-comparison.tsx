@@ -42,7 +42,7 @@ function Pricing() {
                   <span className="text-sm text-muted-foreground"> / setup</span>
                 </p>
                 <Button variant="outline" className="gap-4 mt-8" asChild>
-                   <Link href="https://schedule.chanlytics.com/schedule/25min">
+                   <Link href="https://portal.chanlytics.com/auth/sign-up">
                      Get Started <MoveRight className="w-4 h-4" />
                    </Link>
                 </Button>
@@ -61,7 +61,7 @@ function Pricing() {
                   <span className="text-sm text-muted-foreground"> / month</span>
                 </p>
                 <Button className="gap-4 mt-8" asChild>
-                   <Link href="https://schedule.chanlytics.com/schedule/25min">
+                   <Link href="https://portal.chanlytics.com/auth/sign-up">
                      Get Started <MoveRight className="w-4 h-4" />
                    </Link>
                 </Button>
@@ -80,7 +80,7 @@ function Pricing() {
                   <span className="text-sm text-muted-foreground"> / project</span>
                 </p>
                 <Button variant="outline" className="gap-4 mt-8" asChild>
-                  <Link href="https://schedule.chanlytics.com/schedule/25min">
+                  <Link href="https://portal.chanlytics.com/auth/sign-up">
                     Get Started <MoveRight className="w-4 h-4" />
                    </Link>
                 </Button>

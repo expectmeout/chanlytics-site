@@ -1,0 +1,972 @@
+{
+    "name": "My workflow 2",
+    "nodes": [
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "2b77ce9f-13e2-4b7d-a163-497d85ea8208",
+                "name": "title",
+                "type": "string",
+                "value": "={{ $json.output.title }}"
+              },
+              {
+                "id": "4ff99c65-b7b0-4d8f-9680-1fff9236dcdd",
+                "name": "content",
+                "type": "string",
+                "value": "={{ $json.output.content }}"
+              },
+              {
+                "id": "9be5a4a8-28f8-4356-9480-e45d27c9524a",
+                "name": "category",
+                "type": "string",
+                "value": "={{ $json.output.category }}"
+              },
+              {
+                "id": "b399f9e4-a19a-4acf-a3e3-4f2eb7f19020",
+                "name": "tags",
+                "type": "array",
+                "value": "={{ $json.output.tag }}"
+              },
+              {
+                "id": "cc7de1f2-fd0f-4929-866f-f6638be3aacb",
+                "name": "image_search_keyword",
+                "type": "string",
+                "value": "={{ $json.output.image_search_keyword }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "1e44a072-ec7c-49af-a215-cd3361715bef",
+        "name": "Create Post Data From AI",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          -12032,
+          688
+        ],
+        "typeVersion": 3.4
+      },
+      {
+        "parameters": {
+          "url": "https://api.pexels.com/v1/search",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "query",
+                "value": "={{ $json.image_search_keyword }}"
+              },
+              {
+                "name": "per_page",
+                "value": "1"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "60017bb1-f8ab-4096-a1fb-6da708d35ebc",
+        "name": "Pexels HTTP Request image",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          -11728,
+          688
+        ],
+        "typeVersion": 4.2,
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "H6tnW0h2UQsk8EIC",
+            "name": "Header Auth account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "version": 2,
+              "leftValue": "",
+              "caseSensitive": true,
+              "typeValidation": "strict"
+            },
+            "combinator": "and",
+            "conditions": [
+              {
+                "id": "3fbf57aa-2821-4343-95a2-ce05e9b6f4a3",
+                "operator": {
+                  "type": "array",
+                  "operation": "empty",
+                  "singleValue": true
+                },
+                "leftValue": "={{ $json.photos }}",
+                "rightValue": ""
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "7c18888d-fc8b-4e88-b242-077950ec503f",
+        "name": "Pexel Err If",
+        "type": "n8n-nodes-base.if",
+        "position": [
+          -11440,
+          688
+        ],
+        "typeVersion": 2.2
+      },
+      {
+        "parameters": {
+          "url": "https://api.pexels.com/v1/search",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpHeaderAuth",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "query",
+                "value": "=ai"
+              },
+              {
+                "name": "per_page",
+                "value": "1"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "cd5b40ec-7419-44d5-98af-06f0c46ecd9b",
+        "name": "Pexels HTTP Request on Empty",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          -11056,
+          496
+        ],
+        "typeVersion": 4.2,
+        "credentials": {
+          "httpHeaderAuth": {
+            "id": "H6tnW0h2UQsk8EIC",
+            "name": "Header Auth account"
+          }
+        }
+      },
+      {
+        "parameters": {},
+        "id": "188e0abb-59e4-4cb9-918f-aba7fdcfb68a",
+        "name": "Pexel Merge",
+        "type": "n8n-nodes-base.merge",
+        "position": [
+          -10720,
+          688
+        ],
+        "typeVersion": 3.2
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "08edec66-9d1d-4e08-b402-34c11ab3042f",
+                "name": "Photo Landscape",
+                "type": "string",
+                "value": "={{ $json.photos[0].src.landscape }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "e050d351-5a4d-4161-9f2b-97fd9d758316",
+        "name": "Pexel Image Url",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          -10496,
+          688
+        ],
+        "typeVersion": 3.4
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "45b8961f-b94d-4be2-8ecb-6f1cf0cc524a",
+                "name": "category id",
+                "type": "number",
+                "value": "={{ $json.id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "b325fdd4-33d7-47e7-9edd-9a97d8976a65",
+        "name": "Category ID",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          -9968,
+          704
+        ],
+        "typeVersion": 3.4
+      },
+      {
+        "parameters": {},
+        "id": "c1d43875-f131-4134-a0e4-217c04826188",
+        "name": "Category Merge",
+        "type": "n8n-nodes-base.merge",
+        "position": [
+          -10176,
+          704
+        ],
+        "typeVersion": 3.2
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "aa611f11-bfa7-47af-bcce-24366905f78e",
+                "name": "title",
+                "type": "string",
+                "value": "={{ $('Create Post Data From AI').item.json.title }}"
+              },
+              {
+                "id": "a8160930-2acb-4af4-a158-f7757a34c0f5",
+                "name": "content",
+                "type": "string",
+                "value": "={{ $('Create Post Data From AI').item.json.content }}"
+              },
+              {
+                "id": "d5c6a651-71ec-4201-be55-999ba7de6790",
+                "name": "category id",
+                "type": "number",
+                "value": "={{ $('Category ID').item.json['category id'] }}"
+              },
+              {
+                "id": "94c55328-dab7-4782-989e-56e7a86eabb7",
+                "name": "Tag 1 id",
+                "type": "number",
+                "value": "={{ $('Tag 1 ID').item.json['Tag 1 id'] }}"
+              },
+              {
+                "id": "69623581-0279-45ab-8bb3-a5ca5ab9007a",
+                "name": "Tag 2 id",
+                "type": "number",
+                "value": "={{ $('Tag 2 ID').item.json['Tag 2 id'] }}"
+              },
+              {
+                "id": "d0672775-4605-4c73-b9e3-ad6ea3540c9d",
+                "name": "Tag 3 id",
+                "type": "number",
+                "value": "={{ $('Tag 3 ID').item.json['Tag 3 id'] }}"
+              },
+              {
+                "id": "77c66569-d663-4a2c-8863-d85afd8313ea",
+                "name": "Tag 4 id",
+                "type": "number",
+                "value": "={{ $json['Tag 4 id'] }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "30b786dd-a4ff-43d4-9ff8-2261baf4b248",
+        "name": "Create Post Data",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          -9744,
+          704
+        ],
+        "typeVersion": 3.4
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "4a7905b0-4861-4432-a75e-e49d64377ad7",
+                "name": "Post id",
+                "type": "number",
+                "value": "={{ $json.id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "19314816-348c-4355-b26a-43de8961c24c",
+        "name": "Post ID",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          -9264,
+          704
+        ],
+        "typeVersion": 3.4
+      },
+      {
+        "parameters": {
+          "url": "={{ $('Pexel Image Url').item.json['Photo Landscape'] }}",
+          "responseFormat": "file",
+          "download": true,
+          "options": {}
+        },
+        "id": "0ef3d9c6-d3c7-4ff9-8c9f-b69e4b2053fb",
+        "name": "Pexel Image Download",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          -8816,
+          704
+        ],
+        "typeVersion": 4.2
+      },
+      {
+        "parameters": {
+          "setAllData": false,
+          "binaryPropertyName": "data",
+          "dataPropertyName": "coverImageBase64",
+          "conversionMode": "binaryToJson",
+          "encoding": "base64",
+          "options": {}
+        },
+        "id": "2f6a9b1e-convert-base64",
+        "name": "Convert Image to Base64",
+        "type": "n8n-nodes-base.moveBinaryData",
+        "position": [
+          -10192,
+          928
+        ],
+        "typeVersion": 2
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "wordpressApi",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "Content-Disposition",
+                "value": "=attachment; filename=\"{{ $('Slug Generator').item.json.slug }}.jpg\""
+              }
+            ]
+          },
+          "sendBody": true,
+          "contentType": "binaryData",
+          "inputDataFieldName": "data",
+          "options": {}
+        },
+        "id": "3367ec4f-ff3b-4475-bd02-ca7759060787",
+        "name": "Image Upload To Wordpress",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          -8592,
+          704
+        ],
+        "typeVersion": 4.2
+      },
+      {
+        "parameters": {
+          "jsCode": "// Get the JSON data from the first incoming item\nconst item = $('Create Post Data').first().json.title;\n\n// Get the title from the item, or use an empty string if it doesn't exist\nconst title = item  || 'iranjankumar ai';\n\n// Generate the slug\nconst slug = title\n  .toLowerCase() // Convert to lowercase\n  .trim() // Remove whitespace from both ends\n  .replace(/[^\\w\\s-]/g, '') // Remove all non-word chars except spaces and hyphens\n  .replace(/[\\s_-]+/g, '-') // Replace spaces and underscores with a single hyphen\n  .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens\n\n// Return the new slug in the correct n8n format\nreturn [{\n  json: {\n    slug: slug\n  }\n}];"
+        },
+        "id": "66c88ebe-89be-48b4-aaf5-032b5b8388ea",
+        "name": "Slug Generator",
+        "type": "n8n-nodes-base.code",
+        "position": [
+          -9040,
+          704
+        ],
+        "typeVersion": 2
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://yt.iranjankumar.com/wp-json/wp/v2/media/{{ $json.id }}",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "wordpressApi",
+          "sendBody": true,
+          "bodyParameters": {
+            "parameters": [
+              {
+                "name": "alt_text",
+                "value": "={{ $('Create Post Data').item.json.title }}"
+              },
+              {
+                "name": "description",
+                "value": "={{ $('Create Post Data').item.json.title }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "220fc154-44e4-46af-83d4-395466a2ec0e",
+        "name": "Set alt text and description to image",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          -8368,
+          704
+        ],
+        "typeVersion": 4.2
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://yt.iranjankumar.com/wp-json/wp/v2/posts/{{ $('Post ID').item.json['Post id'] }}",
+          "authentication": "predefinedCredentialType",
+          "nodeCredentialType": "wordpressApi",
+          "sendQuery": true,
+          "queryParameters": {
+            "parameters": [
+              {
+                "name": "featured_media",
+                "value": "={{ $json.id }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "cb006f08-c6a4-42cd-9529-7a79a6207f10",
+        "name": "HTTP Request",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          -8160,
+          704
+        ],
+        "typeVersion": 4.2
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "feedUrl": "https://www.reddit.com/r/artificial/.rss"
+        },
+        "id": "975257c4-a60e-4ea3-af9f-56b2f8855f64",
+        "name": "RSS Feed Trigger",
+        "type": "n8n-nodes-base.rssFeedReadTrigger",
+        "position": [
+          -13616,
+          368
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "schemaType": "manual",
+          "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"title\": {\n      \"type\": \"string\"\n    },\n    \"content\": {\n      \"type\": \"string\"\n    },\n    \"category\": {\n      \"type\": \"string\"\n    },\n    \"tag\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    },\n    \"image_search_keyword\": {\n      \"type\": \"string\"\n    }\n  },\n  \"required\": [\"title\", \"content\", \"category\", \"tag\", \"image_search_keyword\"]\n}"
+        },
+        "id": "73e69512-04b1-4cf0-a1c3-350603d5762b",
+        "name": "Structured Output Parser",
+        "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+        "position": [
+          -12368,
+          976
+        ],
+        "typeVersion": 1.3
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "feedUrl": "https://www.reddit.com/r/MachineLearning/.rss"
+        },
+        "id": "f5c90587-3056-456c-8eb7-24ba53ffcf7e",
+        "name": "RSS Feed Trigger1",
+        "type": "n8n-nodes-base.rssFeedReadTrigger",
+        "position": [
+          -13632,
+          608
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "pollTimes": {
+            "item": [
+              {
+                "mode": "everyMinute"
+              }
+            ]
+          },
+          "feedUrl": "https://www.reddit.com/r/ArtificialInteligence/.rss"
+        },
+        "id": "332c9aea-6a2e-414e-b6cc-f141a6ef1a29",
+        "name": "RSS Feed Trigger2",
+        "type": "n8n-nodes-base.rssFeedReadTrigger",
+        "position": [
+          -13568,
+          896
+        ],
+        "typeVersion": 1
+      },
+      {
+        "parameters": {
+          "numberInputs": 3
+        },
+        "id": "101824d8-6c65-4204-85d6-5c361d9d601b",
+        "name": "Triggers Merge",
+        "type": "n8n-nodes-base.merge",
+        "position": [
+          -13120,
+          688
+        ],
+        "typeVersion": 3.2
+      },
+      {
+        "parameters": {
+          "promptType": "define",
+          "text": "=Reddit Post:\nReddit Title: {{ $json.title }}\nand\nReddit Content: {{ $json.content }}",
+          "hasOutputParser": true,
+          "messages": {
+            "messageValues": [
+              {
+                "message": "You are a content writer helping to create a blog post for WordPress site.\n\nHere's your task:\nUsing the following Reddit post as inspiration, write a full blog article. The tone should be friendly, personal, and natural — like you're talking to a curious friend over coffee.\n\nGoal:\nTurn the reddit post data into an engaging blog post that would perform well on Medium or similar platforms. Give a catchy title too.\n\nWrite using these style rules:\n\n* **Use clear, everyday language:** Simple words. Short sentences. Write like a human, not a robot.\n* **No clichés or hype words:** Avoid terms like \"game-changer\" or \"revolutionize.\" Just be real.\n* **Be direct:** Get to the point fast. Cut the fluff.\n* **Use a natural voice:** It's okay to start sentences with \"But\" or \"So.\" Write like you speak.\n* **Focus on value:** Don't oversell. Instead, explain the benefit honestly.\n* **Be human:** Don't fake excitement. Just share what's interesting, surprising, or useful.\n* **Light structure:** Use short paragraphs, subheadings, and maybe a few bullet points.\n* **Emotion + story welcome:** Share small stories or examples if it helps explain the point.\n* **Title must be catchy and relevant.**\n\nImportant Note:\nSometimes the post might not include much content — maybe it’s just a short sentence or like only one line. In such cases, don't just put what's given. Instead, use the **title as the main inspiration** and create an engaging blog post based on what the title *suggests*. You can also expand with general knowledge, relevant context, helpful explanations, or personal-style opinions — whatever makes it feel thoughtful and useful to a reader. Imagine you're filling in the gaps with your own voice and insights.\n\nAvoid:\n- Robotic or overly formal tone\n- Long, dense paragraphs\n- Generic summaries or filler content\n\nDo:\n- Write in first person if it makes sense\n- Use contractions (\"I'm\", \"it's\", etc.)\n- Keep it scannable and interesting\n\nStart with a headline, then dive right into the story or explanation.\n\nNow go ahead and write the blog post.\n\nThese are the things I need:\n1. Title\n2. Content\n3. Category: A String\n4. Tags: A array of 4 tags\n5. Image Search Keyword\n\nI think you know about categories and tags, but let me explain what an image search keyword is, as you might be confused. Basically, I am using the Pexels API, which provides images based on a search keyword. I need to use this keyword to fetch images. I just wanted to make sure you understand this.\n\nImportant: Do not add anything before or after, start with json and end with json.\n\nAn Example Output: {\n \"title\": \"What's New with OpenAI's ChatGPT Agent and the Windsurf Shuffle?\",\n \"content\": \"Hey, have you heard about OpenAI's latest ChatGPT Agent? It's kind of wild. This isn't just another chatbot anymore — this agent can actually control your whole computer and help you get stuff done. Think about telling it to open programs, organize files, or even handle some tasks that usually take a bunch of clicking and typing. It basically acts like a digital assistant that lives inside your computer.\\n\\nNow, I've been keeping an eye on how AI tools are evolving, and this feels like a neat step in making them more practical for everyday use. No more copy-pasting or juggling tabs; you just tell the agent what you want, and it goes for it.\\n\\nOn a different note, there's some interesting news about Windsurf — the company that was in talks with OpenAI. Turns out that deal fell through, and Windsurf's CEO is heading over to Google instead. It's always intriguing to see how these tech shifts happen behind the scenes.\\n\\nWhy does this matter? Well, these moves often hint at where the big players are focusing their energy next. The AI world is moving fast, and knowing where companies are investing their talent can clue us in on upcoming tools or trends.\\n\\nIf you're curious about how AI agents like ChatGPT could change your workflow or just want to stay in the loop about what's going on with AI startups, this is a good moment to pay attention. And who knows? Maybe soon these tools will be part of our daily routine, helping us out in ways that feel natural and easy.\\n\\nOh, and if you want to dig deeper, there's an episode from the LWiAI Podcast (#217) that covers all this and more. It's a solid listen if you like getting the scoop straight from the source.\\n\\nSo, what do you think? Would you feel comfortable letting an AI agent take control of parts of your computer? I'm still on the fence but definitely interested in seeing how it all plays out.\",\n \"category\": \"Technology\",\n \"tag\": [\n   \"OpenAI\",\n   \"ChatGPT\",\n   \"AI Agents\",\n   \"Tech News\"\n ],\n \"image_search_keyword\": \"AI assistant on computer\"\n}\n"
+              }
+            ]
+          },
+          "batching": {}
+        },
+        "id": "7246ade8-d7e4-4f2c-b388-d3519c5b29ae",
+        "name": "AI",
+        "type": "@n8n/n8n-nodes-langchain.chainLlm",
+        "position": [
+          -12672,
+          688
+        ],
+        "typeVersion": 1.7
+      },
+      {
+        "parameters": {
+          "modelId": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4o",
+            "cachedResultName": "GPT-4O"
+          },
+          "messages": {
+            "values": [
+              {
+                "content": "=Reddit Post:\nReddit Title: {{ $json.title }}\nand\nReddit Content: {{ $json.content }}"
+              },
+              {
+                "content": "You are a content writer helping to create a blog post for WordPress site.\n\nHere's your task:\nUsing the following Reddit post as inspiration, write a full blog article. The tone should be friendly, personal, and natural — like you're talking to a curious friend over coffee.\n\nGoal:\nTurn the reddit post data into an engaging blog post that would perform well on Medium or similar platforms. Give a catchy title too.\n\nWrite using these style rules:\n\n* **Use clear, everyday language:** Simple words. Short sentences. Write like a human, not a robot.\n* **No clichés or hype words:** Avoid terms like \"game-changer\" or \"revolutionize.\" Just be real.\n* **Be direct:** Get to the point fast. Cut the fluff.\n* **Use a natural voice:** It's okay to start sentences with \"But\" or \"So.\" Write like you speak.\n* **Focus on value:** Don't oversell. Instead, explain the benefit honestly.\n* **Be human:** Don't fake excitement. Just share what's interesting, surprising, or useful.\n* **Light structure:** Use short paragraphs, subheadings, and maybe a few bullet points.\n* **Emotion + story welcome:** Share small stories or examples if it helps explain the point.\n* **Title must be catchy and relevant.**\n\nImportant Note:\nSometimes the post might not include much content — maybe it’s just a short sentence or like only one line. In such cases, don't just put what's given. Instead, use the **title as the main inspiration** and create an engaging blog post based on what the title *suggests*. You can also expand with general knowledge, relevant context, helpful explanations, or personal-style opinions — whatever makes it feel thoughtful and useful to a reader. Imagine you're filling in the gaps with your own voice and insights.\n\nAvoid:\n- Robotic or overly formal tone\n- Long, dense paragraphs\n- Generic summaries or filler content\n\nDo:\n- Write in first person if it makes sense\n- Use contractions (\"I'm\", \"it's\", etc.)\n- Keep it scannable and interesting\n\nStart with a headline, then dive right into the story or explanation.\n\nNow go ahead and write the blog post.\n\nThese are the things I need:\n1. Title\n2. Content\n3. Category: A String\n4. Tags: A array of 4 tags\n5. Image Search Keyword\n\nI think you know about categories and tags, but let me explain what an image search keyword is, as you might be confused. Basically, I am using the Pexels API, which provides images based on a search keyword. I need to use this keyword to fetch images. I just wanted to make sure you understand this.\n\nImportant: Do not add anything before or after, start with json and end with json.\n\nA Example Output: {\n\"title\": \n\"What’s New with OpenAI’s ChatGPT Agent and the Windsurf Shuffle?\",\n\"content\": \n\"Hey, have you heard about OpenAI's latest ChatGPT Agent? It's kind of wild. This isn't just another chatbot anymore — this agent can actually control your whole computer and help you get stuff done. Think about telling it to open programs, organize files, or even handle some tasks that usually take a bunch of clicking and typing. It basically acts like a digital assistant that lives inside your computer.\\n\\nNow, I’ve been keeping an eye on how AI tools are evolving, and this feels like a neat step in making them more practical for everyday use. No more copy-pasting or juggling tabs; you just tell the agent what you want, and it goes for it.\\n\\nOn a different note, there’s some interesting news about Windsurf — the company that was in talks with OpenAI. Turns out that deal fell through, and Windsurf’s CEO is heading over to Google instead. It’s always intriguing to see how these tech shifts happen behind the scenes.\\n\\nWhy does this matter? Well, these moves often hint at where the big players are focusing their energy next. The AI world is moving fast, and knowing where companies are investing their talent can clue us in on upcoming tools or trends.\\n\\nIf you’re curious about how AI agents like ChatGPT could change your workflow or just want to stay in the loop about what’s going on with AI startups, this is a good moment to pay attention. And who knows? Maybe soon these tools will be part of our daily routine, helping us out in ways that feel natural and easy.\\n\\nOh, and if you want to dig deeper, there’s an episode from the LWiAI Podcast (#217) that covers all this and more. It’s a solid listen if you like getting the scoop straight from the source.\\n\\nSo, what do you think? Would you feel comfortable letting an AI agent take control of parts of your computer? I’m still on the fence but definitely interested in seeing how it all plays out.\",\n\"category\": \n\"Technology\",\n\"tag\": \n[\n\"OpenAI\",\n\"ChatGPT\",\n\"AI Agents\",\n\"Tech News\"\n],\n\"image_search_keyword\": \n\"AI assistant on computer\"\n}\n",
+                "role": "system"
+              }
+            ]
+          },
+          "jsonOutput": true,
+          "options": {}
+        },
+        "id": "e4b20f4c-b985-4e08-aea7-e91e15bc7d2c",
+        "name": "AI ChatGPT",
+        "type": "@n8n/n8n-nodes-langchain.openAi",
+        "position": [
+          -12752,
+          1392
+        ],
+        "typeVersion": 1.8,
+        "disabled": true
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "gpt-4.1-mini"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          -12784,
+          896
+        ],
+        "id": "82a1f525-2d0d-40c7-b3e4-53a90660d95c",
+        "name": "OpenAI Chat Model",
+        "credentials": {
+          "openAiApi": {
+            "id": "9Qq2aKv56OBUULSx",
+            "name": "OpenAi account"
+          }
+        }
+      }
+      ,
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "name": "title",
+                "type": "string",
+                "value": "={{ $('Create Post Data From AI').item.json.title }}"
+              },
+              {
+                "name": "content",
+                "type": "string",
+                "value": "={{ $('Create Post Data From AI').item.json.content }}"
+              },
+              {
+                "name": "tags",
+                "type": "array",
+                "value": "={{ $('Create Post Data From AI').item.json.tags }}"
+              },
+              {
+                "name": "coverImageBase64",
+                "type": "string",
+                "value": "={{ $('Convert Image to Base64').item.json.coverImageBase64 }}"
+              },
+              {
+                "name": "author",
+                "type": "string",
+                "value": "Chanlytics Team"
+              },
+              {
+                "name": "published",
+                "type": "string",
+                "value": "={{ new Date().toISOString() }}"
+              },
+              {
+                "name": "readingTime",
+                "type": "string",
+                "value": "5 min"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "c9a7a2f2-chanlytics-build-payload",
+        "name": "Build Chanlytics Payload",
+        "type": "n8n-nodes-base.set",
+        "position": [
+          -10320,
+          928
+        ],
+        "typeVersion": 3.4
+      },
+      {
+        "parameters": {
+          "method": "POST",
+          "url": "=https://YOUR_DOMAIN_HERE/api/resources/webhook",
+          "sendHeaders": true,
+          "headerParameters": {
+            "parameters": [
+              {
+                "name": "x-webhook-secret",
+                "value": "=REPLACE_WITH_SECRET"
+              },
+              {
+                "name": "content-type",
+                "value": "application/json"
+              }
+            ]
+          },
+          "sendBody": true,
+          "jsonParameters": true,
+          "bodyParametersJson": "={{ $json }}",
+          "options": {}
+        },
+        "id": "a3c2a1b1-chanlytics-post",
+        "name": "POST to Chanlytics Webhook",
+        "type": "n8n-nodes-base.httpRequest",
+        "position": [
+          -10064,
+          928
+        ],
+        "typeVersion": 4.2
+      }
+    ],
+    "pinData": {},
+    "connections": {
+      "AI": {
+        "main": [
+          [
+            {
+              "node": "Create Post Data From AI",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Post ID": {
+        "main": [
+          [
+            {
+              "node": "Slug Generator",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Category ID": {
+        "main": [
+          [
+            {
+              "node": "Create Post Data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pexel Merge": {
+        "main": [
+          [
+            {
+              "node": "Pexel Image Url",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          []
+        ]
+      },
+      "Pexel Err If": {
+        "main": [
+          [
+            {
+              "node": "Pexels HTTP Request on Empty",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Pexel Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "Category Merge": {
+        "main": [
+          [
+            {
+              "node": "Category ID",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Slug Generator": {
+        "main": [
+          [
+            {
+              "node": "Pexel Image Download",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Triggers Merge": {
+        "main": [
+          [
+            {
+              "node": "AI",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pexel Image Url": {
+        "main": [
+          [
+            {
+              "node": "Category Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Build Chanlytics Payload": {
+        "main": [
+          [
+            {
+              "node": "POST to Chanlytics Webhook",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create Post Data": {
+        "main": [
+          [
+            {
+              "node": "Post ID",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "RSS Feed Trigger": {
+        "main": [
+          [
+            {
+              "node": "Triggers Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "RSS Feed Trigger1": {
+        "main": [
+          [
+            {
+              "node": "Triggers Merge",
+              "type": "main",
+              "index": 1
+            }
+          ]
+        ]
+      },
+      "RSS Feed Trigger2": {
+        "main": [
+          [
+            {
+              "node": "Triggers Merge",
+              "type": "main",
+              "index": 2
+            }
+          ]
+        ]
+      },
+      "Pexel Image Download": {
+        "main": [
+          [
+            {
+              "node": "Image Upload To Wordpress",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Convert Image to Base64",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Convert Image to Base64": {
+        "main": [
+          [
+            {
+              "node": "Build Chanlytics Payload",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create Post Data From AI": {
+        "main": [
+          [
+            {
+              "node": "Pexels HTTP Request image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Structured Output Parser": {
+        "ai_outputParser": [
+          [
+            {
+              "node": "AI",
+              "type": "ai_outputParser",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Image Upload To Wordpress": {
+        "main": [
+          [
+            {
+              "node": "Set alt text and description to image",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pexels HTTP Request image": {
+        "main": [
+          [
+            {
+              "node": "Pexel Err If",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pexels HTTP Request on Empty": {
+        "main": [
+          [
+            {
+              "node": "Pexel Merge",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Set alt text and description to image": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "OpenAI Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "AI",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": false,
+    "settings": {
+      "executionOrder": "v1"
+    },
+    "versionId": "189f5a13-8415-48bb-ae98-9c7050bc9554",
+    "meta": {
+      "instanceId": "3ec843d39f596eb6f687f82133e5a42787c74ee5677353b23aa90c975d4399ea"
+    },
+    "id": "fSJKGEdX13mICQVi",
+    "tags": []
+  }

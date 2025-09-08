@@ -12,6 +12,7 @@ const menuItems = [
     { name: 'Features', href: '#features' },
     { name: 'FAQ', href: '#marketplace-solution-faqs' },
     { name: 'Pricing', href: '#booking' },
+    { name: 'Resources', href: '/resources' },
     { name: 'Contact Us', href: '#booking' },
 ];
 
@@ -84,12 +85,20 @@ export const HeroHeader = () => {
                             <ul className="flex gap-8 text-[15px]">
                                 {menuItems.map((item, index) => (
                                     <li key={index}>
-                                        <a
-                                            href={item.href}
-                                            onClick={(e) => handleScroll(e, item.href)}
-                                            className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
-                                            <span>{item.name}</span>
-                                        </a>
+                                        {
+                                            item.href.startsWith('/') ? (
+                                                <Link href={item.href} className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                    <span>{item.name}</span>
+                                                </Link>
+                                            ) : (
+                                                <a
+                                                    href={item.href}
+                                                    onClick={(e) => handleScroll(e, item.href)}
+                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                    <span>{item.name}</span>
+                                                </a>
+                                            )
+                                        }
                                     </li>
                                 ))}
                             </ul>
@@ -100,12 +109,20 @@ export const HeroHeader = () => {
                                 <ul className="space-y-6 text-[17px]">
                                     {menuItems.map((item, index) => (
                                         <li key={index}>
-                                                <a
-                                                    href={item.href}
-                                                    onClick={(e) => handleScroll(e, item.href)}
-                                                    className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
-                                                    <span>{item.name}</span>
-                                                </a>
+                                            {
+                                                item.href.startsWith('/') ? (
+                                                    <Link href={item.href} className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                        <span>{item.name}</span>
+                                                    </Link>
+                                                ) : (
+                                                    <a
+                                                        href={item.href}
+                                                        onClick={(e) => handleScroll(e, item.href)}
+                                                        className="text-muted-foreground hover:text-accent-foreground block duration-150 cursor-pointer">
+                                                        <span>{item.name}</span>
+                                                    </a>
+                                                )
+                                            }
                                         </li>
                                     ))}
                                 </ul>
@@ -120,17 +137,17 @@ export const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <a href="#booking" onClick={(e) => handleScroll(e, '#booking')}>
+                                    <Link href="https://portal.chanlytics.com/auth/sign-up">
                                         <span>Sign Up</span>
-                                    </a>
+                                    </Link>
                                 </Button>
                                 <Button
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <a href="#booking" onClick={(e) => handleScroll(e, '#booking')}>
+                                    <Link href="https://portal.chanlytics.com/auth/sign-up">
                                         <span>Get Started</span>
-                                    </a>
+                                    </Link>
                                 </Button>
                             </div>
                         </div>

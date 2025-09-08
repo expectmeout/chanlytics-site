@@ -11,6 +11,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'randomuser.me',
             },
+            {
+                protocol: 'https',
+                hostname: 'html.tailus.io',
+            },
         ],
     },
     // Disable ESLint during builds for deployment

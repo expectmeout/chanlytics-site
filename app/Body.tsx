@@ -38,6 +38,7 @@ export default function ExampleBody() {
 
   return (
     <div className="main-content bg-gray-50 dark:bg-background">
+      <ElevenLabsConvai agent-id="agent_01jyh5yg3vf0jtxq1tge80nkhn" />
       
       {/* 1. Hero Section */}
       <Hero />
@@ -81,9 +82,6 @@ export default function ExampleBody() {
               className="max-w-4xl mx-auto"
             >
               <BookingCalendar />
-              <div className="mt-4">
-                <ElevenLabsConvai agent-id="agent_01jyh5yg3vf0jtxq1tge80nkhn" />
-              </div>
             </motion.div>
           </div>
         </div>
