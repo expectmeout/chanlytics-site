@@ -71,14 +71,14 @@ export const HeroHeader = () => {
                                     asChild
                                     variant="outline"
                                     size="sm">
-                                    <Link href="https://portal.chanlytics.com/auth/login">
+                                    <Link href="https://ai.chanlytics.com/auth/login">
                                         <span>Login</span>
                                     </Link>
                                 </Button>
                                 <Button
                                     asChild
                                     size="sm">
-                                    <Link href="https://portal.chanlytics.com/auth/sign-up">
+                                    <Link href="https://ai.chanlytics.com/auth/sign-up">
                                         <span>Sign Up</span>
                                     </Link>
                                 </Button>

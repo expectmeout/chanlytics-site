@@ -2,10 +2,6 @@ import BlockPreview from '@/components/BlockPreview'
 import { blocks, categories } from '@/data/blocks'
 import { notFound } from 'next/navigation'
 
-interface PageProps {
-    params: Promise<{ category: string }>
-}
-
 export const dynamic = 'force-static'
 export const revalidate = 3600
 
@@ -15,14 +11,14 @@ export async function generateStaticParams() {
     }))
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: { params: Promise<{ category: string }> }) {
     const { category } = await params
     return {
         title: `Shadcn ${category} Blocks | Tailark`,
     }
 }
 
-export default async function CategoryPage({ params }: PageProps) {
+export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
     const { category } = await params
     const categoryBlocks = blocks.filter((b) => b.category === category)
 

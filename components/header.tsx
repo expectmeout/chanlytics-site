@@ -137,7 +137,7 @@ export const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled && 'lg:hidden')}>
-                                    <Link href="https://portal.chanlytics.com/auth/sign-up">
+                                    <Link href="https://ai.chanlytics.com/auth/sign-up">
                                         <span>Sign Up</span>
                                     </Link>
                                 </Button>
@@ -145,7 +145,7 @@ export const HeroHeader = () => {
                                     asChild
                                     size="sm"
                                     className={cn(isScrolled ? 'lg:inline-flex' : 'hidden')}>
-                                    <Link href="https://portal.chanlytics.com/auth/sign-up">
+                                    <Link href="https://ai.chanlytics.com/auth/sign-up">
                                         <span>Get Started</span>
                                     </Link>
                                 </Button>

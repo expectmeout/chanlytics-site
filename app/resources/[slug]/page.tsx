@@ -7,9 +7,10 @@ function titleCaseSlug(slug: string) {
   return slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug)
-  const title = post?.title ?? titleCaseSlug(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
+  const title = post?.title ?? titleCaseSlug(slug)
   const description = post?.excerpt ?? ""
   const images = post?.coverImage ? [post.coverImage] : []
   return {
@@ -34,8 +35,9 @@ export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }))
 }
 
-export default function ResourcePostPage({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug)
+export default async function ResourcePostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = getPostBySlug(slug)
   if (!post) return notFound()
 
   const all = getAllPosts()

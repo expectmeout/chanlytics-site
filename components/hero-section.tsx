@@ -126,7 +126,7 @@ export default function HeroSection() {
                                         asChild
                                         size="lg"
                                         className="rounded-xl px-5 text-base">
-                                        <Link href="https://portal.chanlytics.com/auth/sign-up">
+                                        <Link href="https://ai.chanlytics.com/auth/sign-up">
                                             <span className="text-nowrap">Get Started</span>
                                         </Link>
                                     </Button>

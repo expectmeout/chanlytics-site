@@ -60,19 +60,19 @@ export default function ComparatorAdvertising() {
                                     <span className="block">Basic</span>
 
                                     <Button asChild variant="outline" size="sm">
-                                        <Link href="https://portal.chanlytics.com/auth/sign-up">Get Started</Link>
+                                        <Link href="https://ai.chanlytics.com/auth/sign-up">Get Started</Link>
                                     </Button>
                                 </th>
                                 <th className="bg-muted rounded-t-(--radius) space-y-3 px-4">
                                     <span className="block">Standard</span>
                                     <Button asChild size="sm">
-                                        <Link href="https://portal.chanlytics.com/auth/sign-up">Get Started</Link>
+                                        <Link href="https://ai.chanlytics.com/auth/sign-up">Get Started</Link>
                                     </Button>
                                 </th>
                                 <th className="space-y-3">
                                     <span className="block">Premium</span>
                                     <Button asChild variant="outline" size="sm">
-                                        <Link href="https://portal.chanlytics.com/auth/sign-up">Get Started</Link>
+                                        <Link href="https://ai.chanlytics.com/auth/sign-up">Get Started</Link>
                                     </Button>
                                 </th>
                             </tr>
