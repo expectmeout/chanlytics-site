@@ -14,6 +14,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://chanlytics.com'),
   title: 'AI Operating System for Small Business | Chanlytics',
   description:
     'Complete AI automation for small businesses. Capture leads from every channel—email, phone, SMS, WhatsApp, Instagram DMs. Automate lead nurturing, appointment booking, payments, reviews & reactivations. Real-time insights & AI assistant included.',
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Chanlytics',
     images: [
       {
-        url: 'https://chanlytics.com/og-image.png',
+        url: '/chanlytics-portal-light.png',
         width: 1200,
         height: 630,
         alt: 'Chanlytics – Complete AI Operating System for Small Business'
@@ -40,7 +41,12 @@ export const metadata: Metadata = {
     title: 'AI Operating System for Small Business | Chanlytics',
     description:
       'One AI system captures leads from every channel & automates your entire customer journey. Real-time insights, AI assistant & complete business automation.',
-    images: ['https://chanlytics.com/og-image.png']
+    images: ['/chanlytics-portal-light.png']
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
   },
   robots: {
     index: true,
