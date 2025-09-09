@@ -44,9 +44,9 @@ export const metadata: Metadata = {
     images: ['/chanlytics-portal-light.png']
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/chanlytics-favicon-logo.png',
   },
   robots: {
     index: true,
